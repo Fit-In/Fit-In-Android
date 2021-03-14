@@ -7,4 +7,4 @@
   </p>
 </p>
 <br/>
-<h1 align="center"> Fit-in UI&UX 초안 완성 </h1>
+<h4 align="center"> Fit-in UI&UX 초안 완성 </h4>
