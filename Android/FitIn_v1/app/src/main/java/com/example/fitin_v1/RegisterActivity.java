@@ -25,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        Button btnRegister = (Button)findViewById(R.id.BtnRegister);
+        ImageButton btnRegister = (ImageButton)findViewById(R.id.BtnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

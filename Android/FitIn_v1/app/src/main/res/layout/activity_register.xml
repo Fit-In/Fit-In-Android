@@ -30,26 +30,23 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ivback"
-        app:layout_constraintBottom_toTopOf="@id/EditName"
+        android:src="@drawable/iv_back"
         app:layout_constraintLeft_toRightOf="@id/GuideBegin"
         app:layout_constraintRight_toLeftOf="@id/TvRegister"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/TvRegister" />
 
-    <TextView
+    <ImageView
         android:id="@+id/TvRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="회원가입"
+        android:src="@drawable/iv_register"
         android:textSize="30sp"
-        android:layout_marginLeft="12dp"
         android:layout_marginTop="48dp"
-        android:layout_marginRight="52dp"
+        android:layout_marginRight="40dp"
         android:gravity="center_horizontal"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/ivback"
-        app:layout_constraintRight_toRightOf="@+id/GuideEnd"
-        app:layout_constraintBottom_toTopOf="@+id/EditId"/>
+        app:layout_constraintRight_toRightOf="@+id/GuideEnd" />
 
     <EditText
         android:id="@+id/EditName"
@@ -57,23 +54,46 @@
         android:layout_height="wrap_content"
         android:hint="이름"
         android:minHeight="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="80dp"
+        android:padding="8dp"
+        android:background="@drawable/et_input"
         app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
         app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@id/TvRegister"
-        app:layout_constraintBottom_toTopOf="@+id/EditEmail"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        app:layout_constraintTop_toBottomOf="@id/TvRegister" />
 
     <EditText
-        android:id="@+id/EditEmail"
+        android:id="@+id/EditEmail_f"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="이메일을 입력해주세요."
-        android:minHeight="48dp"
+        android:padding="8dp"
+        android:hint="아이디(이메일)"
+        android:background="@drawable/et_email_f"
         app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
+        app:layout_constraintRight_toLeftOf="@id/tvSymbol"
+        app:layout_constraintTop_toTopOf="@id/EditEmail_b" />
+
+    <TextView
+        android:id="@+id/tvSymbol"
+        android:layout_width="16dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="\@"
+        app:layout_constraintTop_toTopOf="@id/EditEmail_f"
+        app:layout_constraintLeft_toRightOf="@id/EditEmail_f"
+        app:layout_constraintRight_toLeftOf="@id/EditEmail_b"/>
+
+
+    <EditText
+        android:id="@+id/EditEmail_b"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/et_email_b"
+        android:padding="8dp"
+        android:hint="naver.com"
+        app:layout_constraintLeft_toRightOf="@id/tvSymbol"
         app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@id/EditName"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@id/EditName" />
 
     <EditText
         android:id="@+id/EditPw"
@@ -81,29 +101,36 @@
         android:layout_height="wrap_content"
         android:hint="비밀번호를 입력해주세요"
         android:minHeight="48dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:background="@drawable/et_input"
         app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
         app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@id/EditEmail"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@id/EditEmail_b" />
+
     <EditText
         android:id="@+id/EditPwRe"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="비밀번호를 한번 더 입력해주세요"
         android:minHeight="48dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:background="@drawable/et_input"
         app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
         app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@id/EditPw"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toBottomOf="@id/EditPw" />
 
-    <Button
+    <ImageButton
         android:id="@+id/BtnRegister"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:src="@drawable/btn_next"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="40dp"
         app:layout_constraintLeft_toLeftOf="@+id/GuideBegin"
         app:layout_constraintRight_toRightOf="@id/GuideEnd"
         app:layout_constraintTop_toBottomOf="@+id/EditPwRe"
-        app:layout_constraintBottom_toTopOf="@+id/TvIdFind"
         android:text="회원가입"/>
 
     <TextView
@@ -111,8 +138,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="48dp"
-        app:layout_constraintTop_toBottomOf="@+id/BtnRegister"
+        android:layout_marginBottom="64dp"
         app:layout_constraintLeft_toLeftOf="@+id/GuideBegin"
         app:layout_constraintRight_toRightOf="@+id/GuideEnd"
         app:layout_constraintBottom_toBottomOf="parent"

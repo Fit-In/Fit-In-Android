@@ -4,10 +4,20 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/cheew/Documents/FitIn/Fit-In-Android/Android/FitIn_v1/app/src/main/res/layout/activity_complete.xml" value="0.358695652173913" />
-        <entry key="app/src/main/res/layout/activity_complete.xml" value="0.11296296296296296" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1275" />
+        <entry key="app/src/main/res/drawable/splash_screen.xml" value="0.1" />
+        <entry key="app/src/main/res/font/font_Cafe24Behappy.xml" value="0.1796875" />
+        <entry key="app/src/main/res/font/font_Cafe24Oneprettynight.xml" value="0.1796875" />
+        <entry key="app/src/main/res/font/font_cafe24oneprettynight.xml" value="0.1984375" />
+        <entry key="app/src/main/res/font/font_wando_r.xml" value="0.1796875" />
+        <entry key="app/src/main/res/font/font_wandoclean_B.xml" value="0.1796875" />
+        <entry key="app/src/main/res/font/font_wandoclean_r.xml" value="0.1796875" />
+        <entry key="app/src/main/res/font/font_wandohope_b.xml" value="0.1796875" />
+        <entry key="app/src/main/res/font/font_wandohope_r.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/activity_complete.xml" value="0.15496978759765617" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.7377502441406251" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.20111083984375" />
         <entry key="app/src/main/res/layout/activity_webview.xml" value="0.11296296296296296" />
       </map>
     </option>
@@ -17,5 +27,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2780349731445313" />
+      </ProjectState>
+    </option>
   </component>
 </project>
