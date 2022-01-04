@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        Button btnLogin = (Button)findViewById(R.id.BtnLogin);
+        ImageButton btnLogin = (ImageButton)findViewById(R.id.BtnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        Button btnNaver = (Button)findViewById(R.id.BtnNaver);
-        Button btnFacebook = (Button)findViewById(R.id.BtnFacebook);
+        ImageButton btnNaver = (ImageButton)findViewById(R.id.BtnNaver);
+        ImageButton btnGoogle = (ImageButton)findViewById(R.id.BtnGoogle);
         Intent intentweb = new Intent(getApplicationContext(),WebviewActivity.class);
 
 
@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intentweb);
             }
         });
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intentweb.putExtra("Uri",1);

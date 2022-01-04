@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnRegister = (Button)findViewById(R.id.BtnPhone);
+        ImageButton btnRegister = (ImageButton)findViewById(R.id.BtnPhone);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button btnNaver = (Button)findViewById(R.id.BtnNaver);
-        Button btnFacebook = (Button)findViewById(R.id.BtnFacebook);
+        ImageButton btnNaver = (ImageButton)findViewById(R.id.BtnNaver);
+        ImageButton btnGoogle = (ImageButton)findViewById(R.id.BtnGoogle);
         Intent intentweb = new Intent(getApplicationContext(),WebviewActivity.class);
 
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentweb);
             }
         });
-        btnFacebook.setOnClickListener(new View.OnClickListener() {
+        btnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intentweb.putExtra("Uri",1);
