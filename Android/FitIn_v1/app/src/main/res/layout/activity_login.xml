@@ -7,153 +7,152 @@
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GuideBegin"
+        android:id="@+id/gl_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GuideEnd"
+        android:id="@+id/gl_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintGuide_end="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/ivback"
+        android:id="@+id/btn_back"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="?attr/selectableItemBackground"
         android:src="@drawable/iv_back"
-        app:layout_constraintLeft_toRightOf="@id/GuideBegin"
-        app:layout_constraintRight_toLeftOf="@id/TvLogin"
-        app:layout_constraintTop_toTopOf="@id/TvLogin" />
+        app:layout_constraintEnd_toStartOf="@id/tv_loginTitle"
+        app:layout_constraintStart_toEndOf="@id/gl_start"
+        app:layout_constraintTop_toTopOf="@id/tv_loginTitle" />
 
     <ImageView
-        android:id="@+id/TvLogin"
+        android:id="@+id/tv_loginTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="40dp"
         android:gravity="center_horizontal"
         android:src="@drawable/iv_login"
-        app:layout_constraintLeft_toRightOf="@+id/ivback"
-        app:layout_constraintRight_toRightOf="@+id/GuideEnd"
+        app:layout_constraintEnd_toEndOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/EditId"
+        android:id="@+id/et_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:background="@drawable/et_input"
-        android:hint="이메일을 입력해주세요."
+        android:hint="@string/login_email_hint"
         android:minHeight="48dp"
         android:padding="8dp"
-        app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
-        app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@id/TvLogin" />
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/tv_loginTitle" />
 
     <EditText
-        android:id="@+id/EditPw"
+        android:id="@+id/et_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@drawable/et_input"
-        android:hint="비밀번호를 입력해주세요."
+        android:hint="@string/login_password_hint"
         android:minHeight="48dp"
         android:padding="8dp"
-        app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
-        app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@id/EditId" />
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/et_email" />
 
 
-    <RadioGroup
-        android:id="@+id/RgLogin"
+    <LinearLayout
+        android:id="@+id/ll_checkboxGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="end"
         android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
-        app:layout_constraintRight_toRightOf="@+id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/EditPw">
+        app:layout_constraintEnd_toEndOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/et_password">
 
-        <RadioButton
-            android:id="@+id/RbAuto"
+        <CheckBox
+            android:id="@+id/cb_autoLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="자동 로그인" />
+            android:text="@string/login_autologin_text" />
 
-        <RadioButton
-            android:id="@+id/RbSave"
+        <CheckBox
+            android:id="@+id/cb_saveLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="아이디 저장" />
-    </RadioGroup>
+            android:text="@string/login_savelogin_text" />
+    </LinearLayout>
 
     <ImageButton
-        android:id="@+id/BtnLogin"
-        android:layout_width="0dp"
+        android:id="@+id/btn_login"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@android:color/transparent"
+        android:padding="2dp"
         android:src="@drawable/btn_login"
-        app:layout_constraintLeft_toLeftOf="@+id/GuideBegin"
-        app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/RgLogin" />
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/ll_checkboxGroup" />
 
     <ImageButton
-        android:id="@+id/BtnNaver"
-        android:layout_width="0dp"
+        android:id="@+id/btn_naverRegister"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:src="@drawable/btn_naver_login"
-        android:text="네이버"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
-        app:layout_constraintRight_toLeftOf="@id/BtnGoogle"
-        app:layout_constraintTop_toTopOf="@id/BtnGoogle" />
+        android:text="@string/login_naverRegister_text"
+        app:layout_constraintEnd_toStartOf="@id/btn_googleRegister"
+        app:layout_constraintStart_toStartOf="@id/btn_login"
+        app:layout_constraintTop_toTopOf="@id/btn_googleRegister" />
 
     <ImageButton
-        android:id="@+id/BtnGoogle"
-        android:layout_width="0dp"
+        android:id="@+id/btn_googleRegister"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:src="@drawable/btn_google_login"
-        app:layout_constraintLeft_toRightOf="@+id/BtnNaver"
-        app:layout_constraintRight_toRightOf="@id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/BtnLogin"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
+        app:layout_constraintEnd_toEndOf="@id/btn_login"
+        app:layout_constraintStart_toEndOf="@+id/btn_naverRegister"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 
     <TextView
-        android:id="@+id/TvFind"
+        android:id="@+id/tv_findId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        android:text="계정을 잊으셨나요? 아이디 또는 비밀번호 찾기"
-        app:layout_constraintLeft_toLeftOf="@id/GuideBegin"
-        app:layout_constraintRight_toRightOf="@+id/GuideEnd"
-        app:layout_constraintTop_toBottomOf="@+id/BtnGoogle" />
+        android:text="@string/find_id"
+        app:layout_constraintEnd_toEndOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintTop_toBottomOf="@+id/btn_googleRegister" />
 
     <TextView
-        android:id="@+id/TvRegister"
+        android:id="@+id/tv_registerTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
         android:gravity="center_horizontal"
-        android:text="핏인이 처음이신가요? 회원가입"
+        android:text="@string/login_register_title_text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="@+id/GuideBegin"
-        app:layout_constraintRight_toRightOf="@+id/GuideEnd" />
+        app:layout_constraintEnd_toEndOf="@+id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
