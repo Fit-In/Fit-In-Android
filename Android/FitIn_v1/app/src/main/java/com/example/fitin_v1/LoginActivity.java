@@ -1,9 +1,12 @@
 package com.example.fitin_v1;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,16 +22,16 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent inIntent = getIntent();
 
-        ImageButton ivBack = (ImageButton)findViewById(R.id.ivback);
-        ivBack.setOnClickListener(new View.OnClickListener() {
+        ImageButton buttonBack = (ImageButton)findViewById(R.id.btn_back);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
 
-        ImageButton btnLogin = (ImageButton)findViewById(R.id.BtnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        ImageButton buttonLogin = (ImageButton)findViewById(R.id.btn_login);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent outIntent = new Intent(getApplicationContext(),CompleteActivity.class);
@@ -37,33 +40,54 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        ImageButton btnNaver = (ImageButton)findViewById(R.id.BtnNaver);
-        ImageButton btnGoogle = (ImageButton)findViewById(R.id.BtnGoogle);
-        Intent intentweb = new Intent(getApplicationContext(),WebviewActivity.class);
+        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naverRegister);
+        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_googleRegister);
+        Intent intentWeb = new Intent(getApplicationContext(),WebviewActivity.class);
 
 
-        btnNaver.setOnClickListener(new View.OnClickListener() {
+        buttonNaver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intentweb.putExtra("Uri",0);
-                startActivity(intentweb);
+                intentWeb.putExtra("Uri",0);
+                startActivity(intentWeb);
             }
         });
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
+        buttonGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intentweb.putExtra("Uri",1);
-                startActivity(intentweb);
+                intentWeb.putExtra("Uri",1);
+                startActivity(intentWeb);
             }
         });
 
-        TextView tvRegister = (TextView)findViewById(R.id.TvRegister);
-        tvRegister.setOnClickListener(new View.OnClickListener() {
+        TextView findText = (TextView)findViewById(R.id.tv_findId);
+        setPartBold(11,14,findText);
+
+        TextView registerText = (TextView)findViewById(R.id.tv_registerTitle);
+        setPartColor(12,registerText.getText().length(),registerText);
+        registerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentRegister =  new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(intentRegister);
             }
         });
+    }
+
+    private TextView setPartColor(int start, int end, TextView textLogin) {
+        String textData = textLogin.getText().toString();
+        SpannableStringBuilder spannable = new SpannableStringBuilder(textData);
+        spannable.setSpan(new StyleSpan(Typeface.BOLD),start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textLogin.setText(spannable);
+        return textLogin;
+    }
+
+    private TextView setPartBold(int start, int end, TextView textLogin) {
+        String textData = textLogin.getText().toString();
+        SpannableStringBuilder spannable = new SpannableStringBuilder(textData);
+        spannable.setSpan(new StyleSpan(Typeface.BOLD),start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new StyleSpan(Typeface.BOLD),17,textLogin.getText().length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textLogin.setText(spannable);
+        return textLogin;
     }
 }

@@ -3,9 +3,12 @@ package com.example.fitin_v1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("메인화면");
 
-
-        TextView textLogin = (TextView)findViewById(R.id.TextLogin);
+        TextView textLogin = (TextView)findViewById(R.id.tv_login);
+        setPartColor(10,textLogin.getText().length(),textLogin);
         textLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -27,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton btnRegister = (ImageButton)findViewById(R.id.BtnPhone);
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        ImageButton buttonRegister = (ImageButton)findViewById(R.id.btn_register);
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentRegister =  new Intent(getApplicationContext(), RegisterActivity.class);
@@ -38,25 +41,33 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        ImageButton btnNaver = (ImageButton)findViewById(R.id.BtnNaver);
-        ImageButton btnGoogle = (ImageButton)findViewById(R.id.BtnGoogle);
-        Intent intentweb = new Intent(getApplicationContext(),WebviewActivity.class);
+        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naverRegister);
+        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_googleRegister);
+        Intent intentWeb = new Intent(getApplicationContext(),WebviewActivity.class);
 
 
-        btnNaver.setOnClickListener(new View.OnClickListener() {
+        buttonNaver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intentweb.putExtra("Uri",0);
-                startActivity(intentweb);
+                intentWeb.putExtra("Uri",0);
+                startActivity(intentWeb);
             }
         });
-        btnGoogle.setOnClickListener(new View.OnClickListener() {
+        buttonGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intentweb.putExtra("Uri",1);
-                startActivity(intentweb);
+                intentWeb.putExtra("Uri",1);
+                startActivity(intentWeb);
             }
         });
 
+    }
+
+    private TextView setPartColor(int start, int end, TextView textLogin) {
+        String textData = textLogin.getText().toString();
+        SpannableStringBuilder spannable = new SpannableStringBuilder(textData);
+        spannable.setSpan(new StyleSpan(Typeface.BOLD),start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textLogin.setText(spannable);
+        return textLogin;
     }
 }
