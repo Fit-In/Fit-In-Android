@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WebviewActivity extends AppCompatActivity {
     String Naver = "https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com";
-    String Facebook = "https://ko-kr.facebook.com";
+    String Google = "https://accounts.google.com/ServiceLogin/signinchooser?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&ec=GAZAmgQ&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class WebviewActivity extends AppCompatActivity {
             webView.loadUrl(Naver);
         }
         else if(uri == 1){
-            webView.loadUrl(Facebook);
+            webView.loadUrl(Google);
         }
 
     }

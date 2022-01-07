@@ -22,8 +22,9 @@
         <entry key="app/src/main/res/font/font_wandohope_r.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_complete.xml" value="0.15496978759765617" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.7377502441406251" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.20111083984375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.49804840087890634" />
+        <entry key="app/src/main/res/layout/activity_register_2.xml" value="0.18208955223880596" />
         <entry key="app/src/main/res/layout/activity_webview.xml" value="0.11296296296296296" />
       </map>
     </option>
