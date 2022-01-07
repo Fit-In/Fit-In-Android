@@ -29,14 +29,16 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton buttonRegister = (ImageButton)findViewById(R.id.btn_register);
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        ImageButton buttonNext = (ImageButton)findViewById(R.id.btn_next);
+        buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent outIntent = new Intent(getApplicationContext(), CompleteActivity.class);
+                Intent outIntent = new Intent(getApplicationContext(), Register_2Activity.class);
                 startActivity(outIntent);
             }
         });
+
+
 
         TextView findIdText = (TextView)findViewById(R.id.tv_findId);
         setPartColor(11,14,findIdText);
