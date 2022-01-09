@@ -18,7 +18,7 @@ public class CompleteActivity extends AppCompatActivity {
         setTitle("회원가입 완료");
         Intent inIntent  = getIntent();
 
-        TextView completeText = (TextView) findViewById(R.id.tv_completeText);
+        TextView completeText = (TextView) findViewById(R.id.tv_complete_text);
         setPartColor(0,5,completeText);
     }
 

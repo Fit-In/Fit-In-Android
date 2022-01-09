@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naverRegister);
-        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_googleRegister);
+        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naver_register);
+        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_google_register);
         Intent intentWeb = new Intent(getApplicationContext(),WebviewActivity.class);
 
 
@@ -60,15 +60,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        TextView findText = (TextView)findViewById(R.id.tv_findId);
+        TextView findText = (TextView)findViewById(R.id.tv_find_id);
         setPartBold(11,14,findText);
 
-        TextView registerText = (TextView)findViewById(R.id.tv_registerTitle);
+        TextView registerText = (TextView)findViewById(R.id.tv_register_title);
         setPartColor(12,registerText.getText().length(),registerText);
         registerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentRegister =  new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intentRegister =  new Intent(getApplicationContext(), RegisterFirstActivity.class);
                 startActivity(intentRegister);
             }
         });

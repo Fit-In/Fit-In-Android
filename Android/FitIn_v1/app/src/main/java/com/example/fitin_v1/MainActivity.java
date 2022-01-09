@@ -34,15 +34,15 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentRegister =  new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intentRegister =  new Intent(getApplicationContext(), RegisterFirstActivity.class);
                 startActivity(intentRegister);
             }
         });
 
 
 
-        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naverRegister);
-        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_googleRegister);
+        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naver_register);
+        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_google_register);
         Intent intentWeb = new Intent(getApplicationContext(),WebviewActivity.class);
 
 
