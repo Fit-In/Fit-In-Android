@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_begin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_end="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/iv_back"
+        app:layout_constraintEnd_toStartOf="@id/btn_next"
+        app:layout_constraintStart_toStartOf="@id/tv_find_account"
+        app:layout_constraintTop_toTopOf="@id/tv_find_account" />
+
+    <ImageView
+        android:id="@+id/tv_find_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center_horizontal"
+        android:src="@drawable/iv_find_account"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_next"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"/>
+
+
+
+    <ImageButton
+        android:id="@+id/btn_find_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_find_id_p"
+        android:background="?attr/selectableItemBackground"
+        app:layout_constraintTop_toTopOf="@id/btn_find_pw"
+        app:layout_constraintStart_toStartOf="@id/btn_next"
+        app:layout_constraintEnd_toStartOf="@id/btn_find_pw" />
+
+
+
+    <ImageButton
+        android:id="@+id/btn_find_pw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_find_pw_p"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_find_account"
+        app:layout_constraintStart_toEndOf="@id/btn_find_id"
+        app:layout_constraintEnd_toEndOf="@id/btn_next"/>
+
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_input"
+        android:hint="@string/register_emailId_hint"
+        android:padding="8dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintTop_toBottomOf="@id/btn_find_pw" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_input"
+        android:hint="@string/register_name_hint"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintTop_toBottomOf="@id/et_id" />
+
+
+    <EditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_ver"
+        android:hint="@string/register_phone_hint"
+        android:padding="8dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintStart_toStartOf="@id/btn_next"
+        app:layout_constraintEnd_toStartOf="@id/btn_validation_send"
+        app:layout_constraintTop_toTopOf="@id/btn_validation_send" />
+
+
+    <ImageButton
+        android:id="@+id/btn_validation_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/btn_ver_t"
+        app:layout_constraintStart_toEndOf="@id/et_phone_number"
+        app:layout_constraintEnd_toEndOf="@id/btn_next"
+        app:layout_constraintTop_toBottomOf="@id/et_name" />
+
+
+    <EditText
+        android:id="@+id/et_validation_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_input"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        android:hint="@string/register_phone_verficaton"
+        app:layout_constraintTop_toBottomOf="@id/btn_validation_send"
+        app:layout_constraintStart_toStartOf="@id/gl_start"
+        app:layout_constraintEnd_toEndOf="@id/gl_end" />
+
+
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/btn_next"
+        app:layout_constraintEnd_toEndOf="@id/gl_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_start"
+        app:layout_constraintTop_toBottomOf="@id/et_validation_number"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
