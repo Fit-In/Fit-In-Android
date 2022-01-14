@@ -8,20 +8,26 @@ import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityWebviewBinding;
+
 public class WebviewActivity extends AppCompatActivity {
-    String Naver = "https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com";
-    String Google = "https://accounts.google.com/ServiceLogin/signinchooser?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&ec=GAZAmgQ&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
+
+    private ActivityWebviewBinding binding;
+
+    private String Naver = "https://nid.naver.com/nidlogin.login?mode=form&url=https%3A%2F%2Fwww.naver.com";
+    private String Google = "https://accounts.google.com/ServiceLogin/signinchooser?hl=ko&passive=true&continue=https%3A%2F%2Fwww.google.com%2F%3Fhl%3Dko&ec=GAZAmgQ&flowName=GlifWebSignIn&flowEntry=ServiceLogin";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
+        binding = ActivityWebviewBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("연동로그인");
 
 
         Intent inIntent = getIntent();
         final int uri= inIntent.getIntExtra("Uri",0);
-        WebView webView = findViewById(R.id.webView);
+        WebView webView = binding.webView;
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 

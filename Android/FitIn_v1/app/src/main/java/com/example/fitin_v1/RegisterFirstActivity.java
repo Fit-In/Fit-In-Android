@@ -12,26 +12,28 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityRegisterFirstBinding;
+
 public class RegisterFirstActivity extends AppCompatActivity {
+
+    private ActivityRegisterFirstBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_first);
+        binding = ActivityRegisterFirstBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("회원가입");
 
         Intent inIntent = getIntent();
-        ImageButton buttonBack = (ImageButton)findViewById(R.id.btn_back);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent backIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(backIntent);
             }
         });
-
-        ImageButton buttonNext = (ImageButton)findViewById(R.id.btn_next);
-        buttonNext.setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent nextIntent = new Intent(getApplicationContext(), RegisterSecondActivity.class);
@@ -39,10 +41,7 @@ public class RegisterFirstActivity extends AppCompatActivity {
             }
         });
 
-
-
-        TextView textviewFindId = (TextView)findViewById(R.id.tv_find_id);
-        textviewFindId.setOnClickListener(new View.OnClickListener() {
+        binding.tvFindId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent findIdIntent = new Intent(getApplicationContext(),FindIdActivity.class);
@@ -51,11 +50,7 @@ public class RegisterFirstActivity extends AppCompatActivity {
         });
 
 
-
-
-
-        TextView findIdText = (TextView)findViewById(R.id.tv_find_id);
-        setPartColor(11,14,findIdText);
+        setPartColor(11,14,binding.tvFindId);
     }
 
     private TextView setPartColor(int start, int end, TextView textLogin) {

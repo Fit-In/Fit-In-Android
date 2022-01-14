@@ -7,18 +7,22 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityFindIdCompleteBinding;
+
 public class FindIdCompleteActivity extends AppCompatActivity {
+
+    private ActivityFindIdCompleteBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_id_complete);
+        binding = ActivityFindIdCompleteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("아이디 찾기 완료");
 
         Intent inIntent = getIntent();
 
-        ImageButton btnLogin = (ImageButton) findViewById(R.id.btn_login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);

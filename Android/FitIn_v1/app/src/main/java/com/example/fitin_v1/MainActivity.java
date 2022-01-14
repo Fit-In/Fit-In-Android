@@ -12,17 +12,21 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.fitin_v1.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("메인화면");
 
-        TextView textLogin = (TextView)findViewById(R.id.tv_login);
-        setPartColor(10,textLogin.getText().length(),textLogin);
-        textLogin.setOnClickListener(new View.OnClickListener() {
+        setPartColor(10,binding.tvLogin.getText().length(),binding.tvLogin);
+        binding.tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentLogin = new Intent(getApplicationContext(), LoginActivity.class);
@@ -30,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton buttonRegister = (ImageButton)findViewById(R.id.btn_register);
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentRegister =  new Intent(getApplicationContext(), RegisterFirstActivity.class);
@@ -40,20 +43,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naver_register);
-        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_google_register);
         Intent intentWeb = new Intent(getApplicationContext(),WebviewActivity.class);
-
-
-        buttonNaver.setOnClickListener(new View.OnClickListener() {
+        binding.btnNaverRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intentWeb.putExtra("Uri",0);
                 startActivity(intentWeb);
             }
         });
-        buttonGoogle.setOnClickListener(new View.OnClickListener() {
+        binding.btnGoogleRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intentWeb.putExtra("Uri",1);
