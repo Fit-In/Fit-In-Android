@@ -7,19 +7,22 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityFindPwFisrtBinding;
+
 public class FindPwFirstActivity extends AppCompatActivity {
+
+    private ActivityFindPwFisrtBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pw_fisrt);
+        binding = ActivityFindPwFisrtBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("비밀번호 찾기");
-
 
         Intent inIntent = getIntent();
 
-        ImageButton buttonBack = (ImageButton)findViewById(R.id.btn_back);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent backIntent = new Intent(getApplicationContext(),LoginActivity.class);
@@ -27,10 +30,7 @@ public class FindPwFirstActivity extends AppCompatActivity {
             }
         });
 
-
-
-        ImageButton buttonFindId = (ImageButton) findViewById(R.id.btn_find_id);
-        buttonFindId.setOnClickListener(new View.OnClickListener() {
+        binding.btnFindId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent findIdIntent = new Intent(getApplicationContext(), FindIdActivity.class);
@@ -39,8 +39,7 @@ public class FindPwFirstActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton buttonNext = (ImageButton) findViewById(R.id.btn_next);
-        buttonNext.setOnClickListener(new View.OnClickListener() {
+        binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent findPwIntent = new Intent(getApplicationContext(),FindPwSecondActivity.class);

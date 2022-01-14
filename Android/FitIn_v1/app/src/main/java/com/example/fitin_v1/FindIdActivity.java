@@ -8,18 +8,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityFindIdBinding;
+
 public class FindIdActivity extends AppCompatActivity {
+
+    private ActivityFindIdBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_id);
+        binding = ActivityFindIdBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("아이디 찾기");
 
         Intent inIntent = getIntent();
 
-        ImageButton buttonFindPw = (ImageButton) findViewById(R.id.btn_find_pw);
-        buttonFindPw.setOnClickListener(new View.OnClickListener() {
+        binding.btnFindPw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent FindPwIntent = new Intent(getApplicationContext(), FindPwFirstActivity.class);
@@ -28,19 +32,15 @@ public class FindIdActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton buttonBack = (ImageButton) findViewById(R.id.btn_back);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent backIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(backIntent);
             }
         });
-        
-        ImageButton buttonConfirm = (ImageButton) findViewById(R.id.btn_confirm);
 
-
-        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+        binding.btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent findIdIntent = new Intent(getApplicationContext(), FindIdCompleteActivity.class);

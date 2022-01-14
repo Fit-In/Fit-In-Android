@@ -7,19 +7,22 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityFindPwCompleteBinding;
+
 public class FindPwCompleteActivity extends AppCompatActivity {
+
+    private ActivityFindPwCompleteBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_pw_complete);
+        binding = ActivityFindPwCompleteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("비밀번호 변경 완료");
 
         Intent inIntent = getIntent();
 
-
-        ImageButton btnLogin = (ImageButton) findViewById(R.id.btn_login);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginIntent = new Intent(getApplicationContext(),LoginActivity.class);

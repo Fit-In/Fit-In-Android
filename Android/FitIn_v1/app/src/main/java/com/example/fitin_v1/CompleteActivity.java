@@ -5,21 +5,26 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityCompleteBinding;
+
 public class CompleteActivity extends AppCompatActivity {
+
+    private ActivityCompleteBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complete);
+        binding = ActivityCompleteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("회원가입 완료");
         Intent inIntent  = getIntent();
 
-        TextView completeText = (TextView) findViewById(R.id.tv_complete_text);
-        setPartColor(0,5,completeText);
+        setPartColor(0,5,binding.tvCompleteText);
     }
 
     private TextView setPartColor(int start, int end, TextView textLogin) {

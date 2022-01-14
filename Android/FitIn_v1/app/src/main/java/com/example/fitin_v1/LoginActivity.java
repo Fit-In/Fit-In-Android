@@ -12,20 +12,24 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.databinding.ActivityLoginBinding;
+
 import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private ActivityLoginBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("로그인");
 
         Intent inIntent = getIntent();
 
-        ImageButton buttonBack = (ImageButton)findViewById(R.id.btn_back);
-        buttonBack.setOnClickListener(new View.OnClickListener() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -33,8 +37,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton buttonLogin = (ImageButton)findViewById(R.id.btn_login);
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
+        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent loginIntent = new Intent(getApplicationContext(),CompleteActivity.class);
@@ -42,20 +45,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        ImageButton buttonNaver = (ImageButton)findViewById(R.id.btn_naver_register);
-        ImageButton buttonGoogle = (ImageButton)findViewById(R.id.btn_google_register);
         Intent intentWeb = new Intent(getApplicationContext(),WebviewActivity.class);
-
-
-        buttonNaver.setOnClickListener(new View.OnClickListener() {
+        binding.btnNaverRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intentWeb.putExtra("Uri",0);
                 startActivity(intentWeb);
             }
         });
-        buttonGoogle.setOnClickListener(new View.OnClickListener() {
+        binding.btnGoogleRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 intentWeb.putExtra("Uri",1);
@@ -63,9 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        TextView textviewFindId = (TextView)findViewById(R.id.tv_find_id);
-        textviewFindId.setOnClickListener(new View.OnClickListener() {
+        binding.tvFindId.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent findIdIntent = new Intent(getApplicationContext(),FindIdActivity.class);
@@ -76,16 +72,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
-
         //디자인
 
-        TextView findText = (TextView)findViewById(R.id.tv_find_id);
-        setPartBold(11,14,findText);
+        setPartBold(11,14,binding.tvFindId);
 
-        TextView registerText = (TextView)findViewById(R.id.tv_register_title);
-        setPartColor(12,registerText.getText().length(),registerText);
-        registerText.setOnClickListener(new View.OnClickListener() {
+        setPartColor(12,binding.tvRegisterTitle.getText().length(),binding.tvRegisterTitle);
+        binding.tvRegisterTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentRegister =  new Intent(getApplicationContext(), RegisterFirstActivity.class);
