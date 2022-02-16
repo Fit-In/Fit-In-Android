@@ -12,7 +12,6 @@ import retrofit2.http.POST;
 
 public interface SignUp {
     // 해당 URL로 DTO로 넘김
-    @FormUrlEncoded
     @POST("/api/accounts")
     Call<RequestAccount> getSingUp(@Body RequestAccount requestAccount);
 
