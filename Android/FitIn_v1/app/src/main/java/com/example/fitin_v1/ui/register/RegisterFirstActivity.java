@@ -6,23 +6,33 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.fitin_v1.remote.api.RequestAccount;
+import com.example.fitin_v1.remote.api.SignUp;
 import com.example.fitin_v1.remote.singleton.RetrofitBuilder;
 import com.example.fitin_v1.ui.login.LoginActivity;
 import com.example.fitin_v1.databinding.ActivityRegisterFirstBinding;
 import com.example.fitin_v1.ui.findid.FindIdActivity;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegisterFirstActivity extends AppCompatActivity {
 
     private ActivityRegisterFirstBinding binding;
 
-    private RetrofitBuilder requestData;
-
+    private String et1;
+    private String et2;
+    private String email;
+    private String name;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +41,7 @@ public class RegisterFirstActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("회원가입");
 
-
+        SignUp signUp = RetrofitBuilder.getRetrofit().create(SignUp.class);
 
 
         Intent inIntent = getIntent();
@@ -48,10 +58,29 @@ public class RegisterFirstActivity extends AppCompatActivity {
                 // 안드로이드 스프링에서 Post 맵핑된 URL에다가 그대로 POST로 보냄
                 // POST로 받은 데이터 처리 스프링에서 처리해서 회원가입 된 것을 나타내게끔 처리를 해 줌, 회원가입을 위해서 넘기는 것이므로
                 // 현재는 Response가 굳이 필요없음
-                RequestAccount account = new RequestAccount(binding.etEmail.getText().toString(),binding.etPassword.getText().toString(),binding.etName.getText().toString());
-                requestData.singUpAPI.getSingUp(account);
-                Intent nextIntent = new Intent(getApplicationContext(), RegisterSecondActivity.class);
-                startActivity(nextIntent);
+                et1 = binding.etEmailId.getText().toString();
+                et2 = binding.etEmail.getText().toString();
+                email = et1 + "@" + et2;
+                name = binding.etName.getText().toString();
+                password = binding.etPassword.getText().toString();
+                RequestAccount account = new RequestAccount(email,password,name);
+                Call<RequestAccount> call = signUp.getSingUp(account);
+                call.enqueue(new Callback<RequestAccount>() {
+                    @Override
+                    public void onResponse(Call<RequestAccount> call, Response<RequestAccount> response) {
+                        if(!response.isSuccessful()) {
+                            Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                            return;
+                        }
+                    }
+
+
+                    @Override
+                    public void onFailure(Call<RequestAccount> call, Throwable t) {
+                        Log.e("연결실패",t.getMessage());
+                    }
+                });
+
             }
         });
 

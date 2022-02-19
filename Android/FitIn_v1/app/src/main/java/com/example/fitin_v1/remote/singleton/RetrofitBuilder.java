@@ -10,11 +10,10 @@ public class RetrofitBuilder {
     // 기본 Retrofit 세팅 기준 URL을 가지고
     public static Retrofit getRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://10.0.2.2:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
-    // 회원가입에 매핑시킴, 다른 기능 추가할 경우 더 추가하면 됨
-    public SignUp singUpAPI = getRetrofit().create(SignUp.class);
+
 }
