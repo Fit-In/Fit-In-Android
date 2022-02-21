@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.fitin_v1.remote.api.RequestAccount;
 import com.example.fitin_v1.remote.api.SignUp;
 import com.example.fitin_v1.remote.singleton.RetrofitBuilder;
+import com.example.fitin_v1.ui.complete.CompleteActivity;
 import com.example.fitin_v1.ui.login.LoginActivity;
 import com.example.fitin_v1.databinding.ActivityRegisterFirstBinding;
 import com.example.fitin_v1.ui.findid.FindIdActivity;
@@ -52,7 +53,7 @@ public class RegisterFirstActivity extends AppCompatActivity {
                 startActivity(backIntent);
             }
         });
-        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 안드로이드 스프링에서 Post 맵핑된 URL에다가 그대로 POST로 보냄
@@ -80,6 +81,10 @@ public class RegisterFirstActivity extends AppCompatActivity {
                         Log.e("연결실패",t.getMessage());
                     }
                 });
+
+
+                Intent completeIntent = new Intent(getApplicationContext(), CompleteActivity.class);
+                startActivity(completeIntent);
 
             }
         });

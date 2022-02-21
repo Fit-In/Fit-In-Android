@@ -11,9 +11,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.WebviewActivity;
 import com.example.fitin_v1.ui.complete.CompleteActivity;
 import com.example.fitin_v1.ui.main.MainActivity;
-import com.example.fitin_v1.WebviewActivity;
+
 import com.example.fitin_v1.databinding.ActivityLoginBinding;
 import com.example.fitin_v1.ui.findid.FindIdActivity;
 import com.example.fitin_v1.ui.register.RegisterFirstActivity;

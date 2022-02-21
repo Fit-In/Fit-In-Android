@@ -122,28 +122,56 @@
         app:layout_constraintRight_toRightOf="@id/gl_end"
         app:layout_constraintTop_toBottomOf="@id/et_password" />
 
+    <LinearLayout
+        android:id="@+id/ll_checkboxGroup_clause"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="@id/btn_register"
+        app:layout_constraintRight_toRightOf="@id/btn_register"
+        app:layout_constraintTop_toBottomOf="@id/et_password_check">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="24dp">
+
+        <CheckBox
+            android:id="@+id/cb_all_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register_first_all_check_cb_text"
+            android:textColor="@color/main_black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
     <ImageButton
-        android:id="@+id/btn_next"
+        android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/btn_next"
+        android:src="@drawable/btn_register"
         android:text="@string/register_button_text"
         app:layout_constraintLeft_toLeftOf="@+id/gl_start"
         app:layout_constraintRight_toRightOf="@id/gl_end"
-        app:layout_constraintTop_toBottomOf="@+id/et_password_check" />
+        app:layout_constraintTop_toBottomOf="@+id/ll_checkboxGroup_clause" />
 
     <TextView
         android:id="@+id/tv_find_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="90dp"
         android:gravity="center_horizontal"
         android:text="@string/find_id"
         android:textSize="16sp"
         android:textColor="@color/main_black"
-        app:layout_constraintTop_toBottomOf="@+id/btn_next"
+        app:layout_constraintTop_toBottomOf="@+id/btn_register"
         app:layout_constraintLeft_toLeftOf="@+id/gl_start"
         app:layout_constraintRight_toRightOf="@+id/gl_end" />
 
