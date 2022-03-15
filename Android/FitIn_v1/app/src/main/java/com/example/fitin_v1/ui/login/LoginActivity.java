@@ -11,10 +11,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fitin_v1.WebviewActivity;
 import com.example.fitin_v1.ui.complete.CompleteActivity;
 import com.example.fitin_v1.ui.main.MainActivity;
-
+import com.example.fitin_v1.WebviewActivity;
 import com.example.fitin_v1.databinding.ActivityLoginBinding;
 import com.example.fitin_v1.ui.findid.FindIdActivity;
 import com.example.fitin_v1.ui.register.RegisterFirstActivity;
@@ -30,21 +29,23 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("로그인");
 
-        Intent inIntent = getIntent();
+//        Intent inIntent = getIntent();
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent backIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(backIntent);
+                finish();
             }
         });
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent loginIntent = new Intent(getApplicationContext(), CompleteActivity.class);
-                startActivity(loginIntent);
+                // 바로 메인화면으로 넘어가게끔 처리
+//                Intent loginIntent = new Intent(getApplicationContext(), CompleteActivity.class);
+//                startActivity(loginIntent);
             }
         });
 
@@ -69,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent findIdIntent = new Intent(getApplicationContext(), FindIdActivity.class);
                 startActivity(findIdIntent);
+                finish();
             }
         });
 
@@ -79,14 +81,14 @@ public class LoginActivity extends AppCompatActivity {
 
         setPartBold(11,14,binding.tvFindId);
 
-        setPartColor(12,binding.tvRegisterTitle.getText().length(),binding.tvRegisterTitle);
-        binding.tvRegisterTitle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intentRegister =  new Intent(getApplicationContext(), RegisterFirstActivity.class);
-                startActivity(intentRegister);
-            }
-        });
+//        setPartColor(12,binding.tvRegisterTitle.getText().length(),binding.tvRegisterTitle);
+//        binding.tvRegisterTitle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intentRegister =  new Intent(getApplicationContext(), RegisterFirstActivity.class);
+//                startActivity(intentRegister);
+//            }
+//        });
 
 
     }

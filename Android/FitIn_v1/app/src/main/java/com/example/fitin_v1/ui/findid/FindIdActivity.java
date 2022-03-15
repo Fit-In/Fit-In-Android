@@ -21,14 +21,15 @@ public class FindIdActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("아이디 찾기");
 
-        Intent inIntent = getIntent();
+//        Intent inIntent = getIntent();
 
         binding.btnFindPw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent FindPwIntent = new Intent(getApplicationContext(), FindPwFirstActivity.class);
-                FindPwIntent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(FindPwIntent);
+                overridePendingTransition(0,0);
+                finish();
             }
         });
 
@@ -37,6 +38,7 @@ public class FindIdActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent backIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(backIntent);
+                finish();
             }
         });
 
@@ -45,6 +47,7 @@ public class FindIdActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent findIdIntent = new Intent(getApplicationContext(), FindIdCompleteActivity.class);
                 startActivity(findIdIntent);
+                finish();
             }
         });
 
