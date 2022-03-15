@@ -20,13 +20,14 @@ public class FindIdCompleteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("아이디 찾기 완료");
 
-        Intent inIntent = getIntent();
+//        Intent inIntent = getIntent();
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(loginIntent);
+                finish();
             }
         });
     }

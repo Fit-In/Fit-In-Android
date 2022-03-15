@@ -23,7 +23,7 @@ public class CompleteActivity extends AppCompatActivity {
         binding = ActivityCompleteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setTitle("회원가입 완료");
-        Intent inIntent  = getIntent();
+//        Intent inIntent  = getIntent();
 
         setPartColor(0,5,binding.tvCompleteText);
     }

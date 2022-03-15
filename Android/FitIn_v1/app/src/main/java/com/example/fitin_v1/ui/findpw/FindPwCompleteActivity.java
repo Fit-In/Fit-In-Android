@@ -20,13 +20,14 @@ public class FindPwCompleteActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("비밀번호 변경 완료");
 
-        Intent inIntent = getIntent();
+//        Intent inIntent = getIntent();
 
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(loginIntent);
+                finish();
             }
         });
 

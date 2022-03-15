@@ -20,13 +20,14 @@ public class FindPwSecondActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         setTitle("비밀번호 찾기");
 
-        Intent inIntent = getIntent();
+//        Intent inIntent = getIntent();
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent backIntent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(backIntent);
+                finish();
             }
         });
 
@@ -35,6 +36,7 @@ public class FindPwSecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent changePwIntent = new Intent(getApplicationContext(), FindPwCompleteActivity.class);
                 startActivity(changePwIntent);
+                finish();
             }
         });
 

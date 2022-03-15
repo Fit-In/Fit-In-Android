@@ -19,7 +19,7 @@ public class RegisterSecondActivity extends AppCompatActivity {
         binding = ActivityRegisterSecondBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setTitle("회원가입");
-        Intent inIntent = getIntent();
+//        Intent inIntent = getIntent();
 
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
