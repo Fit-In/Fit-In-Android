@@ -1,16 +1,25 @@
 package com.example.fitin_v1.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.StyleSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.fitin_v1.remote.api.AccountLoginDto;
+import com.example.fitin_v1.remote.api.AccountRequestDto;
+import com.example.fitin_v1.remote.api.SingIn;
+import com.example.fitin_v1.remote.api.TokenDto;
+import com.example.fitin_v1.remote.singleton.RetrofitBuilder;
 import com.example.fitin_v1.ui.complete.CompleteActivity;
 import com.example.fitin_v1.ui.main.MainActivity;
 import com.example.fitin_v1.WebviewActivity;
@@ -18,9 +27,16 @@ import com.example.fitin_v1.databinding.ActivityLoginBinding;
 import com.example.fitin_v1.ui.findid.FindIdActivity;
 import com.example.fitin_v1.ui.register.RegisterFirstActivity;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding binding;
+
+    private String email;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setTitle("로그인");
+
+        SingIn signIn = RetrofitBuilder.getRetrofit().create(SingIn.class);
 
 //        Intent inIntent = getIntent();
 
@@ -46,6 +64,33 @@ public class LoginActivity extends AppCompatActivity {
                 // 바로 메인화면으로 넘어가게끔 처리
 //                Intent loginIntent = new Intent(getApplicationContext(), CompleteActivity.class);
 //                startActivity(loginIntent);
+                email = binding.etEmail.getText().toString();
+                password = binding.etPassword.getText().toString();
+                AccountLoginDto account = new AccountLoginDto(email, password);
+                Call<TokenDto> call = signIn.getSingIn(account);
+                call.enqueue(new Callback<TokenDto>() {
+                    @Override
+                    public void onResponse(Call<TokenDto> call, Response<TokenDto> response) {
+                        if (!response.isSuccessful()) {
+                            Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                            return;
+                        } else {
+                            Log.e("액세스 토큰 ", response.body().getAccessToken());
+                            Log.e("리프레시 토큰 ", response.body().getRefreshToken());
+                            SharedPreferences prefs = getSharedPreferences("pref_name", Context.MODE_PRIVATE);
+                            prefs.edit().putString("Access Token",response.body().getAccessToken());
+                            prefs.edit().putString("Refresh Token", response.body().getRefreshToken());
+                            prefs.edit().commit();
+                            Toast.makeText(getApplicationContext(),"AT: " + prefs.getString("Access Token",""),Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"RT: " + prefs.getString("Refresh Token", ""),Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TokenDto> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
