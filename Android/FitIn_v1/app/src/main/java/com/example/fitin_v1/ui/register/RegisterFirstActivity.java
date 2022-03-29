@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fitin_v1.remote.api.AccountRequestDto;
-import com.example.fitin_v1.remote.api.AccountResponseDto;
+import com.example.fitin_v1.dto.AccountRequestDto;
+import com.example.fitin_v1.dto.AccountResponseDto;
 import com.example.fitin_v1.remote.api.SignUp;
 import com.example.fitin_v1.remote.singleton.RetrofitBuilder;
 import com.example.fitin_v1.ui.login.LoginActivity;

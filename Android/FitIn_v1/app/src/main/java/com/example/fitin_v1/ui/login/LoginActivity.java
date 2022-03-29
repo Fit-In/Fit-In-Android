@@ -1,8 +1,6 @@
 package com.example.fitin_v1.ui.login;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -11,21 +9,19 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fitin_v1.remote.api.AccountLoginDto;
-import com.example.fitin_v1.remote.api.AccountRequestDto;
+import com.example.fitin_v1.HomeActivity;
+import com.example.fitin_v1.Util.Utils;
+import com.example.fitin_v1.dto.AccountLoginDto;
 import com.example.fitin_v1.remote.api.SingIn;
-import com.example.fitin_v1.remote.api.TokenDto;
+import com.example.fitin_v1.dto.TokenDto;
 import com.example.fitin_v1.remote.singleton.RetrofitBuilder;
-import com.example.fitin_v1.ui.complete.CompleteActivity;
 import com.example.fitin_v1.ui.main.MainActivity;
 import com.example.fitin_v1.WebviewActivity;
 import com.example.fitin_v1.databinding.ActivityLoginBinding;
 import com.example.fitin_v1.ui.findid.FindIdActivity;
-import com.example.fitin_v1.ui.register.RegisterFirstActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,12 +34,15 @@ public class LoginActivity extends AppCompatActivity {
     private String email;
     private String password;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setTitle("로그인");
+
+        Utils.init(getApplicationContext());
 
         SingIn signIn = RetrofitBuilder.getRetrofit().create(SingIn.class);
 
@@ -73,16 +72,13 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(Call<TokenDto> call, Response<TokenDto> response) {
                         if (!response.isSuccessful()) {
                             Log.e("연결이 비정상적 : ", "error code : " + response.code());
-                            return;
                         } else {
-                            Log.e("액세스 토큰 ", response.body().getAccessToken());
-                            Log.e("리프레시 토큰 ", response.body().getRefreshToken());
-                            SharedPreferences prefs = getSharedPreferences("pref_name", Context.MODE_PRIVATE);
-                            prefs.edit().putString("Access Token",response.body().getAccessToken());
-                            prefs.edit().putString("Refresh Token", response.body().getRefreshToken());
-                            prefs.edit().commit();
-                            Toast.makeText(getApplicationContext(),"AT: " + prefs.getString("Access Token",""),Toast.LENGTH_LONG).show();
-                            Toast.makeText(getApplicationContext(),"RT: " + prefs.getString("Refresh Token", ""),Toast.LENGTH_LONG).show();
+                            Utils.setAccessToken(response.body().getAccessToken());
+                            Utils.setRefreshToken(response.body().getRefreshToken());
+//                            Log.e("Login", "at : " + Utils.getAccessToken("nein"));
+//                            Log.e("Login", "rt : " + Utils.getRefreshToken("none"));
+//                            // 인텐트 처리해서 Home으로 넘겨서 보내주면 될 듯(현재 테스트에선)
+                            // 만약 그게 아니면 굳이 인텐트 처리 안해줘도 됨, 어차피 저장되니깐
                         }
                     }
 
@@ -91,6 +87,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+
+                Intent intentHome = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intentHome);
+                finish();
             }
         });
 
