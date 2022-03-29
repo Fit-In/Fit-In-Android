@@ -25,7 +25,6 @@
     <string name="clause_4">마케팅 정보 수신 동의(선택)</string>
 
 
-
     <string name="login_email_hint">이메일을 입력해주세요.</string>
     <string name="login_password_hint">비밀번호를 입력해주세요.</string>
     <string name="login_autologin_text">자동 로그인</string>
@@ -46,7 +45,6 @@
     <string name="find_id_complete_text">당신의 FITIN 아이디는\nXXXXXX입니다</string>
 
     <string name="find_pw_complete_text">비밀번호가 변경되었습니다\n다시 로그인 해주세요</string>
-
 
 
 </resources>

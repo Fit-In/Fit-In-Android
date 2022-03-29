@@ -1,5 +1,8 @@
 package com.example.fitin_v1.remote.api;
 
+import com.example.fitin_v1.dto.AccountRequestDto;
+import com.example.fitin_v1.dto.AccountResponseDto;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
