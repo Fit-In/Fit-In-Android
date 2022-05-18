@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable
+            name="signUpFirstViewModel"
+            type="com.example.fitin_v2.ui.onboard.signup.SignUpFirstViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_begin="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_end="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/iv_back"
+            android:onClick="@{() -> signUpFirstViewModel.onBack()}"
+            app:layout_constraintEnd_toStartOf="@id/tv_register_title"
+            app:layout_constraintStart_toStartOf="@id/et_name"
+            app:layout_constraintTop_toTopOf="@id/tv_register_title" />
+
+        <ImageView
+            android:id="@+id/tv_register_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="40dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/iv_register"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="@+id/et_name"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/et_input"
+            android:hint="@string/register_name_hint"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:text="@={signUpFirstViewModel.name}"
+            app:layout_constraintLeft_toLeftOf="@id/gl_start"
+            app:layout_constraintRight_toRightOf="@id/gl_end"
+            app:layout_constraintTop_toBottomOf="@id/tv_register_title" />
+
+        <EditText
+            android:id="@+id/et_email_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/et_email_f"
+            android:hint="@string/register_emailId_hint"
+            android:padding="8dp"
+            android:text="@={signUpFirstViewModel.emailId}"
+            app:layout_constraintLeft_toLeftOf="@id/et_password"
+            app:layout_constraintRight_toLeftOf="@id/tv_symbol"
+            app:layout_constraintTop_toTopOf="@id/et_email" />
+
+        <TextView
+            android:id="@+id/tv_symbol"
+            android:layout_width="16dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="@string/register_symbol"
+            app:layout_constraintLeft_toRightOf="@id/et_email_id"
+            app:layout_constraintRight_toLeftOf="@id/et_email"
+            app:layout_constraintTop_toTopOf="@id/et_email_id" />
+
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_email_b"
+            android:hint="@string/register_email_hint"
+            android:padding="8dp"
+            android:text="@={signUpFirstViewModel.email}"
+            app:layout_constraintLeft_toRightOf="@id/tv_symbol"
+            app:layout_constraintRight_toRightOf="@id/et_password"
+            app:layout_constraintTop_toBottomOf="@id/et_name" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_input"
+            android:hint="@string/register_password_hint"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            android:text="@={signUpFirstViewModel.password}"
+            app:layout_constraintLeft_toLeftOf="@id/gl_start"
+            app:layout_constraintRight_toRightOf="@id/gl_end"
+            app:layout_constraintTop_toBottomOf="@id/et_email" />
+
+        <EditText
+            android:id="@+id/et_password_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/et_input"
+            android:hint="@string/register_password_check_hint"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
+            android:padding="8dp"
+            app:layout_constraintLeft_toLeftOf="@id/gl_start"
+            app:layout_constraintRight_toRightOf="@id/gl_end"
+            app:layout_constraintTop_toBottomOf="@id/et_password" />
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_next"
+            android:text="@string/register_button_text"
+            android:onClick="@{(v) -> signUpFirstViewModel.getUser(v)}"
+            app:layout_constraintLeft_toLeftOf="@+id/gl_start"
+            app:layout_constraintRight_toRightOf="@id/gl_end"
+            app:layout_constraintTop_toBottomOf="@+id/et_password_check" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
