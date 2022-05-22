@@ -119,4 +119,23 @@ public class UserRepository {
             }
         });
     }
+
+    public void getLogout() {
+        TokenRequestDto token = new TokenRequestDto(Preferences.getAccessToken("none"), Preferences.getRefreshToken("nein"));
+        userApi.getLogout(token).enqueue(new Callback<TokenDto>() {
+            @Override
+            public void onResponse(Call<TokenDto> call, Response<TokenDto> response) {
+                if(!response.isSuccessful()) {
+                    Log.e("연결이 비정상적 : ", "error code : " + response.code());
+                } else {
+                    Log.e("연결이 성공 : ", "code : " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TokenDto> call, Throwable t) {
+
+            }
+        });
+    }
 }

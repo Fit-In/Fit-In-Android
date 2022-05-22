@@ -26,5 +26,7 @@ public interface UserAPI {
     @GET("/member/me")
     Call<AccountResponseDto> getEmail(@Header("Authorization") String accessToken);
 
+    @POST("/auth/logout")
+    Call<TokenDto> getLogout(@Body TokenRequestDto tokenRequestDto);
 
 }
