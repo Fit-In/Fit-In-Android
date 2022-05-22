@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.fitin_v2.R;
 import com.example.fitin_v2.databinding.ActivityHomeBinding;
 import com.example.fitin_v2.databinding.ActivityMainBinding;
+import com.example.fitin_v2.ui.onboard.main.MainActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -25,6 +27,14 @@ public class HomeActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
         binding.setHomeViewModel(viewModel);
 
+        viewModel.onLogout().observe(this, logout -> {
+            if (logout) {
+                Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intentMain);
+                overridePendingTransition(0, 0);
+                finish();
+            }
+        });
 
     }
 }

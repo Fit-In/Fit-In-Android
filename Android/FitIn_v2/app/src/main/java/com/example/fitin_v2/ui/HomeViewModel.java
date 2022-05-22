@@ -18,6 +18,8 @@ public class HomeViewModel extends AndroidViewModel {
     private UserRepository userRepository;
 
     public MutableLiveData<String> _email = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> _eventLogout = new MutableLiveData<>();
+    LiveData<Boolean> eventLogout;
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -32,7 +34,6 @@ public class HomeViewModel extends AndroidViewModel {
 
     }
 
-
     public void getEmail(View view) {
         _email.setValue(userRepository.getEmail());
     }
@@ -41,7 +42,13 @@ public class HomeViewModel extends AndroidViewModel {
 
     public void getLogout(View view) {
         Preferences.clearToken();
-//        Log.e("At", Preferences.getAccessToken("noine"));
+        userRepository.getLogout();
+        Log.e("At", Preferences.getAccessToken("nein"));
+        _eventLogout.setValue(true);
+    }
+
+    public LiveData<Boolean> onLogout() {
+        return eventLogout = _eventLogout;
     }
 
     public void onClear(View view) {
