@@ -17,11 +17,13 @@ import com.example.fitin_v2.repository.UserRepository;
 import com.example.fitin_v2.ui.HomeActivity;
 import com.example.fitin_v2.util.Preferences;
 
+import io.reactivex.disposables.CompositeDisposable;
 import timber.log.Timber;
 
 public class SignInViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public MutableLiveData<String> email = new MutableLiveData<>();
     public MutableLiveData<String> password = new MutableLiveData<>();
@@ -74,5 +76,12 @@ public class SignInViewModel extends AndroidViewModel {
         userRepository.getToken(accountLoginDto);
         _eventSignIn.setValue(true);
         Log.e("Token", Preferences.getAccessToken("nein"));
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+
+        disposable.clear();
     }
 }

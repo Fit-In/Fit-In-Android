@@ -10,9 +10,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.fitin_v2.model.AccountRequestDto;
 import com.example.fitin_v2.repository.UserRepository;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public class SignUpSecondViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     private MutableLiveData<AccountRequestDto> accountRequestDtoMutableLiveData;
 
@@ -45,10 +48,10 @@ public class SignUpSecondViewModel extends AndroidViewModel {
         userRepository.getAccount(accountRequestDto);
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
 
-
-
-
-
-
+        disposable.clear();
+    }
 }

@@ -31,7 +31,7 @@ public class MainFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        binding.setLifecycleOwner(this);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
         viewModel.getEventSignUp().observe(getViewLifecycleOwner(), eventSignUp -> {
             if (eventSignUp) {
                 NavHostFragment.findNavController(MainFragment.this).navigate(MainFragmentDirections.actionMainFragmentToSignUpFirstFragment());
@@ -43,6 +43,20 @@ public class MainFragment extends Fragment {
             if (eventSignIn) {
                 NavHostFragment.findNavController(MainFragment.this).navigate(MainFragmentDirections.actionMainFragmentToSignInFragment());
                 viewModel.onEventSignInComplete();
+            }
+        });
+
+        viewModel.getGoogle().observe(getViewLifecycleOwner(), google -> {
+            if(google != null) {
+                NavHostFragment.findNavController(MainFragment.this).navigate(MainFragmentDirections.actionMainFragmentToWebViewFragment(google));
+                viewModel.onGoogleComplete();
+            }
+        });
+
+        viewModel.getKakao().observe(getViewLifecycleOwner(), kakao -> {
+            if(kakao != null) {
+                NavHostFragment.findNavController(MainFragment.this).navigate(MainFragmentDirections.actionMainFragmentToWebViewFragment(kakao));
+                viewModel.onKakaoComplete();
             }
         });
 

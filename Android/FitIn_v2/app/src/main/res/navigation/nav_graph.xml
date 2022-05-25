@@ -20,6 +20,12 @@
             app:destination="@id/signUpFirstFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_mainFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -54,5 +60,13 @@
         <action
             android:id="@+id/action_signUpSecondFragment_to_signUpFirstFragment"
             app:destination="@id/signUpFirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.example.fitin_v2.ui.onboard.webview.WebViewFragment"
+        android:label="WebViewFragment">
+        <argument
+            android:name="url"
+            app:argType="string"/>
     </fragment>
 </navigation>
