@@ -13,9 +13,12 @@ import com.example.fitin_v2.model.AccountResponseDto;
 import com.example.fitin_v2.repository.UserRepository;
 import com.example.fitin_v2.util.Preferences;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 public class HomeViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
+    private final CompositeDisposable disposable = new CompositeDisposable();
 
     public MutableLiveData<String> _email = new MutableLiveData<>();
     private final MutableLiveData<Boolean> _eventLogout = new MutableLiveData<>();
@@ -41,8 +44,8 @@ public class HomeViewModel extends AndroidViewModel {
 
 
     public void getLogout(View view) {
+        userRepository.getLogouts();
         Preferences.clearToken();
-        userRepository.getLogout();
         Log.e("At", Preferences.getAccessToken("nein"));
         _eventLogout.setValue(true);
     }
@@ -56,5 +59,10 @@ public class HomeViewModel extends AndroidViewModel {
 
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
 
+        disposable.clear();
+    }
 }

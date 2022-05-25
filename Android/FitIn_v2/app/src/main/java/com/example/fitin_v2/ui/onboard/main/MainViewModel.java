@@ -17,9 +17,39 @@ public class MainViewModel extends AndroidViewModel {
     private final MutableLiveData<Boolean> _eventSignIn = new MutableLiveData<Boolean>();
     LiveData<Boolean> eventSignIn;
 
+    private MutableLiveData<String> _kakao = new MutableLiveData<String>();
+    LiveData<String> kakao;
+    private MutableLiveData<String> _google = new MutableLiveData<String>();
+    LiveData<String> google;
+
     public MainViewModel(@NonNull Application application) {
         super(application);
     }
+
+    public void onEventKakao() {
+        _kakao.setValue("KaKao");
+    }
+
+    public void onKakaoComplete() {
+        _kakao.setValue(null);
+    }
+
+    public LiveData<String> getKakao() {
+        return kakao = _kakao;
+    }
+
+    public void onEventGoogle() {
+        _google.setValue("Google");
+    }
+
+    public void onGoogleComplete() {
+        _google.setValue(null);
+    }
+
+    public LiveData<String> getGoogle() {
+        return google = _google;
+    }
+
 
 
     public LiveData<Boolean> getEventSignUp() {

@@ -13,6 +13,10 @@ import com.example.fitin_v2.network.UserAPI;
 
 import java.io.IOException;
 
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -42,7 +46,6 @@ public class AuthInterceptor implements Interceptor {
                     Log.e("Interceptor", "At:" + Preferences.getAccessToken("nein"));
                     return chain.proceed(original.newBuilder().header("Authorization", "Bearer " + token.body().getAccessToken()).build());
                 }
-
                 return chain.proceed(original.newBuilder().header("Authorization", "Bearer " + Preferences.getAccessToken("nein")).build());
 
             }

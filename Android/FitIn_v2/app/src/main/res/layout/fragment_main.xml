@@ -87,6 +87,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:src="@drawable/btn_naver"
+            android:onClick="@{() -> mainViewModel.onEventKakao()}"
             app:layout_constraintEnd_toStartOf="@+id/btn_google_register"
             app:layout_constraintStart_toStartOf="@+id/btn_register"
             app:layout_constraintTop_toTopOf="@id/btn_google_register" />
@@ -98,6 +99,7 @@
             android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
             android:src="@drawable/btn_google"
+            android:onClick="@{() -> mainViewModel.onEventGoogle()}"
             app:layout_constraintEnd_toEndOf="@+id/btn_register"
             app:layout_constraintStart_toEndOf="@+id/btn_naver_register"
             app:layout_constraintTop_toBottomOf="@id/btn_register" />
