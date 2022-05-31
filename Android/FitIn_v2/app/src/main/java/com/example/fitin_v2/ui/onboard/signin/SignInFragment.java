@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.fitin_v2.R;
 import com.example.fitin_v2.databinding.FragmentSignInBinding;
@@ -54,6 +55,9 @@ public class SignInFragment extends Fragment {
                 getActivity().finish();
                 viewModel.onEventSignInComplete();
             }
+//            else {
+//                Toast.makeText(requireActivity().getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
+//            }
         });
 
 

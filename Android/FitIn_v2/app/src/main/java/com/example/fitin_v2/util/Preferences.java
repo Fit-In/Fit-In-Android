@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
-import androidx.security.crypto.MasterKeys;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -14,6 +13,7 @@ public class Preferences {
     private static final String PREFS = "prefs";
     private static final String Access_Token = "Access_Token";
     private static final String Refresh_Token = "Refresh_Token";
+    private static final String Login = "Login";
     private Context mContext;
     private MasterKey masterKey;
     private static SharedPreferences prefs;
@@ -66,6 +66,14 @@ public class Preferences {
 
     public static String getRefreshToken(String defValue) {
         return prefs.getString(Refresh_Token, defValue);
+    }
+
+    public static void setLogin(String login) {
+        prefsEditor.putString(Login, login).apply();
+    }
+
+    public static String getLogin(String deflogin) {
+        return prefs.getString(Login, deflogin);
     }
 
     public static void clearToken() {

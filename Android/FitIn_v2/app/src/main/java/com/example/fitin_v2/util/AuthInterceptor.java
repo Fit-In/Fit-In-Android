@@ -36,7 +36,9 @@ public class AuthInterceptor implements Interceptor {
         Request original = chain.request().newBuilder().header("Authorization", "Bearer " + at).build();
         Response response = chain.proceed(original);
 
-        if (response.code() == 401) {
+        // HTTP 통신 확인해서 401 에러 말고도 잘못된 상황에 대해서 핸들링 추가해서 오직 만료일 때만 하게끔 수정하기
+        if (response.code() == 401 && response.body().contentType().equals("null")) {
+            Log.e("url", "url " + response.body().contentType());
             synchronized (this) {
                 TokenRequestDto tokenRequestDto = new TokenRequestDto(at, rt);
                 retrofit2.Response<TokenDto> token = userAPI.getReIssue(tokenRequestDto).execute();
