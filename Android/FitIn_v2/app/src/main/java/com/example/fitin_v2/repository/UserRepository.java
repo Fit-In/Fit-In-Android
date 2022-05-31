@@ -4,29 +4,22 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.fitin_v2.model.AccountLoginDto;
 import com.example.fitin_v2.model.AccountRequestDto;
-import com.example.fitin_v2.model.AccountResponseDto;
 import com.example.fitin_v2.model.TokenDto;
 import com.example.fitin_v2.model.TokenRequestDto;
 import com.example.fitin_v2.network.RetrofitBuilder;
 import com.example.fitin_v2.network.UserAPI;
 import com.example.fitin_v2.util.Preferences;
 
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
-import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import timber.log.Timber;
 
 @SuppressLint("LogNotTimber")
 public class UserRepository {
@@ -46,13 +39,18 @@ public class UserRepository {
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
                 tokenDto -> {
+                    // 로그인 처리 관련해서 로직 더 다듬기(아직 딜레이 차이가 있음)
+                    // 하지만 이 로직 활용해서 뉴스 화면 - 세부화면의 로직은 응용할 수 있으므로 적용시키기
+//                    Preferences.setLogin("Success");
                     Log.e("완료", "응답값: " + tokenDto.getAccessToken());
                     Preferences.setAccessToken(tokenDto.getAccessToken());
                     Preferences.setRefreshToken(tokenDto.getRefreshToken());
                 }, error -> {
+//                    Preferences.setLogin("Fail");
                     Log.e("실패", "error:" + error.getMessage());
                 }
         ));
+        Log.e("token", "tokensss " + Preferences.getLogin("오류"));
     }
 
     public void getAccount(AccountRequestDto accountRequestDto) {

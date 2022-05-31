@@ -71,11 +71,22 @@ public class SignInViewModel extends AndroidViewModel {
         _eventSignIn.setValue(false);
     }
 
+
     public void onLogin(View view) {
         AccountLoginDto accountLoginDto = new AccountLoginDto(email.getValue(), password.getValue());
         userRepository.getToken(accountLoginDto);
+        // 로그인 검증 설정하기 결과값 바탕으로 가져온 값에 따라서 홈으로 넘어갈지 말지 처리 추가하기
+//        String validation = Preferences.getLogin("오류");
+//        if(validation.equals("Success")) {
+////            Log.e("token", "tokens " + token);
+//            _eventSignIn.setValue(true);
+//        } else if(validation.equals("Fail")) {
+////            Log.e("token", "tokens" + token);
+//            _eventSignIn.setValue(false);
+//        } else {
+//            _eventSignIn.setValue(false);
+//        }
         _eventSignIn.setValue(true);
-        Log.e("Token", Preferences.getAccessToken("nein"));
     }
 
     @Override
