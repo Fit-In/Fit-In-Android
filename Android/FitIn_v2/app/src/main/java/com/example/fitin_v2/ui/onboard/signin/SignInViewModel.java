@@ -1,28 +1,23 @@
 package com.example.fitin_v2.ui.onboard.signin;
 
 import android.app.Application;
-import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.fitin_v2.model.AccountLoginDto;
-import com.example.fitin_v2.model.TokenDto;
+import com.example.fitin_v2.repository.NewsRepository;
 import com.example.fitin_v2.repository.UserRepository;
-import com.example.fitin_v2.ui.HomeActivity;
-import com.example.fitin_v2.util.Preferences;
 
 import io.reactivex.disposables.CompositeDisposable;
-import timber.log.Timber;
 
 public class SignInViewModel extends AndroidViewModel {
 
     private UserRepository userRepository;
+    private NewsRepository newsRepository;
     private final CompositeDisposable disposable = new CompositeDisposable();
 
     public MutableLiveData<String> email = new MutableLiveData<>();
@@ -40,7 +35,7 @@ public class SignInViewModel extends AndroidViewModel {
         super(application);
 
         userRepository = new UserRepository(application);
-
+        newsRepository = new NewsRepository(application);
     }
 
     public MutableLiveData<AccountLoginDto> getUser() {
@@ -75,6 +70,7 @@ public class SignInViewModel extends AndroidViewModel {
     public void onLogin(View view) {
         AccountLoginDto accountLoginDto = new AccountLoginDto(email.getValue(), password.getValue());
         userRepository.getToken(accountLoginDto);
+        newsRepository.callNews();
         // 로그인 검증 설정하기 결과값 바탕으로 가져온 값에 따라서 홈으로 넘어갈지 말지 처리 추가하기
 //        String validation = Preferences.getLogin("오류");
 //        if(validation.equals("Success")) {
@@ -86,6 +82,8 @@ public class SignInViewModel extends AndroidViewModel {
 //        } else {
 //            _eventSignIn.setValue(false);
 //        }
+        // 뉴스 callAPI 데이터 불러와서 DB에 저장
+
         _eventSignIn.setValue(true);
     }
 

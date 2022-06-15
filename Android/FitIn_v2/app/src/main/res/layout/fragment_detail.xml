@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.fitin_v2.ui.detail.DetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detail.DetailFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/iv_news_img"
+                android:layout_width="0dp"
+                android:layout_height="265dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl="@{viewModel.newsDetail.image_url}"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/tv_news_press"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_news_img"
+                android:text="@{viewModel.newsDetail.press}"
+                tools:text="동아일보" />
+
+            <TextView
+                android:id="@+id/tv_news_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_news_press"
+                android:text="@{viewModel.newsDetail.title}"
+                tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”" />
+
+            <TextView
+                android:id="@+id/tv_news_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_news_title"
+                android:text="@{viewModel.newsDetail.content}"
+                tools:text="국민의힘 원내대표 인터뷰 “민주  野라서 법사위장 갖겠다면 국회의장은 여당에게 넘겨줘야…수사대상 이재명 출마  국민 무시” 국민의힘 권성동 원내대표(사진)가 한덕수 국무총리 후보자의 국회 인준 투표를 다른 장관 후보자 거취 문제와 연계시키려는 더불어민주당을 향해 “공직후보자 간 연좌제를 하겠다는 것이냐. 누구를 낙마시키면 인준 투표를 해주겠다는 건 일종의 협박”이라고 말했다. 정호영 보건복지부 장관 후보자  한동훈 법무부 장관 후보자 등의 임명을 강행할 경우 민주당이 한덕수 후보자 인준 투표를 부결시키겠다는 뜻을 내비치자 헌법에서 금지한 연좌제에 빗대 날을 세운 것이다. 권 원내대표는 5일 동아일보 인터뷰에서 “(민주당이) 말은 연계하지 않겠다고 하지만 사실상 연계하고 있다”며 “일부 후보를 낙마시키면 총리 인준 투표를 해주겠다고 물밑에서 제안하고 있는데 도저히 받아들일 수가 없다”고 말했다. 그는 “한동훈 후보자는 아직 인사청문회를 하지도 않았다”며 “결국 조국 전 법무부 장관을 수사했기 때문에 기분 나빠서 민주당이 반대하겠다는 것”이라고 지적했다. 다만 정 후보자에 대해선 “낙마라는 답을 정해놓고 민주당이 청문회에서 집단 퇴장하는 퍼포먼스를 보였지만 결정적 한 방을 제시하지 못했다”면서도 “자신이 재직하고 있는 학교에 아들과 딸이 정상적으로 입학했더라도 국민들이 이를 정상으로 인식할 것인지 국민적 의견을 더 들어본 후에 결정하는 게 맞다”고 말했다. 후반기 국회 원 구성 재협상을 요구한 민주당을 향해선 “법제사법위원장을 차지해 모든 법안을 독단적으로 통과시켜서 대통령에게 부담을 주려는 것”이라며 “(총선까지) 남은 2년도 의회 독재를 하겠다는 것”이라고 비판했다. ‘야당이 법사위원장을 맡아야 한다’는 민주당 주장에 대해선 “견제와 균형의 원리를 의회 운영에 도입하자는 취지에서 국회의장과 법사위원장을 나눠 갖는 것”이라며 “그렇다면 국회의장을 여당이 되는 우리에게 달라”고 받아쳤다. 윤석열 정부 취임 이후 정부조직법 개정 등 여야 협의가 필요한 사안에 대해선 “서로 합리적인 주장을 하면 조금씩 양보해서 조정안을 만들 수 있다”면서도 “민주당이 국민 뜻과 반대되는 주장만 한다면 정치적으로 야합할 생각은 없다”고 밝혔다. 최근 윤석열 대통령 당선인과의 소통에 대해선 “당선된 이후에도 내가 하고 싶은 이야기를 가감 없이 전하고 있다”며 “스스로 말하긴 그렇지만 당선인도 나를 전적으로 신뢰하고 있다고 말씀했다”고 말했다. ‘윤 당선인과 이견을 보인 적도 있었느냐’는 질문엔 크게 웃으며 “대화 내용은 구체적으로 밝히지 않는 게 옳다. 내 의견 중 합리적인 부분은 수용해주고 있다”고 말했다. 권 원내대표는 인천 계양을 국회의원 보궐선거 출마가 거론되는 이재명 전 경기도지사에 대해 “수사의 대상이 출마한다는 것 자체가 국민을 무시하는 것”이라며 “단군 이래 최대 공익사업이라고 자랑했던 대장동이 있는 경기도가 아니라 민주당 텃밭에서 당선되겠다는 건 수사를 피하고 불체포 특권을 활용하겠다는 것으로밖에 안 보인다”고 지적했다." />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

@@ -3,72 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="homeViewModel"
-            type="com.example.fitin_v2.ui.HomeViewModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/myHomeHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.HomeActivity">
-
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{homeViewModel._email}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="이메일 주소"/>
-
-        <Button
-            android:id="@+id/btn_reissue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="재발급"
-            android:onClick="@{(v) -> homeViewModel.reIssue(v)}"
-            app:layout_constraintTop_toTopOf="@id/btn_logout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_logout"
-            app:layout_constraintBottom_toBottomOf="@id/btn_logout"/>
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그아웃"
-            android:onClick="@{(v) -> homeViewModel.getLogout(v)}"
-            app:layout_constraintTop_toBottomOf="@id/tv_email"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/btn_reissue"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <Button
-            android:id="@+id/btn_getinfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이메일 불러오기"
-            android:onClick="@{(v) -> homeViewModel.getEmail(v)}"
-            app:layout_constraintTop_toBottomOf="@id/btn_logout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/btn_clear"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-        <Button
-            android:id="@+id/btn_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="초기화"
-            android:onClick="@{(v) -> homeViewModel.onClear(v)}"
-            app:layout_constraintTop_toTopOf="@id/btn_getinfo"
-            app:layout_constraintStart_toEndOf="@id/btn_getinfo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/btn_getinfo"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_home"/>
 
 </layout>
