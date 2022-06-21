@@ -3,7 +3,8 @@ package com.example.fitin_kotlin.ui.splash
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.fitin_kotlin.MainActivity
+import com.example.fitin_kotlin.MyApp
+import com.example.fitin_kotlin.ui.onboard.MainActivity
 
 class SplashActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
