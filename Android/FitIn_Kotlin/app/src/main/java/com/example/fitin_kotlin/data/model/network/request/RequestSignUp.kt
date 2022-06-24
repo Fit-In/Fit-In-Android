@@ -7,10 +7,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class RequestSignUp(
     @SerializedName("email")
-    val email: String,
+    val email: String?,
     @SerializedName("password")
-    val password: String,
+    val password: String?,
     @SerializedName("name")
-    val name: String
+    val name: String?
     // Parcelable 직접 구현 필요할 수 있음
 ) : Parcelable

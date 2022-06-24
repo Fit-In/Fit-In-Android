@@ -8,16 +8,17 @@ import com.example.fitin_kotlin.util.PreferencesKey
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object LocalModule {
 
     @Singleton
     @Provides
-    fun provideEncryptedSharedPreference(context: Context): SharedPreferences {
+    fun provideEncryptedSharedPreference(@ApplicationContext context: Context): SharedPreferences {
         val masterKey = MasterKey.Builder(context, MasterKey.DEFAULT_MASTER_KEY_ALIAS).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build()
 
         return EncryptedSharedPreferences.create(

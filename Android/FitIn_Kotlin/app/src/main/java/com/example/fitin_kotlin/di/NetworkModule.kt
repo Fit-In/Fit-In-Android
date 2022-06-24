@@ -1,11 +1,14 @@
 package com.example.fitin_kotlin.di
 
+import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.remote.api.UserService
 import com.example.fitin_kotlin.data.repository.UserRepository
+import com.example.fitin_kotlin.network.AuthInterceptor
+import com.example.fitin_kotlin.network.AuthInterceptorOkHttpClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttp
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val BASE_URL = "http://10.0.2.2:8080"
 
@@ -25,13 +28,13 @@ object NetworkModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
 
-    // 추후 AuthInterceptor 추가하기
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, @AuthInterceptorOkHttpClient authInterceptor: AuthInterceptor): OkHttpClient =
         OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor(authInterceptor)
             .build()
 
     @Singleton
@@ -49,4 +52,11 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideUserRepository(userService: UserService) = UserRepository(userService)
+
+    @AuthInterceptorOkHttpClient
+    @Singleton
+    @Provides
+    fun provideAuthInterceptor(prefs: EncryptedSharedPreferenceController, userService: UserService) : AuthInterceptor {
+        return AuthInterceptor(prefs, userService)
+    }
 }
