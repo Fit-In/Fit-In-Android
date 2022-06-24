@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitIn_Kotlin">
         <activity
+            android:name=".ui.onboard.welcome.WelcomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.onboard.MainActivity"
             android:exported="false" />
         <activity

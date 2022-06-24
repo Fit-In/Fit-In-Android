@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_onboard.xml"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.welcome.WelcomeFragment"
+        android:label="WelcomeFragment"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFirstFragment"
+            app:destination="@id/signUpFirstFragment"
+            app:popUpTo="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_socialSignFragment"
+            app:destination="@id/socialSignFragment"
+            app:popUpTo="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.signin.SignInFragment"
+        android:label="SignInFragment"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFirstFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpFirstFragment"
+        android:label="SignUpFirstFragment"
+        tools:layout="@layout/fragment_sign_up_first">
+        <action
+            android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
+            app:destination="@id/signUpSecondFragment"
+            app:popUpTo="@id/signUpFirstFragment" />
+        <action
+            android:id="@+id/action_signUpFirstFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpSecondFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpSecondFragment"
+        android:label="SignUpSecondFragment"
+        tools:layout="@layout/fragment_sign_up_second">
+        <argument
+            android:name="RequestSignUp"
+            app:argType="com.example.fitin_kotlin.data.model.network.request.RequestSignUp"/>
+        <action
+            android:id="@+id/action_signUpSecondFragment_to_signUpFirstFragment"
+            app:destination="@id/signUpFirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/socialSignFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.socialsign.SocialSignFragment"
+        android:label="SocialSignFragment"
+        tools:layout="@layout/fragment_social_sign">
+        <argument
+            android:name="url"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_socialSignFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+</navigation>
