@@ -13,7 +13,6 @@ import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentSignUpFirstBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class SignUpFirstFragment : Fragment() {
 
     private val signUpFirstViewModel: SignUpFirstViewModel by viewModels()

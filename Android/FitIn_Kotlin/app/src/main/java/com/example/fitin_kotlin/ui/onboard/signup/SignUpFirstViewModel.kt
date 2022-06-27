@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.fitin_kotlin.data.model.network.request.RequestSignUp
+import dagger.hilt.android.lifecycle.HiltViewModel
 
 class SignUpFirstViewModel : ViewModel(){
 

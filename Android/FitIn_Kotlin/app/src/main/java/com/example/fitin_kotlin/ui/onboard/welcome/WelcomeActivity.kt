@@ -7,6 +7,7 @@ import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.ActivityWelcomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
