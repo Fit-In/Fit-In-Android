@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpSecondViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    @Assisted state: SavedStateHandle
+    state: SavedStateHandle
 ) : ViewModel(){
 
     private val requestSignUp = MutableLiveData<RequestSignUp>()
@@ -25,6 +25,7 @@ class SignUpSecondViewModel @Inject constructor(
     fun onSignUp(view: View) {
         viewModelScope.launch {
             val signup = userRepository.postSignUp(requestSignUp.value!!)
+            Log.e("유저", "user" + requestSignUp!!.value!!.email)
             when (signup.isSuccessful) {
                 true -> {
                     Log.e("완료", "응답값" + signup.body()?.email)

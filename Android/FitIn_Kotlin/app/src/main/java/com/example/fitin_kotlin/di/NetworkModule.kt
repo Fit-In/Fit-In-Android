@@ -4,7 +4,6 @@ import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.remote.api.UserService
 import com.example.fitin_kotlin.data.repository.UserRepository
 import com.example.fitin_kotlin.network.AuthInterceptor
-import com.example.fitin_kotlin.network.AuthInterceptorOkHttpClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +29,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, @AuthInterceptorOkHttpClient authInterceptor: AuthInterceptor): OkHttpClient =
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, authInterceptor: AuthInterceptor): OkHttpClient =
         OkHttpClient
             .Builder()
             .addInterceptor(httpLoggingInterceptor)
@@ -53,10 +52,10 @@ object NetworkModule {
     @Provides
     fun provideUserRepository(userService: UserService) = UserRepository(userService)
 
-    @AuthInterceptorOkHttpClient
-    @Singleton
-    @Provides
-    fun provideAuthInterceptor(prefs: EncryptedSharedPreferenceController, userService: UserService) : AuthInterceptor {
-        return AuthInterceptor(prefs, userService)
-    }
+//    @AuthInterceptorOkHttpClient
+//    @Singleton
+//    @Provides
+//    fun provideAuthInterceptor(prefs: EncryptedSharedPreferenceController) : AuthInterceptor {
+//        return AuthInterceptor(prefs)
+//    }
 }

@@ -22,6 +22,10 @@ class SignInViewModel @Inject constructor(
     val email: MutableLiveData<String> = MutableLiveData<String>()
     val password: MutableLiveData<String> = MutableLiveData<String>()
 
+    private val _eventSignIn = MutableLiveData<Boolean>()
+    val eventSignIn: LiveData<Boolean>
+        get() = _eventSignIn
+
     fun onSignIn(view: View) {
         val request = RequestSignIn(email.value, password.value)
         viewModelScope.launch {
@@ -37,6 +41,11 @@ class SignInViewModel @Inject constructor(
                 }
             }
         }
+        _eventSignIn.value = true
+    }
+
+    fun onEventSignInComplete() {
+        _eventSignIn.value = false
     }
 
     private val _eventBack = MutableLiveData<Boolean>()
