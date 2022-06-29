@@ -14,22 +14,20 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    prefs: EncryptedSharedPreferenceController
+    private val prefs: EncryptedSharedPreferenceController
 ) : ViewModel(){
 
-    val accessToken: MutableLiveData<String> = MutableLiveData<String>()
+//    val accessToken: MutableLiveData<String> = MutableLiveData<String>()
 
-    init {
-        accessToken.value = prefs.getAccessToken()
-    }
 
     fun onGetEmail(view: View) {
-        val token = accessToken.value.toString()
         viewModelScope.launch {
+            val token = prefs.getAccessToken().toString()
             val email = userRepository.getEmail(token)
             when (email.isSuccessful) {
                 true -> {
                     Log.e("email", "성공: " + email.body()?.email)
+                    Log.e("Token", "tokens ${token}")
                 }
                 else -> {
                     Log.e("실패", "error: " + email.message())

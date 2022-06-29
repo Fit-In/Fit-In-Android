@@ -19,32 +19,43 @@ import javax.inject.Singleton
 //@Retention(AnnotationRetention.BINARY)
 //annotation class AuthInterceptorOkHttpClient
 
-@Singleton
-class AuthInterceptor @Inject constructor(private val prefs: EncryptedSharedPreferenceController, private val repository: Lazy<UserRepository>) : Interceptor{
-    override fun intercept(chain: Interceptor.Chain): Response {
+//@Singleton
+//class AuthInterceptor @Inject constructor(private val prefs: EncryptedSharedPreferenceController, private val repository: Lazy<UserRepository>) : Interceptor{
+//    override fun intercept(chain: Interceptor.Chain): Response {
+//
+//        val accessToken: String? = prefs.getAccessToken()
+//        val refreshToken: String? = prefs.getRefreshToken()
+//
+//        val original: Request = chain.request().newBuilder().header("Authorization",
+//            "Bearer $accessToken"
+//        ).build()
+//        var response: Response = chain.proceed(original)
+//
+//        if (response.code == 401 && response.body!!.equals("null")) {
+//            runBlocking {
+//                val requestTokenReissue = RequestTokenReissue(accessToken.toString(), refreshToken.toString())
+//                val token: retrofit2.Response<ResponseToken> = repository.get().postReIssue(requestTokenReissue)
+//                withContext(Dispatchers.Main) {
+//                    if(token.isSuccessful) {
+//                        prefs.setAccessToken(token.body()!!.accessToken)
+//                        prefs.setRefreshToken(token.body()!!.refreshToken)
+//                        response = chain.proceed(original.newBuilder().header("Authorization", "Bearer " + token.body()!!.accessToken).build())
+//                    }
+//                    response = chain.proceed(original.newBuilder().header("Authorization", "Bearer " + prefs.getAccessToken()).build())
+//                }
+//            }
+//        }
+//        return response
+//    }
+//}
 
-        val accessToken: String? = prefs.getAccessToken()
-        val refreshToken: String? = prefs.getRefreshToken()
-
-        val original: Request = chain.request().newBuilder().header("Authorization",
-            "Bearer $accessToken"
-        ).build()
-        var response: Response = chain.proceed(original)
-
-        if (response.code == 401 && response.body!!.equals("null")) {
-            runBlocking {
-                val requestTokenReissue = RequestTokenReissue(accessToken.toString(), refreshToken.toString())
-                val token: retrofit2.Response<ResponseToken> = repository.get().postReIssue(requestTokenReissue)
-                withContext(Dispatchers.Main) {
-                    if(token.isSuccessful) {
-                        prefs.setAccessToken(token.body()!!.accessToken)
-                        prefs.setRefreshToken(token.body()!!.refreshToken)
-                        response = chain.proceed(original.newBuilder().header("Authorization", "Bearer " + token.body()!!.accessToken).build())
-                    }
-                    response = chain.proceed(original.newBuilder().header("Authorization", "Bearer " + prefs.getAccessToken()).build())
-                }
-            }
-        }
-        return response
-    }
-}
+//class AuthInterceptor @Inject constructor(private val prefs:EncryptedSharedPreferenceController) : Interceptor {
+//    override fun intercept(chain: Interceptor.Chain): Response {
+//        val request: Request = chain.request()
+//            .newBuilder()
+//            .addHeader("Authorization", "Bearer ${prefs.getAccessToken()}")
+//            .build()
+//        return chain.proceed(request)
+//    }
+//
+//}

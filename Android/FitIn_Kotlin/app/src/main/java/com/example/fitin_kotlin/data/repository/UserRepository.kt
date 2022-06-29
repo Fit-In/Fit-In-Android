@@ -15,7 +15,7 @@ class UserRepository @Inject constructor(private val userService: UserService){
 
     suspend fun postSignIn(requestSignIn: RequestSignIn) = userService.postSignIn(requestSignIn)
 
-    suspend fun postReIssue(requestTokenReissue: RequestTokenReissue) = withContext(Dispatchers.IO) {userService.getReIssue(requestTokenReissue) }
+    fun postReIssue(requestTokenReissue: RequestTokenReissue) = userService.getReIssue(requestTokenReissue)
 
     suspend fun getEmail(accessToken: String) = userService.getEmail("Bearer $accessToken")
 
