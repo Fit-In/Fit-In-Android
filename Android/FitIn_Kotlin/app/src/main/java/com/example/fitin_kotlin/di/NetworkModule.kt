@@ -3,16 +3,22 @@ package com.example.fitin_kotlin.di
 import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.remote.api.UserService
 import com.example.fitin_kotlin.data.repository.UserRepository
-import com.example.fitin_kotlin.network.AuthInterceptor
+//import com.example.fitin_kotlin.network.AuthInterceptor
+//import com.example.fitin_kotlin.network.AuthInterceptor
+//import com.example.fitin_kotlin.network.AuthInterceptor
+import com.example.fitin_kotlin.network.TokenAuthenticator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttp
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -29,11 +35,11 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, authInterceptor: AuthInterceptor): OkHttpClient =
+    fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, tokenAuthenticator: TokenAuthenticator): OkHttpClient =
         OkHttpClient
             .Builder()
+            .authenticator(tokenAuthenticator)
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor(authInterceptor)
             .build()
 
     @Singleton

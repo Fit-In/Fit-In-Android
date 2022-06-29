@@ -6,25 +6,27 @@ import javax.inject.Inject
 
 class EncryptedSharedPreferenceController @Inject constructor(private val preferences: SharedPreferences) {
 
+    private val prefsEdit: SharedPreferences.Editor = preferences.edit()
+
     companion object {
         private val fitinAccessToken = PreferencesKey.provideAccessToken()
         private val fitinRefreshToken = PreferencesKey.provideRefreshToken()
     }
 
     fun setAccessToken(accessToken: String) {
-        preferences.edit().putString(fitinAccessToken, accessToken).apply()
+        prefsEdit.putString(fitinAccessToken, accessToken).apply()
     }
 
     fun getAccessToken(): String? = preferences.getString(fitinAccessToken, "no")
 
     fun setRefreshToken(refreshToken: String) {
-        preferences.edit().putString(fitinRefreshToken, refreshToken).apply()
+        prefsEdit.putString(fitinRefreshToken, refreshToken).apply()
     }
 
     fun getRefreshToken(): String? = preferences.getString(fitinRefreshToken, "no")
 
     fun deleteToken() {
-        preferences.edit().remove(fitinAccessToken).remove(fitinRefreshToken).apply()
+        prefsEdit.remove(fitinAccessToken).remove(fitinRefreshToken).commit()
     }
 
 }
