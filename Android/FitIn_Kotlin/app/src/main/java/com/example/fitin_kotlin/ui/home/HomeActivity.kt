@@ -11,14 +11,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
-    private val homeViewModel: HomeViewModel by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding: ActivityHomeBinding = DataBindingUtil.setContentView(this,R.layout.activity_home)
-
-        binding.lifecycleOwner = this
-        binding.homeViewModel = homeViewModel
 
 
     }

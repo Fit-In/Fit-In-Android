@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_home"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.fitin_kotlin.ui.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.fitin_kotlin.ui.detail.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="selectedNews"
+            app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseNewsList"/>
+    </fragment>
+</navigation>
