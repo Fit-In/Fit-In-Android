@@ -28,7 +28,7 @@ interface UserService {
     @POST("/auth/reissue")
     fun getReIssue(
         @Body body: RequestTokenReissue
-    ): Call<ResponseToken>
+    ): Call <ResponseToken>
 
     @POST("/auth/logout")
     suspend fun postSignOut(

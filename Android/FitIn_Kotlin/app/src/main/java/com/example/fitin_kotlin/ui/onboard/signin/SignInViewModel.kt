@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.model.network.request.RequestSignIn
+import com.example.fitin_kotlin.data.repository.NewsRepository
 import com.example.fitin_kotlin.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val userRepository: UserRepository,
+    private val newsRepository: NewsRepository,
     private val prefs: EncryptedSharedPreferenceController
 ) : ViewModel(){
 
@@ -35,6 +37,7 @@ class SignInViewModel @Inject constructor(
                     Log.e("token", "성공: " + signin.body()?.accessToken)
                     prefs.setAccessToken(signin.body()!!.accessToken)
                     prefs.setRefreshToken(signin.body()!!.refreshToken)
+                    newsRepository.callNews()
                 }
                 else -> {
                     Log.e("실패", "error " + signin.message())
