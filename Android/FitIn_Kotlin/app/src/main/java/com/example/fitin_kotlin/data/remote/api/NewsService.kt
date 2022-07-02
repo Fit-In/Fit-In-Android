@@ -13,12 +13,12 @@ interface NewsService {
     suspend fun callNews(): Response<Void>
 
     @GET("/news")
-    suspend fun getNewsList(): LiveData<List<ResponseNewsList>>
+    suspend fun getNewsList(): List<ResponseNewsList>
 
     @GET("/news/{id}")
     suspend fun getNews(
         @Path("id") id: Long
-    ): LiveData<ResponseNews>
+    ): ResponseNews
 
 
 }

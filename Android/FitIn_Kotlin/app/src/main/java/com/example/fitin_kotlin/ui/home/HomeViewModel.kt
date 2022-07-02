@@ -20,12 +20,19 @@ class HomeViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel(){
 
-    lateinit var newsList: LiveData<List<ResponseNewsList>>
+    private val _newsList = MutableLiveData<List<ResponseNewsList>>()
+    val newsList: LiveData<List<ResponseNewsList>>
+        get() = _newsList
+
     val requestNews: MutableLiveData<ResponseNewsList?> = MutableLiveData<ResponseNewsList?>()
 
     init {
+        getNewsList()
+    }
+
+    private fun getNewsList() {
         viewModelScope.launch {
-            newsList = newsRepository.getNewsList()
+            _newsList.value = newsRepository.getNewsList()
         }
     }
 

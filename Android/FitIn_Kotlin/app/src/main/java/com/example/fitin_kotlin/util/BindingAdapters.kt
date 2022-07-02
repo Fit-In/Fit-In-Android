@@ -9,7 +9,7 @@ import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
 import com.example.fitin_kotlin.ui.home.HomeAdapter
 
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, newsList: List<ResponseNewsList>) {
+fun bindRecyclerView(recyclerView: RecyclerView, newsList: List<ResponseNewsList>?) {
     val adapter = recyclerView.adapter as HomeAdapter
     adapter.submitList(newsList)
 }
