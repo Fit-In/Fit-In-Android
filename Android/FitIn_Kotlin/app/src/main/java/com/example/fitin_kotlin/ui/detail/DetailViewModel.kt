@@ -15,15 +15,19 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel(){
 
     private val requestNews = MutableLiveData<ResponseNewsList>()
-    lateinit var news: LiveData<ResponseNews>
+    private val _news = MutableLiveData<ResponseNews>()
+    val news: LiveData<ResponseNews>
+        get() = _news
 
     init {
         requestNews.value = state.getLiveData<ResponseNewsList>("selectedNews").value
+        getNews()
+    }
 
+    private fun getNews() {
         val newsId: Long? = requestNews.value?.id
-
         viewModelScope.launch {
-            news = newsRepository.getNews(newsId!!)
+            _news.value = newsRepository.getNews(newsId!!)
         }
     }
 }

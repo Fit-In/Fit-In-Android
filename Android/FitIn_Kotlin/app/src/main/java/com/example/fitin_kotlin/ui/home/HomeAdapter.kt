@@ -20,7 +20,9 @@ class HomeAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
-        return NewsListViewHolder(ListItemNewsBinding.inflate(LayoutInflater.from(parent.context)))
+        val inflater: LayoutInflater = LayoutInflater.from(parent.context)
+        val listItemNewsBinding: ListItemNewsBinding = ListItemNewsBinding.inflate(inflater, parent, false)
+        return NewsListViewHolder(listItemNewsBinding)
     }
 
     override fun onBindViewHolder(holder: NewsListViewHolder, position: Int) {
