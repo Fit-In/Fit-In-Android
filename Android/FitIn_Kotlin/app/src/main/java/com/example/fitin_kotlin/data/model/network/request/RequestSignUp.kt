@@ -12,7 +12,5 @@ data class RequestSignUp(
     val password: String?,
     @SerializedName("name")
     val name: String?
-    // Parcelable 직접 구현 필요할 수 있음
-
 
 ) : Parcelable
