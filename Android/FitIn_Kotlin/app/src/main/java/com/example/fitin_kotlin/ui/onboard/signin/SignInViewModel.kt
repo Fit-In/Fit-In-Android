@@ -21,8 +21,8 @@ class SignInViewModel @Inject constructor(
     private val prefs: EncryptedSharedPreferenceController
 ) : ViewModel(){
 
-    val email: MutableLiveData<String> = MutableLiveData<String>()
-    val password: MutableLiveData<String> = MutableLiveData<String>()
+    private val email: MutableLiveData<String> = MutableLiveData<String>()
+    private val password: MutableLiveData<String> = MutableLiveData<String>()
 
     private val _eventSignIn = MutableLiveData<Boolean>()
     val eventSignIn: LiveData<Boolean>
