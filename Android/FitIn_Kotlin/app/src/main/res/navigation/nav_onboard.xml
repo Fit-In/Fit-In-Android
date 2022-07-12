@@ -56,6 +56,10 @@
         <action
             android:id="@+id/action_signUpSecondFragment_to_signUpFirstFragment"
             app:destination="@id/signUpFirstFragment" />
+        <action
+            android:id="@+id/action_signUpSecondFragment_to_signUpEndFragment"
+            app:destination="@id/signUpEndFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/socialSignFragment"
@@ -69,4 +73,9 @@
             android:id="@+id/action_socialSignFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/signUpEndFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpEndFragment"
+        android:label="SignUpEndFragment"
+        tools:layout="@layout/fragment_sign_up_end"/>
 </navigation>

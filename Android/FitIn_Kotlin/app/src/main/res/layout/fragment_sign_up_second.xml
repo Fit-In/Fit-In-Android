@@ -39,12 +39,12 @@
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/iv_back"
             android:onClick="@{() -> signUpSecondViewModel.onBack()}"
-            app:layout_constraintEnd_toStartOf="@id/tv_signup_title"
+            app:layout_constraintEnd_toStartOf="@id/iv_signup_title"
             app:layout_constraintStart_toStartOf="@id/btn_signup"
-            app:layout_constraintTop_toTopOf="@id/tv_signup_title" />
+            app:layout_constraintTop_toTopOf="@id/iv_signup_title" />
 
         <ImageView
-            android:id="@+id/tv_signup_title"
+            android:id="@+id/iv_signup_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
@@ -77,7 +77,7 @@
             android:src="@drawable/btn_ver_t"
             app:layout_constraintEnd_toEndOf="@id/btn_signup"
             app:layout_constraintStart_toEndOf="@id/et_phone_number"
-            app:layout_constraintTop_toBottomOf="@id/tv_signup_title" />
+            app:layout_constraintTop_toBottomOf="@id/iv_signup_title" />
 
         <EditText
             android:id="@+id/et_validation_number"

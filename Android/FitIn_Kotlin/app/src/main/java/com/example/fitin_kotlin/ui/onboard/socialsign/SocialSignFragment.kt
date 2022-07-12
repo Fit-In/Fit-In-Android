@@ -2,6 +2,7 @@ package com.example.fitin_kotlin.ui.onboard.socialsign
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,10 +40,10 @@ class SocialSignFragment : Fragment() {
     }
 
     private fun setUrl(webView: WebView, url: String) {
-        if (url.equals("Kakao")) {
+        if (url.equals("KaKao")) {
             webView.loadUrl(Kakao)
-        } else if (url.equals("Google")) {
-            webView.loadUrl(Google)
+        } else if (url.equals("Naver")) {
+            webView.loadUrl(Naver)
         }
     }
 
@@ -56,7 +57,9 @@ class SocialSignFragment : Fragment() {
                 }
             } else {
                 if(fragment.isAdded && url.contains("token")) {
-                    // 인텐트 처리 추가
+                    // 인텐트 처리(홈화면으로 바로 넘어감) + 이 부분에서 url에서 온 token 이후 값을 저장함(이게 access token)
+                    Toast.makeText(fragment.requireActivity().applicationContext, "로그인 성공", Toast.LENGTH_SHORT).show()
+                    Log.e("token", url)
                 }
             }
         }
@@ -68,7 +71,7 @@ class SocialSignFragment : Fragment() {
 
     companion object {
         private const val Kakao = "http://10.0.2.2:8080/oauth2/authorize/kakao?redirect_uri=http://localhost:8080/auth/token"
-        private const val Google = "http://10.0.2.2:8080/oauth2/authorize/google?redirect_uri=http://localhost:8080/auth/token"
+        private const val Naver = "http://10.0.2.2:8080/oauth2/authorize/naver?redirect_uri=http://localhost:8080/auth/token"
     }
 
 

@@ -43,16 +43,16 @@ class WelcomeViewModel : ViewModel() {
         _eventKakaoSign.value = null
     }
 
-    private val _eventGoogleSign = MutableLiveData<String?>()
-    val eventGoogleSign: LiveData<String?>
-        get() = _eventGoogleSign
+    private val _eventNaverSign = MutableLiveData<String?>()
+    val eventNaverSign: LiveData<String?>
+        get() = _eventNaverSign
 
-    fun onEventGoogle() {
-        _eventGoogleSign.value = "Google"
+    fun onEventNaver() {
+        _eventNaverSign.value = "Naver"
     }
 
-    fun onEventGoogleComplete() {
-        _eventGoogleSign.value = null
+    fun onEventNaverComplete() {
+        _eventNaverSign.value = null
     }
 
 

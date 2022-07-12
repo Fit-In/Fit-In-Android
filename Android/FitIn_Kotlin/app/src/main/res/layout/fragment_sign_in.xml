@@ -39,12 +39,12 @@
         android:background="?attr/selectableItemBackground"
         android:src="@drawable/iv_back"
         android:onClick="@{() -> signInViewModel.onBack()}"
-        app:layout_constraintEnd_toStartOf="@id/tv_signin_title"
+        app:layout_constraintEnd_toStartOf="@id/iv_signin_title"
         app:layout_constraintStart_toStartOf="@id/et_email"
-        app:layout_constraintTop_toTopOf="@id/tv_signin_title" />
+        app:layout_constraintTop_toTopOf="@id/iv_signin_title" />
 
     <ImageView
-        android:id="@+id/tv_signin_title"
+        android:id="@+id/iv_signin_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -67,7 +67,7 @@
         android:text="@={signInViewModel.email}"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start"
-        app:layout_constraintTop_toBottomOf="@id/tv_signin_title" />
+        app:layout_constraintTop_toBottomOf="@id/iv_signin_title" />
 
     <EditText
         android:id="@+id/et_password"
@@ -124,25 +124,25 @@
         app:layout_constraintTop_toBottomOf="@+id/ll_checkbox_group" />
 
     <ImageButton
-        android:id="@+id/btn_naver_signin"
+        android:id="@+id/btn_kakao_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/btn_naver_login"
-        app:layout_constraintEnd_toStartOf="@id/btn_google_signin"
+        android:src="@drawable/btn_kakao_login"
+        app:layout_constraintEnd_toStartOf="@id/btn_naver_signin"
         app:layout_constraintStart_toStartOf="@id/btn_signin"
-        app:layout_constraintTop_toTopOf="@id/btn_google_signin" />
+        app:layout_constraintTop_toTopOf="@id/btn_naver_signin" />
 
     <ImageButton
-        android:id="@+id/btn_google_signin"
+        android:id="@+id/btn_naver_signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/btn_google_login"
+        android:src="@drawable/btn_naver_login"
         app:layout_constraintEnd_toEndOf="@id/btn_signin"
-        app:layout_constraintStart_toEndOf="@+id/btn_naver_signin"
+        app:layout_constraintStart_toEndOf="@+id/btn_kakao_signin"
         app:layout_constraintTop_toBottomOf="@+id/btn_signin" />
 
 
@@ -157,7 +157,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google_signin" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_naver_signin" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
