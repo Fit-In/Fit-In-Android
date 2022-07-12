@@ -21,8 +21,8 @@ class SignInViewModel @Inject constructor(
     private val prefs: EncryptedSharedPreferenceController
 ) : ViewModel(){
 
-    private val email: MutableLiveData<String> = MutableLiveData<String>()
-    private val password: MutableLiveData<String> = MutableLiveData<String>()
+    val email: MutableLiveData<String> = MutableLiveData<String>()
+    val password: MutableLiveData<String> = MutableLiveData<String>()
 
     private val _eventSignIn = MutableLiveData<Boolean>()
     val eventSignIn: LiveData<Boolean>
@@ -62,5 +62,7 @@ class SignInViewModel @Inject constructor(
     fun onBackComplete() {
         _eventBack.value = false
     }
+
+    // 소셜 로그인 버튼 누르면 로그인 할 수 있게끔 로그인 처리하는 로직 추가 필요
 
 }

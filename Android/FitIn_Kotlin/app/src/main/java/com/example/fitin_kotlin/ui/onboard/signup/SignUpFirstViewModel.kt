@@ -9,10 +9,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 
 class SignUpFirstViewModel : ViewModel(){
 
-    private val name: MutableLiveData<String> = MutableLiveData<String>()
-    private val id: MutableLiveData<String> = MutableLiveData<String>()
-    private val email: MutableLiveData<String> = MutableLiveData<String>()
-    private val password: MutableLiveData<String> = MutableLiveData<String>()
+    val name: MutableLiveData<String> = MutableLiveData<String>()
+    val id: MutableLiveData<String> = MutableLiveData<String>()
+    val email: MutableLiveData<String> = MutableLiveData<String>()
+    val password: MutableLiveData<String> = MutableLiveData<String>()
 
     private val _requestSignUp: MutableLiveData<RequestSignUp?> = MutableLiveData<RequestSignUp?>()
     val requestSignUp: LiveData<RequestSignUp?>

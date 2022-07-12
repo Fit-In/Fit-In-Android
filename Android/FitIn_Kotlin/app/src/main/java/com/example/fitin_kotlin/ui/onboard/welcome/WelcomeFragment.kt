@@ -47,10 +47,10 @@ class WelcomeFragment : Fragment() {
             }
         })
 
-        welcomeViewModel.eventGoogleSign.observe(viewLifecycleOwner, Observer { google ->
-            if (google != null) {
-                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSocialSignFragment(google))
-                welcomeViewModel.onEventGoogleComplete()
+        welcomeViewModel.eventNaverSign.observe(viewLifecycleOwner, Observer { naver ->
+            if (naver != null) {
+                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSocialSignFragment(naver))
+                welcomeViewModel.onEventNaverComplete()
             }
         })
 

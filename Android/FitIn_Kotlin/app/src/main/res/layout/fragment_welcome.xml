@@ -81,16 +81,18 @@
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toBottomOf="@id/iv_main" />
 
+
         <ImageButton
             android:id="@+id/btn_naver_signup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/btn_naver"
+            android:src="@drawable/btn_kakao_login"
             android:onClick="@{() -> welcomeViewModel.onEventKakao()}"
             app:layout_constraintEnd_toStartOf="@id/btn_google_signup"
             app:layout_constraintStart_toStartOf="@id/btn_signup"
             app:layout_constraintTop_toTopOf="@id/btn_google_signup" />
+
 
         <ImageButton
             android:id="@+id/btn_google_signup"
@@ -98,8 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
-            android:src="@drawable/btn_google"
-            android:onClick="@{() -> welcomeViewModel.onEventGoogle()}"
+            android:src="@drawable/btn_naver_login"
+            android:onClick="@{() -> welcomeViewModel.onEventNaver()}"
             app:layout_constraintEnd_toEndOf="@+id/btn_signup"
             app:layout_constraintStart_toEndOf="@+id/btn_naver_signup"
             app:layout_constraintTop_toBottomOf="@id/btn_signup" />
