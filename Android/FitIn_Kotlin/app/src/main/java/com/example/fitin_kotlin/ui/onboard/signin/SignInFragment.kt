@@ -39,8 +39,8 @@ class SignInFragment : Fragment() {
 
         signInViewModel.eventSignIn.observe(viewLifecycleOwner, Observer { signIn ->
             if (signIn) {
-                val intent = Intent(activity, HomeActivity::class.java)
-                startActivity(intent)
+                val intentToHome = Intent(activity, HomeActivity::class.java)
+                startActivity(intentToHome)
                 activity?.overridePendingTransition(0,0)
                 activity?.finish()
                 signInViewModel.onEventSignInComplete()

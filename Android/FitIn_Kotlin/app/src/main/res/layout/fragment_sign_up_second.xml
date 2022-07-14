@@ -63,6 +63,7 @@
             android:background="@drawable/et_ver"
             android:hint="@string/register_phone_hint"
             android:padding="8dp"
+            android:text="@={signUpSecondViewModel.phoneNumber}"
             app:layout_constraintEnd_toStartOf="@id/btn_validation_send"
             app:layout_constraintStart_toStartOf="@id/btn_signup"
             app:layout_constraintTop_toTopOf="@id/btn_validation_send" />
@@ -75,6 +76,7 @@
             android:layout_marginTop="80dp"
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/btn_ver_t"
+            android:onClick="@{(v) -> signUpSecondViewModel.onCoolSms(v)}"
             app:layout_constraintEnd_toEndOf="@id/btn_signup"
             app:layout_constraintStart_toEndOf="@id/et_phone_number"
             app:layout_constraintTop_toBottomOf="@id/iv_signup_title" />
@@ -86,6 +88,7 @@
             android:background="@drawable/et_ver"
             android:hint="@string/register_phone_verficaton"
             android:padding="8dp"
+            android:text="@={signUpSecondViewModel.validationNumber}"
             app:layout_constraintEnd_toStartOf="@id/btn_validation_check"
             app:layout_constraintStart_toStartOf="@id/btn_signup"
             app:layout_constraintTop_toTopOf="@id/btn_validation_check" />
@@ -97,6 +100,7 @@
             android:layout_marginTop="8dp"
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/btn_ver_c"
+            android:onClick="@{(v) -> signUpSecondViewModel.onValidationCheck(v)}"
             app:layout_constraintEnd_toEndOf="@id/btn_signup"
             app:layout_constraintStart_toEndOf="@id/et_validation_number"
             app:layout_constraintTop_toBottomOf="@id/btn_validation_send" />

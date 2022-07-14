@@ -1,5 +1,6 @@
 package com.example.fitin_kotlin.ui.onboard.socialsign
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
@@ -11,14 +12,22 @@ import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
+import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.databinding.FragmentSocialSignBinding
+import com.example.fitin_kotlin.ui.home.HomeActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_social_sign.*
+import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class SocialSignFragment : Fragment() {
+
+    @Inject
+    lateinit var prefs : EncryptedSharedPreferenceController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +42,7 @@ class SocialSignFragment : Fragment() {
         val webSettings: WebSettings = socialSign.settings
         webSettings.javaScriptEnabled = true
 
-        socialSign.webViewClient = ViewClinet(this)
+        socialSign.webViewClient = ViewClinet(this, prefs)
         setUrl(socialSign, url)
 
         return binding.root
@@ -47,19 +56,25 @@ class SocialSignFragment : Fragment() {
         }
     }
 
-    private class ViewClinet(private val fragment: SocialSignFragment): WebViewClient() {
+    private class ViewClinet(private val fragment: SocialSignFragment, private val prefs: EncryptedSharedPreferenceController): WebViewClient() {
+
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
             if (url!!.contains("error")) {
                 if(fragment.isAdded) {
-                    Toast.makeText(fragment.requireActivity().applicationContext, "error", Toast.LENGTH_SHORT).show()
                     fragment.findNavController().navigate(SocialSignFragmentDirections.actionSocialSignFragmentToWelcomeFragment())
                 }
             } else {
-                if(fragment.isAdded && url.contains("token")) {
-                    // 인텐트 처리(홈화면으로 바로 넘어감) + 이 부분에서 url에서 온 token 이후 값을 저장함(이게 access token)
-                    Toast.makeText(fragment.requireActivity().applicationContext, "로그인 성공", Toast.LENGTH_SHORT).show()
-                    Log.e("token", url)
+                if(fragment.isAdded && url.contains("refreshToken")) {
+                    val urls: String = url
+                    prefs.setAccessToken(urls.substring(urls.indexOf("=") + 1,urls.indexOf("&")))
+
+                    val intentToHome = Intent(fragment.requireActivity(), HomeActivity::class.java)
+                    fragment.startActivity(intentToHome)
+                    fragment.requireActivity().overridePendingTransition(0, 0)
+                    fragment.requireActivity().finish()
+
+                    // 소셜 로그인에서 넘어가면 뉴스 호출이 안 뜨는데 이건 어차피 뉴스 호출 자동화 할 예정이고 홈화면은 개편할 것이므로 결국 성공한 것임
                 }
             }
         }
