@@ -1,9 +1,6 @@
 package com.example.fitin_kotlin.data.remote.api
 
-import com.example.fitin_kotlin.data.model.network.request.RequestSignIn
-import com.example.fitin_kotlin.data.model.network.request.RequestSignOut
-import com.example.fitin_kotlin.data.model.network.request.RequestSignUp
-import com.example.fitin_kotlin.data.model.network.request.RequestTokenReissue
+import com.example.fitin_kotlin.data.model.network.request.*
 import com.example.fitin_kotlin.data.model.network.response.ResponseSignUp
 import com.example.fitin_kotlin.data.model.network.response.ResponseToken
 import retrofit2.Call
@@ -26,9 +23,9 @@ interface UserService {
     ): Response<ResponseToken>
 
     @POST("/auth/reissue")
-    fun getReIssue(
+    fun postReIssue(
         @Body body: RequestTokenReissue
-    ): Call <ResponseToken>
+    ): Call<ResponseToken>
 
     @POST("/auth/logout")
     suspend fun postSignOut(
@@ -39,4 +36,9 @@ interface UserService {
     suspend fun getEmail(
         @Header("Authorization") accessToken: String
     ): Response<ResponseSignUp>
+
+    @POST("/sms/memberPhoneCheck")
+    suspend fun postCoolSms(
+        @Body body: RequestPhoneNumber
+    ): Response<String>
 }
