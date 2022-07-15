@@ -12,8 +12,9 @@ import androidx.lifecycle.Observer
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentSignUpEndBinding
 import com.example.fitin_kotlin.ui.home.HomeActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class SignUpEndFragment : Fragment() {
 
     private val signUpEndViewModel: SignUpEndViewModel by viewModels()
