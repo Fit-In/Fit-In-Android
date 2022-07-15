@@ -53,6 +53,10 @@ class SignUpSecondViewModel @Inject constructor(
         _eventNumberCheck.value = checkNumber == validationNumber.value
     }
 
+    private val _eventSignUp = MutableLiveData<Boolean>()
+    val eventSignUp: LiveData<Boolean>
+        get() = _eventSignUp
+
     fun onSignUp(view: View) {
         if (eventNumberCheck.value!!) {
             viewModelScope.launch {
@@ -66,10 +70,15 @@ class SignUpSecondViewModel @Inject constructor(
                         Log.e("실패", "error: " + signup.message())
                     }
                 }
+                _eventSignUp.value = true
             }
         } else {
             Log.e("fail", "휴대폰 인증 실패")
         }
+    }
+
+    fun onEventSignUpComplete() {
+        _eventSignUp.value = false
     }
 
     fun onSignUpComplete() {
