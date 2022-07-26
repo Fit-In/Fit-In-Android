@@ -20,7 +20,7 @@ class SignUpFirstViewModel : ViewModel(){
 
     fun getRequestSignUp(view: View) {
         val email: String = id.value + "@" + email.value
-        val signUp = RequestSignUp(email, password.value, name.value)
+        val signUp = RequestSignUp(email, password.value, name.value, 10231321313)
         _requestSignUp.value = signUp
     }
 

@@ -15,13 +15,12 @@
             app:destination="@id/signInFragment"
             app:popUpTo="@id/welcomeFragment" />
         <action
-            android:id="@+id/action_welcomeFragment_to_signUpFirstFragment"
-            app:destination="@id/signUpFirstFragment"
-            app:popUpTo="@id/welcomeFragment" />
-        <action
             android:id="@+id/action_welcomeFragment_to_socialSignFragment"
             app:destination="@id/socialSignFragment"
             app:popUpTo="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_welcomeFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -33,33 +32,16 @@
             app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signUpFirstFragment"
-        android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpFirstFragment"
-        android:label="SignUpFirstFragment"
-        tools:layout="@layout/fragment_sign_up_first">
+        android:id="@+id/signUpFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_sign_up">
         <action
-            android:id="@+id/action_signUpFirstFragment_to_signUpSecondFragment"
-            app:destination="@id/signUpSecondFragment"
-            app:popUpTo="@id/signUpFirstFragment" />
-        <action
-            android:id="@+id/action_signUpFirstFragment_to_welcomeFragment"
+            android:id="@+id/action_signUpFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpSecondFragment"
-        android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpSecondFragment"
-        android:label="SignUpSecondFragment"
-        tools:layout="@layout/fragment_sign_up_second">
-        <argument
-            android:name="RequestSignUp"
-            app:argType="com.example.fitin_kotlin.data.model.network.request.RequestSignUp"/>
         <action
-            android:id="@+id/action_signUpSecondFragment_to_signUpFirstFragment"
-            app:destination="@id/signUpFirstFragment" />
-        <action
-            android:id="@+id/action_signUpSecondFragment_to_signUpEndFragment"
-            app:destination="@id/signUpEndFragment"
-            app:popUpToInclusive="true" />
+            android:id="@+id/action_signUpFragment_to_signUpEndFragment"
+            app:destination="@id/signUpEndFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpEndFragment"
@@ -82,5 +64,6 @@
             android:id="@+id/action_socialSignFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
     </fragment>
+
 
 </navigation>
