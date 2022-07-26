@@ -28,7 +28,7 @@ class WelcomeFragment : Fragment() {
 
         welcomeViewModel.eventSignUp.observe(viewLifecycleOwner, Observer { signUp ->
             if (signUp) {
-                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFirstFragment())
+                findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToSignUpFragment())
                 welcomeViewModel.onEventSignUpComplete()
             }
         })

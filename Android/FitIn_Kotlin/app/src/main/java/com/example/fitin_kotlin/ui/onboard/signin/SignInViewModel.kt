@@ -31,16 +31,16 @@ class SignInViewModel @Inject constructor(
     fun onSignIn(view: View) {
         val requestSignIn = RequestSignIn(email.value, password.value)
         viewModelScope.launch {
-            val signin = userRepository.postSignIn(requestSignIn)
-            when (signin.isSuccessful) {
+            val signIn = userRepository.postSignIn(requestSignIn)
+            when (signIn.isSuccessful) {
                 true -> {
-                    Log.e("token", "성공: " + signin.body()?.accessToken)
-                    prefs.setAccessToken(signin.body()!!.accessToken)
-                    prefs.setRefreshToken(signin.body()!!.refreshToken)
+                    Log.e("token", "성공: " + signIn.body()?.accessToken)
+                    prefs.setAccessToken(signIn.body()!!.accessToken)
+                    prefs.setRefreshToken(signIn.body()!!.refreshToken)
                     newsRepository.callNews()
                 }
                 else -> {
-                    Log.e("실패", "error " + signin.message())
+                    Log.e("실패", "error " + signIn.message())
                 }
             }
         }

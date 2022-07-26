@@ -15,11 +15,11 @@ class UserRepository @Inject constructor(private val userService: UserService, p
 
     suspend fun postSignUp(requestSignUp: RequestSignUp) = withContext(ioDispatcher) { userService.postSignUp(requestSignUp) }
 
+    suspend fun getEmailDuplicateCheck(email: String) = withContext(ioDispatcher) {userService.getEmailDuplicateCheck(email) }
+
     suspend fun postSignIn(requestSignIn: RequestSignIn) = withContext(ioDispatcher) { userService.postSignIn(requestSignIn) }
 
     fun postReIssue(requestTokenReissue: RequestTokenReissue) = userService.postReIssue(requestTokenReissue)
-
-    suspend fun getEmail(accessToken: String) = withContext(ioDispatcher) { userService.getEmail("Bearer $accessToken") }
 
     suspend fun postCoolSms(requestPhoneNumber: RequestPhoneNumber) = withContext(ioDispatcher) { userService.postCoolSms(requestPhoneNumber) }
 }

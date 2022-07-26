@@ -64,7 +64,7 @@ class SignUpSecondViewModel @Inject constructor(
                 Log.e("유저", "user" + _requestSignUp!!.value!!.email)
                 when (signup.isSuccessful) {
                     true -> {
-                        Log.e("완료", "응답값" + signup.body()?.email)
+//                        Log.e("완료", "응답값" + signup.body()?.email)
                     }
                     else -> {
                         Log.e("실패", "error: " + signup.message())
