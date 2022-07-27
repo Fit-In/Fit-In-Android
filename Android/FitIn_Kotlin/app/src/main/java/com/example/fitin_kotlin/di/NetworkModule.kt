@@ -40,7 +40,7 @@ object NetworkModule {
     fun providesOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor, tokenAuthenticator: TokenAuthenticator): OkHttpClient =
         OkHttpClient
             .Builder()
-            .authenticator(tokenAuthenticator)
+//            .authenticator(tokenAuthenticator)
             .addInterceptor(httpLoggingInterceptor)
             .build()
 

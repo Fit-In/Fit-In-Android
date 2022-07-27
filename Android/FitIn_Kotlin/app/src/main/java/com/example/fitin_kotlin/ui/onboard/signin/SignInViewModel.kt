@@ -65,6 +65,9 @@ class SignInViewModel @Inject constructor(
                 }
                 else -> {
 //                    Log.e("실패", "error " + signIn.message())
+                    if (signIn.code() == 401) {
+                        _errorMessage.value = "비밀번호가 일치하지 않습니다."
+                    }
                     _eventSignIn.value = false
                 }
             }
