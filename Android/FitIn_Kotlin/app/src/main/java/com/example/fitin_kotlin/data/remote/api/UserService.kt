@@ -23,7 +23,7 @@ interface UserService {
     @POST("/auth/login")
     suspend fun postSignIn(
         @Body body: RequestSignIn
-    ): Response<ResponseToken>
+    ): Response<ResponseBodys>
 
     @POST("/auth/reissue")
     fun postReIssue(

@@ -28,23 +28,48 @@ class SignInViewModel @Inject constructor(
     val eventSignIn: LiveData<Boolean>
         get() = _eventSignIn
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String>
+        get() = _errorMessage
+
     fun onSignIn(view: View) {
         val requestSignIn = RequestSignIn(email.value, password.value)
         viewModelScope.launch {
             val signIn = userRepository.postSignIn(requestSignIn)
             when (signIn.isSuccessful) {
                 true -> {
-                    Log.e("token", "성공: " + signIn.body()?.accessToken)
-                    prefs.setAccessToken(signIn.body()!!.accessToken)
-                    prefs.setRefreshToken(signIn.body()!!.refreshToken)
-                    newsRepository.callNews()
+                    if (signIn.body()!!.state == 200) {
+//                        Log.e("성공", signIn.body()!!.data.toString())
+                        val result = signIn.body()!!.data.toString()
+                        val accessToken = result.substring(result.indexOf("accessToken=") + 12, result.indexOf(", refreshToken"))
+                        val refreshToken = result.substring(result.indexOf("refreshToken=") + 13, result.indexOf(", refreshTokenExpiresIn"))
+                        prefs.setAccessToken(accessToken)
+                        prefs.setRefreshToken(refreshToken)
+//                        Log.e("Access Token", prefs.getAccessToken()!!)
+//                        Log.e("Refresh Token", prefs.getRefreshToken()!!)
+                        newsRepository.callNews()
+                        _eventSignIn.value = true
+                    } else {
+                        if (signIn.body()!!.message.isNotEmpty()) {
+//                            Log.e("실패", signIn.body()!!.message)
+                            val userNotExist = signIn.body()!!.message
+                            _errorMessage.value = userNotExist
+                        } else {
+//                            Log.e("실패", signIn.body()!!.error[0].toString())
+                            val result = signIn.body()!!.error[0].toString()
+                            val failMessage = result.substring(result.lastIndexOf("=")+1,result.indexOf("}"))
+//                            Log.e("안내 문자", failMessage)
+                            _errorMessage.value = failMessage
+                        }
+                    }
                 }
                 else -> {
-                    Log.e("실패", "error " + signIn.message())
+//                    Log.e("실패", "error " + signIn.message())
+                    _eventSignIn.value = false
                 }
             }
         }
-        _eventSignIn.value = true
+
     }
 
     fun onEventSignInComplete() {

@@ -31,19 +31,29 @@ class SignUpEndViewModel @Inject constructor(
     fun onSignIn(view: View) {
         val requestSignIn = RequestSignIn(requestSignIn.value?.email, requestSignIn.value?.password)
         viewModelScope.launch {
-            val signin = userRepository.postSignIn(requestSignIn)
-            when (signin.isSuccessful) {
+            val signIn = userRepository.postSignIn(requestSignIn)
+            when (signIn.isSuccessful) {
                 true -> {
-                    prefs.setAccessToken(signin.body()!!.accessToken)
-                    prefs.setRefreshToken(signin.body()!!.refreshToken)
+                    if (signIn.body()!!.state == 200) {
+                        Log.e("성공", signIn.body()!!.data.toString())
+                        val result = signIn.body()!!.data.toString()
+                        val accessToken = result.substring(result.indexOf("accessToken=") + 12, result.indexOf(", refreshToken"))
+                        val refreshToken = result.substring(result.indexOf("refreshToken=") + 13, result.indexOf(", refreshTokenExpiresIn"))
+                        prefs.setAccessToken(accessToken)
+                        prefs.setRefreshToken(refreshToken)
+                        Log.e("Access Token", prefs.getAccessToken()!!)
+                        Log.e("Refresh Token", prefs.getRefreshToken()!!)
+                        _eventSignIn.value = true
+                    }
+                    // 예외 처리는 추후 생각, 애초에 예외가 생길 수 있는 FlowChart가 아님
                     // 뉴스 호출 생략
                 }
                 else -> {
-                    Log.e("실패", "error " + signin.message())
+                    Log.e("실패", "error " + signIn.message())
+                    _eventSignIn.value = false
                 }
             }
         }
-        _eventSignIn.value = true
     }
 
 
