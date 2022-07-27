@@ -111,39 +111,53 @@ class SignUpViewModel @Inject constructor(
     fun onSignUp(view: View) {
         // 회원가입 버튼 기본 디폴트 값을 비활성화 상태 + 비밀번호 유효성 검사 추가
         onPasswordCheck()
-        if (eventEmailNotDuplicate.value!! && eventNumberCheck.value!! && eventPasswordCheck.value!!) {
-            // 회원가입 버튼 활성화
-            val email = id.value + "@" + email.value
-            // 이메일 & 비밀번호 & 이름 & 전화번호에 대해 정규식 제약조건이 걸려있음, 그에 맞게 입력하게끔 hint로 알려줘야함
+        try {
+            if (eventEmailNotDuplicate.value!! && eventNumberCheck.value!! && eventPasswordCheck.value!!) {
+                // 회원가입 버튼 활성화
+                val email = id.value + "@" + email.value
+                // 이메일 & 비밀번호 & 이름 & 전화번호에 대해 정규식 제약조건이 걸려있음, 그에 맞게 입력하게끔 hint로 알려줘야함
 //            val requestSignUp = RequestSignUp(email, password.value, name.value, phoneNumber.value?.toLong())
-            _requestSignUp.value = RequestSignUp(email, password.value, name.value, phoneNumber.value)
-            viewModelScope.launch {
-                val signUp = userRepository.postSignUp(_requestSignUp.value!!)
-                when (signUp.isSuccessful) {
-                    true -> {
-                        // 조건문을 통해서 error message가 처음에 존재한다면 해당 부분에 대해서 LiveData<String>으로 설정, Toast message를 띄움
-                        // 만약 없다면 그냥 true로 통과하고 데이터 넘기고 로그인 진행
-                        if (signUp.body()!!.state == 200) {
-                            Log.e("성공", "success")
-                            _eventSignUp.value = true
-                        } else {
-                            val result = signUp.body()!!.error[0].toString()
-                            Log.e("결과 문자", result)
-                            val failMessage = result.substring(result.lastIndexOf("=")+1,result.indexOf("}"))
-                            Log.e("안내 문자", failMessage)
-                            _errorMessage.value = failMessage
+                _requestSignUp.value =
+                    RequestSignUp(email, password.value, name.value, phoneNumber.value)
+                viewModelScope.launch {
+                    val signUp = userRepository.postSignUp(_requestSignUp.value!!)
+                    when (signUp.isSuccessful) {
+                        true -> {
+                            // 조건문을 통해서 error message가 처음에 존재한다면 해당 부분에 대해서 LiveData<String>으로 설정, Toast message를 띄움
+                            // 만약 없다면 그냥 true로 통과하고 데이터 넘기고 로그인 진행
+                            if (signUp.body()!!.state == 200) {
+                                Log.e("성공", "success")
+                                _eventSignUp.value = true
+                            } else {
+                                val result = signUp.body()!!.error[0].toString()
+                                Log.e("결과 문자", result)
+                                val failMessage = result.substring(
+                                    result.lastIndexOf("=") + 1,
+                                    result.indexOf("}")
+                                )
+                                Log.e("안내 문자", failMessage)
+                                _errorMessage.value = failMessage
+                            }
+                        }
+                        // response message 팝업으로 띄우면 됨, 로그로 찍어서 확인하기
+
+                        else -> {
+                            _eventSignUp.value = false
+                            Log.e("실패", signUp.message())
                         }
                     }
-                    // response message 팝업으로 띄우면 됨, 로그로 찍어서 확인하기
-
-                    else -> {
-                        _eventSignUp.value = false
-                        Log.e("실패", signUp.message())
-                    }
                 }
-            }
-        } else {
+            } else {
             _eventSignUp.value = false
+//                if (!eventEmailNotDuplicate.value!!) {
+//                    _errorMessage.value = "중복 체크를 하지 않았습니다."
+//                }
+//                if (!eventNumberCheck.value!!) {
+//                    _errorMessage.value = "휴대폰 인증을 하지 않았습니다."
+//                }
+            }
+        } catch (e: Exception) {
+            _errorMessage.value = "입력하지 않은 값이 있습니다."
         }
     }
 
