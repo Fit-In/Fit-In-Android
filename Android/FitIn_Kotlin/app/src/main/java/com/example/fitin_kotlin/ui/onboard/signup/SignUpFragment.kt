@@ -52,6 +52,10 @@ class SignUpFragment : Fragment() {
             }
         })
 
+        signUpViewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
+            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+        })
+
         signUpViewModel.eventSignUp.observe(viewLifecycleOwner, Observer { success ->
             if (success) {
                 findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignUpEndFragment(signUpViewModel.requestSignUp.value!!))

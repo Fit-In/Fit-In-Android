@@ -12,7 +12,7 @@ data class ResponseBodys(
     @SerializedName("massage")
     val message: String,
     @SerializedName("data")
-    val data: List<Any>,
+    val data: Any,
     @SerializedName("error")
     val error: List<Any>
 )

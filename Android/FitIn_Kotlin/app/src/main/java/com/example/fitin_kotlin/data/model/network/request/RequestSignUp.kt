@@ -13,6 +13,6 @@ data class RequestSignUp(
     @SerializedName("name")
     val name: String?,
     @SerializedName("phone")
-    val phone: Long?
+    val phone: String?
 
 ) : Parcelable

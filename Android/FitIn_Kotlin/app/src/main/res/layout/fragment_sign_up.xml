@@ -40,6 +40,7 @@
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/iv_back"
+            android:onClick="@{() -> signUpViewModel.onBack()}"
             app:layout_constraintEnd_toStartOf="@id/iv_signup_title"
             app:layout_constraintStart_toStartOf="@id/et_name"
             app:layout_constraintTop_toTopOf="@id/iv_signup_title" />
@@ -67,6 +68,7 @@
             android:text="@={signUpViewModel.name}"
             android:minHeight="48dp"
             android:padding="8dp"
+            android:privateImeOptions="defaultInputmode=korean"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toBottomOf="@id/iv_signup_title" />

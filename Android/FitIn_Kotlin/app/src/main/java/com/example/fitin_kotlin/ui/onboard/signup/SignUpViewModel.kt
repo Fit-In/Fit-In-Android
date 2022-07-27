@@ -100,9 +100,13 @@ class SignUpViewModel @Inject constructor(
     val requestSignUp: LiveData<RequestSignUp?>
         get() = _requestSignUp
 
-    private val _signUpButtonEnabled = MutableLiveData<Boolean>(false)
-    val signUpButtonEnabled: LiveData<Boolean>
-        get() = _signUpButtonEnabled
+//    private val _signUpButtonEnabled = MutableLiveData<Boolean>(false)
+//    val signUpButtonEnabled: LiveData<Boolean>
+//        get() = _signUpButtonEnabled
+
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String>
+        get() = _errorMessage
 
     fun onSignUp(view: View) {
         // 회원가입 버튼 기본 디폴트 값을 비활성화 상태 + 비밀번호 유효성 검사 추가
@@ -112,17 +116,26 @@ class SignUpViewModel @Inject constructor(
             val email = id.value + "@" + email.value
             // 이메일 & 비밀번호 & 이름 & 전화번호에 대해 정규식 제약조건이 걸려있음, 그에 맞게 입력하게끔 hint로 알려줘야함
 //            val requestSignUp = RequestSignUp(email, password.value, name.value, phoneNumber.value?.toLong())
-            _requestSignUp.value = RequestSignUp(email, password.value, name.value, phoneNumber.value?.toLong())
+            _requestSignUp.value = RequestSignUp(email, password.value, name.value, phoneNumber.value)
             viewModelScope.launch {
                 val signUp = userRepository.postSignUp(_requestSignUp.value!!)
                 when (signUp.isSuccessful) {
                     true -> {
                         // 조건문을 통해서 error message가 처음에 존재한다면 해당 부분에 대해서 LiveData<String>으로 설정, Toast message를 띄움
                         // 만약 없다면 그냥 true로 통과하고 데이터 넘기고 로그인 진행
-                        Log.e("성공", signUp.body()!!.error[0].toString())
-                        _eventSignUp.value = true
+                        if (signUp.body()!!.state == 200) {
+                            Log.e("성공", "success")
+                            _eventSignUp.value = true
+                        } else {
+                            val result = signUp.body()!!.error[0].toString()
+                            Log.e("결과 문자", result)
+                            val failMessage = result.substring(result.lastIndexOf("=")+1,result.indexOf("}"))
+                            Log.e("안내 문자", failMessage)
+                            _errorMessage.value = failMessage
+                        }
                     }
                     // response message 팝업으로 띄우면 됨, 로그로 찍어서 확인하기
+
                     else -> {
                         _eventSignUp.value = false
                         Log.e("실패", signUp.message())
@@ -130,9 +143,6 @@ class SignUpViewModel @Inject constructor(
                 }
             }
         } else {
-            // 하나라도 false 값이면 해당 value에 맞춰서 팝업 메시지 띄움
-            // 현재는 런타임 에러로 튕겨버리는데 LiveData를 통해서 Toast메시지를 통해서 인증을 다시 하라고 알려줌
-            // 굳이 버튼 활성화 처리하지 말고 Toast 메시지를 바탕으로 인증 안 했을 경우 에러를 뜨게끔 처리하는게 나아보임
             _eventSignUp.value = false
         }
     }
