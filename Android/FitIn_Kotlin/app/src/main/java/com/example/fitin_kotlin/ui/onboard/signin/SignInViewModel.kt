@@ -91,4 +91,16 @@ class SignInViewModel @Inject constructor(
         _eventBack.value = false
     }
 
+    private val _eventFindId = MutableLiveData<Boolean>()
+    val eventFindId: LiveData<Boolean>
+        get() = _eventFindId
+
+    fun onFindId() {
+        _eventFindId.value = true
+    }
+
+    fun onFindIdComplete() {
+        _eventFindId.value = false
+    }
+
 }

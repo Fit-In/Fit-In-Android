@@ -62,10 +62,12 @@ class SignUpViewModel @Inject constructor(
             val validation = userRepository.postCoolSms(requestPhoneNumber)
             when (validation.isSuccessful) {
                 true -> {
+                    // 번호 안 써도 인증번호 날아감, 이 부분 response로 받게 수정
                     checkNumber = validation.body().toString()
                     Log.e("성공", "인증번호" + validation.body().toString())
                 }
                 else -> {
+                    _errorMessage.value = "휴대폰 번호를 다시 입력해주세요"
                     Log.e("실패", "fail " + validation.message())
                 }
             }

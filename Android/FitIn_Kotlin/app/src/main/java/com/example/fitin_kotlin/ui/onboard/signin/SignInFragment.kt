@@ -52,6 +52,13 @@ class SignInFragment : Fragment() {
             }
         })
 
+        signInViewModel.eventFindId.observe(viewLifecycleOwner, Observer { findId ->
+            if (findId) {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToFindIdFragment())
+                signInViewModel.onFindIdComplete()
+            }
+        })
+
         return binding.root
     }
 

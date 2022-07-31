@@ -30,6 +30,10 @@
         <action
             android:id="@+id/action_signInFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_findIdFragment"
+            app:destination="@id/findIdFragment"
+            app:popUpTo="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -63,6 +67,61 @@
         <action
             android:id="@+id/action_socialSignFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findIdFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.findid.FindIdFragment"
+        android:label="FindIdFragment"
+        tools:layout="@layout/fragment_find_id">
+        <action
+            android:id="@+id/action_findIdFragment_to_findPwFragment"
+            app:destination="@id/findPwFragment" />
+        <action
+            android:id="@+id/action_findIdFragment_to_findIdEndFragment"
+            app:destination="@id/findIdEndFragment" />
+        <action
+            android:id="@+id/action_findIdFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findIdEndFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.findid.FindIdEndFragment"
+        android:label="FindIdEndFragment"
+        tools:layout="@layout/fragment_find_id_end">
+        <argument
+            android:name="id"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_findIdEndFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/findIdEndFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPwFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.findpw.FindPwFragment"
+        android:label="FindPwFragment"
+        tools:layout="@layout/fragment_find_pw">
+        <action
+            android:id="@+id/action_findPwFragment_to_findPwEndFragment"
+            app:destination="@id/findPwEndFragment" />
+        <action
+            android:id="@+id/action_findPwFragment_to_findIdFragment"
+            app:destination="@id/findIdFragment" />
+        <action
+            android:id="@+id/action_findPwFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/findPwEndFragment"
+        android:name="com.example.fitin_kotlin.ui.onboard.findpw.FindPwEndFragment"
+        android:label="FindPwEndFragment"
+        tools:layout="@layout/fragment_find_pw_end">
+        <action
+            android:id="@+id/action_findPwEndFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/findPwEndFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 

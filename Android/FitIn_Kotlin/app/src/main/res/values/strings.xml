@@ -48,4 +48,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="signup_end_title_text">HANDIT이 당신을\n진심으로 환영합니다</string>
     <string name="signup_service_term">가입 시, HANDIT이 제공하는 서비스를 모두 이\n용하실 수 있습니다. 서비스 이용약관, 개인정보\n취급방침에 동의합니다.</string>
+    <string name="find_pw_text">비밀번호가 변경되었습니다.\n다시 로그인 해주세요.</string>
 </resources>
