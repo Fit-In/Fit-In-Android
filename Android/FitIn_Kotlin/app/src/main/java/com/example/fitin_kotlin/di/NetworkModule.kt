@@ -9,6 +9,8 @@ import com.example.fitin_kotlin.data.repository.UserRepository
 //import com.example.fitin_kotlin.network.AuthInterceptor
 //import com.example.fitin_kotlin.network.AuthInterceptor
 import com.example.fitin_kotlin.network.TokenAuthenticator
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +29,9 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     private const val BASE_URL = "http://10.0.2.2:8080"
+    private val gson : Gson = GsonBuilder()
+        .setLenient()
+        .create()
 
     @Singleton
     @Provides
@@ -42,12 +47,15 @@ object NetworkModule {
             .Builder()
 //            .authenticator(tokenAuthenticator)
             .addInterceptor(httpLoggingInterceptor)
+            .connectTimeout(100, TimeUnit.SECONDS)
+            .readTimeout(100, TimeUnit.SECONDS)
+            .writeTimeout(100, TimeUnit.SECONDS)
             .build()
 
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient) : Retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .baseUrl(BASE_URL)
         .client(okHttpClient)
         .build()

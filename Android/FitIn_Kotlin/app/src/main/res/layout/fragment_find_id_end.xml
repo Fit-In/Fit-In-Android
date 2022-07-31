@@ -5,10 +5,9 @@
 
     <data>
         <variable
-            name="welcomeViewModel"
-            type="com.example.fitin_kotlin.ui.onboard.welcome.WelcomeViewModel" />
+            name="findIdEndViewModel"
+            type="com.example.fitin_kotlin.ui.onboard.findid.FindIdEndViewModel" />
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -45,19 +44,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_main_body_text"
+            android:id="@+id/tv_find_pw_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/font_wandohope_r"
             android:gravity="center_horizontal"
             android:lineSpacingExtra="16sp"
-            android:text="@string/main_title_text"
             android:textColor="#191919"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/iv_main_title" />
+            app:layout_constraintTop_toBottomOf="@id/iv_main_title"
+            android:text="@{findIdEndViewModel.responseId}"
+            tools:text="당신의 FITIN 아이디는\n cheewr85 입니다." />
 
         <ImageView
             android:id="@+id/iv_main"
@@ -66,60 +66,19 @@
             android:src="@drawable/iv_title"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_body_text" />
+            app:layout_constraintTop_toBottomOf="@id/tv_find_pw_text" />
 
         <ImageButton
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@android:color/transparent"
-            android:padding="1dp"
-            android:src="@drawable/btn_phone"
-            android:onClick="@{() -> welcomeViewModel.onEventSignUp()}"
+            android:src="@drawable/btn_login"
+            android:onClick="@{() -> findIdEndViewModel.onEventSignIn()}"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toBottomOf="@id/iv_main" />
-
-
-        <ImageButton
-            android:id="@+id/btn_naver_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:src="@drawable/btn_kakao_login"
-            android:onClick="@{() -> welcomeViewModel.onEventKakao()}"
-            app:layout_constraintEnd_toStartOf="@id/btn_google_signup"
-            app:layout_constraintStart_toStartOf="@id/btn_signup"
-            app:layout_constraintTop_toTopOf="@id/btn_google_signup" />
-
-
-        <ImageButton
-            android:id="@+id/btn_google_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/btn_naver_login"
-            android:onClick="@{() -> welcomeViewModel.onEventNaver()}"
-            app:layout_constraintEnd_toEndOf="@+id/btn_signup"
-            app:layout_constraintStart_toEndOf="@+id/btn_naver_signup"
-            app:layout_constraintTop_toBottomOf="@id/btn_signup" />
-
-        <TextView
-            android:id="@+id/tv_signin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:bufferType="spannable"
-            android:gravity="center_horizontal"
-            android:text="@string/main_login"
-            android:textColor="#191919"
-            android:textSize="16sp"
-            android:onClick="@{() -> welcomeViewModel.onEventSignIn()}"
-            app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/btn_google_signup"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

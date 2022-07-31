@@ -39,4 +39,14 @@ interface UserService {
     suspend fun postCoolSms(
         @Body body: RequestPhoneNumber
     ): Response<String>
+
+    @POST("/auth/find/email")
+    suspend fun postFindId(
+        @Body body: RequestFindId
+    ): Response<ResponseBodys>
+
+    @POST("/auth/find/password")
+    suspend fun postFindPassword(
+        @Body body: RequestFindPassword
+    ): Response<ResponseBodys>
 }
