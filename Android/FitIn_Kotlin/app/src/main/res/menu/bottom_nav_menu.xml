@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_icon"
+        android:title="홈"/>
+
+    <item
+        android:id="@+id/recruitmentFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_recruitment_icon"
+        android:title="채용정보"/>
+
+    <item
+        android:id="@+id/bookmarkFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_bookmark_icon"
+        android:title="북마크"/>
+
+    <item
+        android:id="@+id/newsFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_news_icon"
+        android:title="오늘의 뉴스"/>
+
+    <item
+        android:id="@+id/myMenuFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_mymenu_icon"
+        android:title="메뉴"/>
+
+</menu>

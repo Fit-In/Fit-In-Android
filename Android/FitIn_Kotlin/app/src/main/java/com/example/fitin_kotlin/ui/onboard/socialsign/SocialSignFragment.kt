@@ -3,7 +3,6 @@ package com.example.fitin_kotlin.ui.onboard.socialsign
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,6 @@ import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
@@ -20,7 +17,6 @@ import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.databinding.FragmentSocialSignBinding
 import com.example.fitin_kotlin.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_social_sign.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
