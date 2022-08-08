@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
-import com.example.fitin_kotlin.databinding.ListItemNewsBinding
+import com.example.fitin_kotlin.databinding.ListItemBinding
+import kotlin.math.min
 
 class HomeAdapter(private val onClickListener: OnClickListener) : ListAdapter<ResponseNewsList, HomeAdapter.NewsListViewHolder>(DiffCallback){
 
-    class NewsListViewHolder(private var binding: ListItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NewsListViewHolder(private var binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(responseNewsList: ResponseNewsList) {
             binding.newsProperty = responseNewsList
@@ -21,7 +22,7 @@ class HomeAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
-        val listItemNewsBinding: ListItemNewsBinding = ListItemNewsBinding.inflate(inflater, parent, false)
+        val listItemNewsBinding: ListItemBinding = ListItemBinding.inflate(inflater, parent, false)
         return NewsListViewHolder(listItemNewsBinding)
     }
 
@@ -31,6 +32,11 @@ class HomeAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
             onClickListener.onClick(responseNewsList)
         }
         holder.bind(responseNewsList)
+    }
+
+    override fun getItemCount(): Int {
+        val limit = 3
+        return min(super.getItemCount(), limit)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<ResponseNewsList>() {

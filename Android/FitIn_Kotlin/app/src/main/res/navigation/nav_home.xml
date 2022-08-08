@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_home"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.fitin_kotlin.ui.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment"
+            app:popUpTo="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recruitmentFragment"
+            app:destination="@id/recruitmentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_recruitmentDetailFragment"
+            app:destination="@id/recruitmentDetailFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.example.fitin_kotlin.ui.news.NewsFragment"
-        android:label="NewsFragment" >
+        android:label="NewsFragment"
+        tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/newsDetailFragment"
@@ -21,10 +39,26 @@
     <fragment
         android:id="@+id/newsDetailFragment"
         android:name="com.example.fitin_kotlin.ui.newsdetail.NewsDetailFragment"
-        android:label="NewsDetailFragment">
+        android:label="NewsDetailFragment"
+        tools:layout="@layout/fragment_news_detail">
         <argument
             android:name="selectedNews"
             app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseNewsList"/>
     </fragment>
+    <fragment
+        android:id="@+id/recruitmentFragment"
+        android:name="com.example.fitin_kotlin.ui.recruitment.RecruitmentFragment"
+        android:label="RecruitmentFragment"
+        tools:layout="@layout/fragment_recruitment">
+        <action
+            android:id="@+id/action_recruitmentFragment_to_recruitmentDetailFragment"
+            app:destination="@id/recruitmentDetailFragment"
+            app:popUpTo="@id/recruitmentFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recruitmentDetailFragment"
+        android:name="com.example.fitin_kotlin.ui.recruitmentdetail.RecruitmentDetailFragment"
+        android:label="RecruitmentDetailFragment"
+        tools:layout="@layout/fragment_recruitment_detail"/>
 
 </navigation>

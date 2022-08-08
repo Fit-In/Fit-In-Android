@@ -26,7 +26,7 @@ class NewsFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.homeViewModel = newsViewModel
+        binding.newsViewModel = newsViewModel
 
         binding.rvNewsList.adapter = NewsAdapter(NewsAdapter.OnClickListener {
             newsViewModel.displayNews(it)

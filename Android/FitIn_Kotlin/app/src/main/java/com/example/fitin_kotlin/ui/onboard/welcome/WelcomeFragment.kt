@@ -13,6 +13,7 @@ import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentWelcomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WelcomeFragment : Fragment() {
     private val welcomeViewModel: WelcomeViewModel by viewModels()
 

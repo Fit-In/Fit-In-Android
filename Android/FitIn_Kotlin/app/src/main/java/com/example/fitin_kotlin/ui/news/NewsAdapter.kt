@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
-import com.example.fitin_kotlin.databinding.ListItemNewsBinding
+import com.example.fitin_kotlin.databinding.ListItemBinding
 
 class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<ResponseNewsList, NewsAdapter.NewsListViewHolder>(DiffCallback){
 
-    class NewsListViewHolder(private var binding: ListItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NewsListViewHolder(private var binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(responseNewsList: ResponseNewsList) {
             binding.newsProperty = responseNewsList
@@ -21,7 +21,7 @@ class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsListViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
-        val listItemNewsBinding: ListItemNewsBinding = ListItemNewsBinding.inflate(inflater, parent, false)
+        val listItemNewsBinding: ListItemBinding = ListItemBinding.inflate(inflater, parent, false)
         return NewsListViewHolder(listItemNewsBinding)
     }
 
@@ -32,6 +32,7 @@ class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
         }
         holder.bind(responseNewsList)
     }
+
 
     companion object DiffCallback : DiffUtil.ItemCallback<ResponseNewsList>() {
         override fun areItemsTheSame(
