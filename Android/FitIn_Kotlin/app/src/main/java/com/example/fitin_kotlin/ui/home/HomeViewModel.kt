@@ -1,7 +1,56 @@
 package com.example.fitin_kotlin.ui.home
 
-class HomeViewModel {
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
+import com.example.fitin_kotlin.data.repository.NewsRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val newsRepository: NewsRepository
+) : ViewModel(){
     // 뉴스 & 채용정보 API 호출해서 상위 3개 아이템 띄우게끔 진행 필요
-    // RecyclerView는 아이템 3개만, 중복되는 UI/UX 로직은 그대로 활용하기
+    // RecyclerView는 아이템 3개만, 중복되는 UI/UX 로직은 그대로 활용하기, NewsAdapter 동일하게 적용
+
+    private val _newsList = MutableLiveData<List<ResponseNewsList>>()
+    val newsList: LiveData<List<ResponseNewsList>>
+        get() = _newsList
+
+    val requestNews: MutableLiveData<ResponseNewsList?> = MutableLiveData<ResponseNewsList?>()
+
+    init {
+        getNewsList()
+    }
+
+    private fun getNewsList() {
+        viewModelScope.launch {
+            _newsList.value = newsRepository.getNewsList()
+        }
+    }
+
+    fun onEventNewsDetail(responseNewsList: ResponseNewsList) {
+        requestNews.value = responseNewsList
+    }
+
+    fun onEventNewsDetailFinish() {
+        requestNews.value = null
+    }
+
+    private val _eventNewsList = MutableLiveData<Boolean>()
+    val eventNewsList: LiveData<Boolean>
+        get() = _eventNewsList
+
+    fun onNewsList() {
+        _eventNewsList.value = true
+    }
+
+    fun onNewsListFinish() {
+        _eventNewsList.value = false
+    }
 
 }

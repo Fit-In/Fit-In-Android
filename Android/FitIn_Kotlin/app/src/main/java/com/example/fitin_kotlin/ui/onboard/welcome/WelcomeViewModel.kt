@@ -3,9 +3,26 @@ package com.example.fitin_kotlin.ui.onboard.welcome
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.fitin_kotlin.data.repository.NewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class WelcomeViewModel : ViewModel() {
+@HiltViewModel
+class WelcomeViewModel @Inject constructor(
+    private val newsRepository: NewsRepository
+) : ViewModel() {
+
+    /*
+    init을 통해서 callAPI 호출, 그러기 위해서 Hilt 사용해서 DI를 통해서 Repository 주입필요
+     */
+
+    init {
+        viewModelScope.launch {
+            newsRepository.callNews()
+        }
+    }
 
     private val _eventSignUp = MutableLiveData<Boolean>()
     val eventSignUp: LiveData<Boolean>

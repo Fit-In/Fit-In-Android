@@ -9,11 +9,18 @@ import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
+import com.example.fitin_kotlin.ui.home.HomeAdapter
 import com.example.fitin_kotlin.ui.news.NewsAdapter
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, newsList: List<ResponseNewsList>?) {
+@BindingAdapter("newslistData")
+fun bindNewsRecyclerView(recyclerView: RecyclerView, newsList: List<ResponseNewsList>?) {
     val adapter = recyclerView.adapter as NewsAdapter
+    adapter.submitList(newsList)
+}
+
+@BindingAdapter("homeNewslistData")
+fun bindHomeNewsRecyclerViews(recyclerView: RecyclerView, newsList: List<ResponseNewsList>?) {
+    val adapter = recyclerView.adapter as HomeAdapter
     adapter.submitList(newsList)
 }
 

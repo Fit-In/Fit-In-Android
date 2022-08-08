@@ -14,6 +14,10 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel(){
+    /*
+    채용공고도 동일하게 화면 구성하고 동일하게 로직 만들어서 두기
+    검색 기능 추가해서 넣기
+     */
 
     private val _newsList = MutableLiveData<List<ResponseNewsList>>()
     val newsList: LiveData<List<ResponseNewsList>>

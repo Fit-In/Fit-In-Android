@@ -17,7 +17,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val newsRepository: NewsRepository,
     private val prefs: EncryptedSharedPreferenceController
 ) : ViewModel(){
 
@@ -47,7 +46,6 @@ class SignInViewModel @Inject constructor(
                         prefs.setRefreshToken(refreshToken)
 //                        Log.e("Access Token", prefs.getAccessToken()!!)
 //                        Log.e("Refresh Token", prefs.getRefreshToken()!!)
-                        newsRepository.callNews()
                         _eventSignIn.value = true
                     } else {
                         if (signIn.body()!!.message.isNotEmpty()) {

@@ -2,6 +2,7 @@ package com.example.fitin_kotlin.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -9,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.ActivityHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_home.*
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
@@ -21,6 +23,14 @@ class HomeActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.bnvMenu.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{ controller, destination, arguments ->
+            when (destination.id) {
+                R.id.newsDetailFragment -> bnv_menu.visibility = View.GONE
+                R.id.recruitmentDetailFragment -> bnv_menu.visibility = View.GONE
+                else -> bnv_menu.visibility = View.VISIBLE
+            }
+        }
 
     }
 }
