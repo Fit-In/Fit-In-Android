@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentNewsDetailBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +27,12 @@ class NewsDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.detailViewModel = newsDetailViewModel
 
+        newsDetailViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
+            if (back) {
+                findNavController().navigate(NewsDetailFragmentDirections.actionNewsDetailFragmentToNewsFragment())
+                newsDetailViewModel.onBackComplete()
+            }
+        })
         return binding.root
     }
 

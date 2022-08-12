@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_toStartOf="@id/iv_main_title"
+                android:onClick="@{() -> newsViewModel.onBack()}"
                 android:background="?attr/selectableItemBackground"
                 android:src="@drawable/iv_back"/>
 
@@ -64,18 +65,28 @@
 
         </RelativeLayout>
 
-        <EditText
-            android:id="@+id/et_search_news"
+<!--        <EditText-->
+<!--            android:id="@+id/et_search_news"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:padding="12dp"-->
+<!--            app:layout_constraintStart_toStartOf="@id/gl_start"-->
+<!--            app:layout_constraintEnd_toEndOf="@id/gl_end"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rl_title"-->
+<!--            android:hint="뉴스 검색"-->
+<!--            android:background="#f1f1f5"-->
+<!--            />-->
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_search_news"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:padding="12dp"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toBottomOf="@id/rl_title"
-            android:hint="뉴스 검색"
-            android:background="#f1f1f5"
-            />
+            android:background="#f1f1f5"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_newsList"
@@ -85,7 +96,7 @@
             android:background="#ffffff"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toBottomOf="@id/et_search_news"
+            app:layout_constraintTop_toBottomOf="@id/sv_search_news"
             app:newslistData="@{newsViewModel.newsList}"
             tools:listitem="@layout/list_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>

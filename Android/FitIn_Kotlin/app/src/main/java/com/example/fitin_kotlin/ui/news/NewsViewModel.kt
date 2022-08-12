@@ -43,4 +43,15 @@ class NewsViewModel @Inject constructor(
         requestNews.value = null
     }
 
+    private val _eventBack = MutableLiveData<Boolean>()
+    val eventBack: LiveData<Boolean>
+        get() = _eventBack
+
+    fun onBack() {
+        _eventBack.value = true
+    }
+
+    fun onBackComplete() {
+        _eventBack.value = false
+    }
 }

@@ -52,6 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:onClick="@{() -> detailViewModel.onBack()}"
                 android:layout_toStartOf="@id/iv_main_title"
                 android:background="?attr/selectableItemBackground"
                 android:src="@drawable/iv_back" />
