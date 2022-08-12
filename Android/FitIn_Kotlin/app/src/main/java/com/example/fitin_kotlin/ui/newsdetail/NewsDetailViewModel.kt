@@ -30,4 +30,16 @@ class NewsDetailViewModel @Inject constructor(
             _news.value = newsRepository.getNews(newsId!!)
         }
     }
+
+    private val _eventBack = MutableLiveData<Boolean>()
+    val eventBack: LiveData<Boolean>
+        get() = _eventBack
+
+    fun onBack() {
+        _eventBack.value = true
+    }
+
+    fun onBackComplete() {
+        _eventBack.value = false
+    }
 }

@@ -35,6 +35,9 @@
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/newsDetailFragment"
             app:popUpTo="@id/newsFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
@@ -44,6 +47,9 @@
         <argument
             android:name="selectedNews"
             app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseNewsList"/>
+        <action
+            android:id="@+id/action_newsDetailFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/recruitmentFragment"
@@ -54,11 +60,18 @@
             android:id="@+id/action_recruitmentFragment_to_recruitmentDetailFragment"
             app:destination="@id/recruitmentDetailFragment"
             app:popUpTo="@id/recruitmentFragment" />
+        <action
+            android:id="@+id/action_recruitmentFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recruitmentDetailFragment"
         android:name="com.example.fitin_kotlin.ui.recruitmentdetail.RecruitmentDetailFragment"
         android:label="RecruitmentDetailFragment"
-        tools:layout="@layout/fragment_recruitment_detail"/>
+        tools:layout="@layout/fragment_recruitment_detail">
+        <action
+            android:id="@+id/action_recruitmentDetailFragment_to_recruitmentFragment"
+            app:destination="@id/recruitmentFragment" />
+    </fragment>
 
 </navigation>
