@@ -92,7 +92,7 @@
             android:layout_marginTop="5dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_newsList"
+            android:id="@+id/rv_news_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/tv_today_news"
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/rv_newsList"
+            app:layout_constraintTop_toBottomOf="@id/rv_news_list"
             android:text="@string/home_tv_monthly_recruitment_text"
             android:textSize="16sp"
             android:layout_marginTop="16dp"

@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentHomeBinding
-import com.example.fitin_kotlin.ui.news.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,6 +1,5 @@
 package com.example.fitin_kotlin.data.remote.api
 
-import androidx.lifecycle.LiveData
 import com.example.fitin_kotlin.data.model.network.response.ResponseNews
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
 import retrofit2.Response
