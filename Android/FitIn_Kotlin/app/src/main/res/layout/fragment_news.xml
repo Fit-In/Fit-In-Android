@@ -89,7 +89,7 @@
             android:background="#f1f1f5"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_newsList"
+            android:id="@+id/rv_news_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"

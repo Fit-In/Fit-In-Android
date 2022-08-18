@@ -2,8 +2,10 @@ package com.example.fitin_kotlin.di
 
 import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.remote.api.NewsService
+import com.example.fitin_kotlin.data.remote.api.RecruitmentService
 import com.example.fitin_kotlin.data.remote.api.UserService
 import com.example.fitin_kotlin.data.repository.NewsRepository
+import com.example.fitin_kotlin.data.repository.RecruitmentRepository
 import com.example.fitin_kotlin.data.repository.UserRepository
 //import com.example.fitin_kotlin.network.AuthInterceptor
 //import com.example.fitin_kotlin.network.AuthInterceptor
@@ -76,6 +78,13 @@ object NetworkModule {
     @Provides
     fun provideNewsRepository(newsService: NewsService) = NewsRepository(newsService)
 
+    @Singleton
+    @Provides
+    fun provideRecruitmentService(retrofit: Retrofit): RecruitmentService = retrofit.create(RecruitmentService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideRecruitmentRepository(recruitmentService: RecruitmentService) = RecruitmentRepository(recruitmentService)
 
 //    @AuthInterceptorOkHttpClient
 //    @Singleton
