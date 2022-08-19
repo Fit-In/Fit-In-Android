@@ -69,6 +69,9 @@
         android:name="com.example.fitin_kotlin.ui.recruitmentdetail.RecruitmentDetailFragment"
         android:label="RecruitmentDetailFragment"
         tools:layout="@layout/fragment_recruitment_detail">
+        <argument
+            android:name="selectedRecruitment"
+            app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList"/>
         <action
             android:id="@+id/action_recruitmentDetailFragment_to_recruitmentFragment"
             app:destination="@id/recruitmentFragment" />

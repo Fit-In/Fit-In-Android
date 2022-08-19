@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="newsProperty"
-            type="com.example.fitin_kotlin.data.model.network.response.ResponseNewsList" />
+            name="recruitmentProperty"
+            type="com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,11 +22,11 @@
             android:layout_marginTop="5dp"
             android:textSize="12sp"
             android:textStyle="bold"
-            android:text="@{newsProperty.press}"
+            android:text="@{recruitmentProperty.companyName}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="동아일보"/>
+            tools:text="우아한 형제들"/>
 
         <TextView
             android:id="@+id/tv_recruitment_position"
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textSize="12sp"
-            android:text="@{newsProperty.title}"
+            android:text="@{recruitmentProperty.position}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
             android:maxEms="30"
             android:maxLines="1"
             android:ellipsize="end"
-            tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”" />
+            tools:text="배민서비스실 B마트서비스팀 백엔드 시스템 개발" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

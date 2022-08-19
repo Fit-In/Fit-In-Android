@@ -100,7 +100,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_today_news"
             app:homeNewslistData="@{homeViewModel.newsList}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/list_item"
+            tools:listitem="@layout/list_item_news"
             tools:itemCount="3"
             />
 
@@ -124,6 +124,7 @@
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toTopOf="@id/tv_monthly_recruitment"
             android:text="@string/home_tv_more_text"
+            android:onClick="@{() -> homeViewModel.onRecruitmentList()}"
             android:textSize="12sp"
             android:textStyle="normal"
             android:textColor="#767676"
@@ -134,10 +135,11 @@
             android:id="@+id/rv_recruitment_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:homeRecruitmentlistData="@{homeViewModel.recruitmentList}"
             app:layout_constraintStart_toStartOf="@id/tv_monthly_recruitment"
             app:layout_constraintEnd_toEndOf="@id/tv_more_recruitment"
             app:layout_constraintTop_toBottomOf="@id/tv_monthly_recruitment"
-            tools:listitem="@layout/list_item"
+            tools:listitem="@layout/list_item_recruitment"
             tools:itemCount="3"/>
 
         <TextView
