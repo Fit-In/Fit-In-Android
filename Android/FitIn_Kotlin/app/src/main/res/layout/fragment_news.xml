@@ -65,18 +65,6 @@
 
         </RelativeLayout>
 
-<!--        <EditText-->
-<!--            android:id="@+id/et_search_news"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:padding="12dp"-->
-<!--            app:layout_constraintStart_toStartOf="@id/gl_start"-->
-<!--            app:layout_constraintEnd_toEndOf="@id/gl_end"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/rl_title"-->
-<!--            android:hint="뉴스 검색"-->
-<!--            android:background="#f1f1f5"-->
-<!--            />-->
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/sv_search_news"
@@ -98,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toBottomOf="@id/sv_search_news"
             app:newslistData="@{newsViewModel.newsList}"
-            tools:listitem="@layout/list_item"
+            tools:listitem="@layout/list_item_news"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

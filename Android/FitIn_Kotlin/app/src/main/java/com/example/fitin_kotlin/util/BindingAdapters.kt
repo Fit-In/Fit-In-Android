@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
-import com.example.fitin_kotlin.ui.home.HomeAdapter
+import com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList
+import com.example.fitin_kotlin.ui.home.HomeNewsAdapter
+import com.example.fitin_kotlin.ui.home.HomeRecruitmentAdapter
 import com.example.fitin_kotlin.ui.news.NewsAdapter
+import com.example.fitin_kotlin.ui.recruitment.RecruitmentAdapter
 
 @BindingAdapter("newslistData")
 fun bindNewsRecyclerView(recyclerView: RecyclerView, newsList: List<ResponseNewsList>?) {
@@ -18,10 +20,22 @@ fun bindNewsRecyclerView(recyclerView: RecyclerView, newsList: List<ResponseNews
     adapter.submitList(newsList)
 }
 
+@BindingAdapter("recruitmentlistData")
+fun bindRecruitmentRecyclerView(recyclerView: RecyclerView, recruitmentList: List<ResponseRecruitmentList>?) {
+    val adapter = recyclerView.adapter as RecruitmentAdapter
+    adapter.submitList(recruitmentList)
+}
+
 @BindingAdapter("homeNewslistData")
 fun bindHomeNewsRecyclerViews(recyclerView: RecyclerView, newsList: List<ResponseNewsList>?) {
-    val adapter = recyclerView.adapter as HomeAdapter
+    val adapter = recyclerView.adapter as HomeNewsAdapter
     adapter.submitList(newsList)
+}
+
+@BindingAdapter("homeRecruitmentlistData")
+fun bindHomeRecruitmentRecyclerView(recyclerView: RecyclerView, recruitmentList: List<ResponseRecruitmentList>?) {
+    val adapter = recyclerView.adapter as HomeRecruitmentAdapter
+    adapter.submitList(recruitmentList)
 }
 
 @BindingAdapter("imageUrl")

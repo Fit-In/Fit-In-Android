@@ -1,22 +1,15 @@
-package com.example.fitin_kotlin.ui.news
+package com.example.fitin_kotlin.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
 import com.example.fitin_kotlin.databinding.ListItemNewsBinding
+import kotlin.math.min
 
-class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<ResponseNewsList, NewsAdapter.NewsListViewHolder>(DiffCallback), Filterable{
-
-    var responseNewsList = listOf<ResponseNewsList>()
-        set(value) {
-            submitList(value)
-            field = value
-        }
+class HomeNewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<ResponseNewsList, HomeNewsAdapter.NewsListViewHolder>(DiffCallback){
 
     class NewsListViewHolder(private var binding: ListItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -41,6 +34,10 @@ class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
         holder.bind(responseNewsList)
     }
 
+    override fun getItemCount(): Int {
+        val limit = 3
+        return min(super.getItemCount(), limit)
+    }
 
     companion object DiffCallback : DiffUtil.ItemCallback<ResponseNewsList>() {
         override fun areItemsTheSame(
@@ -62,36 +59,5 @@ class NewsAdapter(private val onClickListener: OnClickListener) : ListAdapter<Re
     class OnClickListener(val clickListener: (responseNewsList:ResponseNewsList) -> Unit) {
         fun onClick(responseNewsList: ResponseNewsList) = clickListener(responseNewsList)
     }
-
-    override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val resultList: MutableList<ResponseNewsList> = ArrayList()
-
-                val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    resultList.addAll(responseNewsList)
-                } else {
-                    for (newsList in responseNewsList) {
-                        if (newsList.title!!.contains(charSearch)) {
-                            resultList.add(newsList)
-                        }
-                    }
-                }
-
-                val filterResults = FilterResults()
-                filterResults.values = resultList
-                return filterResults
-            }
-
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                if (results?.values != null) {
-                    submitList(results.values as List<ResponseNewsList>)
-                }
-            }
-
-        }
-    }
-
 
 }

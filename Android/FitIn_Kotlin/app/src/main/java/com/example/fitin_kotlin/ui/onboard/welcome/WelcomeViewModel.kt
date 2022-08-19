@@ -5,13 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fitin_kotlin.data.repository.NewsRepository
+import com.example.fitin_kotlin.data.repository.RecruitmentRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class WelcomeViewModel @Inject constructor(
-    private val newsRepository: NewsRepository
+    private val newsRepository: NewsRepository,
+    private val recruitmentRepository: RecruitmentRepository
 ) : ViewModel() {
 
     /*
@@ -21,6 +23,7 @@ class WelcomeViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             newsRepository.callNews()
+            recruitmentRepository.callRecruitment()
         }
     }
 

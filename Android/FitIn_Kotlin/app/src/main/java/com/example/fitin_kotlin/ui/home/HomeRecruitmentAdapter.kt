@@ -1,22 +1,15 @@
-package com.example.fitin_kotlin.ui.recruitment
+package com.example.fitin_kotlin.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList
 import com.example.fitin_kotlin.databinding.ListItemRecruitmentBinding
+import kotlin.math.min
 
-class RecruitmentAdapter(private val onClickListener: OnClickListener) : ListAdapter<ResponseRecruitmentList, RecruitmentAdapter.RecruitmentListViewHolder>(DiffCallback), Filterable {
-
-    var responseRecruitmentList = listOf<ResponseRecruitmentList>()
-        set(value) {
-            submitList(value)
-            field = value
-        }
+class HomeRecruitmentAdapter(private val onClickListener: OnClickListener) : ListAdapter<ResponseRecruitmentList, HomeRecruitmentAdapter.RecruitmentListViewHolder>(DiffCallback) {
 
     class RecruitmentListViewHolder(private var binding: ListItemRecruitmentBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -40,6 +33,11 @@ class RecruitmentAdapter(private val onClickListener: OnClickListener) : ListAda
         holder.bind(responseRecruitmentList)
     }
 
+    override fun getItemCount(): Int {
+        val limit = 3
+        return min(super.getItemCount(), limit)
+    }
+
     companion object DiffCallback : DiffUtil.ItemCallback<ResponseRecruitmentList>() {
         override fun areItemsTheSame(
             oldItem: ResponseRecruitmentList,
@@ -60,36 +58,4 @@ class RecruitmentAdapter(private val onClickListener: OnClickListener) : ListAda
     class OnClickListener(val clickListener: (responseRecruitmentList: ResponseRecruitmentList) -> Unit) {
         fun onClick(responseRecruitmentList: ResponseRecruitmentList) = clickListener(responseRecruitmentList)
     }
-
-    override fun getFilter(): Filter {
-        return object : Filter() {
-            override fun performFiltering(constraint: CharSequence?): FilterResults {
-                val resultList: MutableList<ResponseRecruitmentList> = ArrayList()
-
-                val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
-                    resultList.addAll(responseRecruitmentList)
-                } else {
-                    for (recruitmentList in responseRecruitmentList) {
-                        if (recruitmentList.position!!.contains(charSearch)) {
-                            resultList.add(recruitmentList)
-                        }
-                    }
-                }
-
-                val filterResults = FilterResults()
-                filterResults.values = resultList
-                return filterResults
-            }
-
-            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                if (results?.values != null) {
-                    submitList(results.values as List<ResponseRecruitmentList>)
-                }
-            }
-
-        }
-    }
-
-
 }

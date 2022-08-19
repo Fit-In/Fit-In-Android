@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="detailViewModel"
+            type="com.example.fitin_kotlin.ui.recruitmentdetail.RecruitmentDetailViewModel" />
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,6 +52,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_toStartOf="@id/iv_main_title"
                 android:background="?attr/selectableItemBackground"
+                android:onClick="@{() -> detailViewModel.onBack()}"
                 android:src="@drawable/iv_back" />
 
             <ImageView
@@ -59,30 +66,31 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/iv_news_img"
+            android:id="@+id/iv_recruitment_img"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/rl_title"
-            app:layout_constraintBottom_toTopOf="@id/tv_news_press"
+            app:layout_constraintBottom_toTopOf="@id/tv_recruitment_company_name"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             tools:src="@drawable/iv_main" />
 
         <TextView
-            android:id="@+id/tv_news_press"
+            android:id="@+id/tv_recruitment_company_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="12sp"
             android:textStyle="bold"
             android:textColor="#191919"
+            android:text="@{detailViewModel.recruitment.companyName}"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/iv_news_img"
+            app:layout_constraintTop_toBottomOf="@id/iv_recruitment_img"
             tools:text="동아일보" />
 
         <TextView
-            android:id="@+id/tv_news_title"
+            android:id="@+id/tv_recruitment_position"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -90,14 +98,15 @@
             android:textStyle="bold"
             android:textColor="#767676"
             android:gravity="center_horizontal"
+            android:text="@{detailViewModel.recruitment.position}"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_news_press"
-            tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’\n 물밑 제안일종의 협박… 공직후보자 연좌제 하겠다는 건가”" />
+            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_company_name"
+            tools:text="[Up-data!] 2022 kako Data 경력 개발자 영입" />
 
 
         <ScrollView
-            android:id="@+id/tv_news_body"
+            android:id="@+id/tv_recruitment_body"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
@@ -105,18 +114,19 @@
             app:layout_constraintBottom_toTopOf="@id/btn_add_bookmark"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_news_title">
+            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_position">
 
 
             <TextView
-                android:id="@+id/tv_news_content"
+                android:id="@+id/tv_recruitment_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="@{detailViewModel.recruitment.specificInfo}"
                 android:textStyle="normal"
                 android:textSize="16sp"
                 android:textColor="#767676"
-                tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n" />
+                tools:text="다양한 데이터로 카카오의 새로운 가치를 만들어보세요! 2022 [Up-data!] Kakao Data 경력 개발자 대규모 영입은,파편화되어있던 카카오 Data 분야의 공고들을현 트렌드 및 팀 별 방향성에 맞추어 Update! 🔝한 후,집중적으로 경력 개발자 분들을 모집하는 영입입니다.카카오 Data팀의 생생한 목소리와 팀 별 소개,그리고 높은 만족도를 자랑하는 카카오 설명회의 QA 세션도 놓치지 마세요!" />
 
         </ScrollView>
 
@@ -126,7 +136,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_news_body"
+            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_body"
             app:layout_constraintBottom_toBottomOf="parent"
             android:background="@android:color/transparent"
             android:src="@drawable/btn_add_bookmark"

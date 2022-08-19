@@ -35,14 +35,33 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.rvNewsList.adapter = HomeAdapter(HomeAdapter.OnClickListener {
+        binding.rvNewsList.adapter = HomeNewsAdapter(HomeNewsAdapter.OnClickListener {
             homeViewModel.onEventNewsDetail(it)
         })
+
 
         homeViewModel.requestNews.observe(viewLifecycleOwner, Observer {
             if (null != it) {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsDetailFragment(it))
                 homeViewModel.onEventNewsDetailFinish()
+            }
+        })
+
+        homeViewModel.eventRecruitmentList.observe(viewLifecycleOwner, Observer { list ->
+            if (list) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRecruitmentFragment())
+                homeViewModel.onRecruitmentListFinish()
+            }
+        })
+
+        binding.rvRecruitmentList.adapter = HomeRecruitmentAdapter(HomeRecruitmentAdapter.OnClickListener {
+            homeViewModel.onEventRecruitmentDetail(it)
+        })
+
+        homeViewModel.requestRecruitment.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRecruitmentDetailFragment(it))
+                homeViewModel.onEventRecruitmentDetailFinish()
             }
         })
 
