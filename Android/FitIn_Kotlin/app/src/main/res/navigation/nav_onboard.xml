@@ -34,6 +34,10 @@
             android:id="@+id/action_signInFragment_to_findIdFragment"
             app:destination="@id/findIdFragment"
             app:popUpTo="@id/signInFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_socialSignFragment"
+            app:destination="@id/socialSignFragment"
+            app:popUpTo="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"

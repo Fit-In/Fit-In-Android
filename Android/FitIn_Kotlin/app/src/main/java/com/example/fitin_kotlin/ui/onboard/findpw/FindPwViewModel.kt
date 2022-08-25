@@ -22,7 +22,7 @@ class FindPwViewModel @Inject constructor(
     val name: MutableLiveData<String> = MutableLiveData<String>()
     val phoneNumber: MutableLiveData<String> = MutableLiveData<String>()
     val validationNumber: MutableLiveData<String> = MutableLiveData<String>()
-    private lateinit var checkNumber: String
+    private var checkNumber: String? = null
 
     // 인증번호 요청 API => 결과값에 대해서 확인하고 boolean으로 인증 처리 확인
     fun onCoolSms(view: View) {
@@ -33,10 +33,11 @@ class FindPwViewModel @Inject constructor(
                 true -> {
                     // 번호 안 써도 인증번호 날아감, 이 부분 response로 받게 수정
                     checkNumber = validation.body().toString()
+                    _toastMessage.value = "인증번호가 전송되었습니다."
                     Log.e("성공", "인증번호" + validation.body().toString())
                 }
                 else -> {
-                    _errorMessage.value = "휴대폰 번호를 다시 입력해주세요"
+                    _toastMessage.value = "휴대폰 번호를 다시 입력해주세요"
                     Log.e("실패", "fail " + validation.message())
                 }
             }
@@ -48,15 +49,21 @@ class FindPwViewModel @Inject constructor(
         get() = _eventNumberCheck
 
     fun onValidationCheck(view: View) {
-        _eventNumberCheck.value = checkNumber == validationNumber.value
+        if (checkNumber == null || checkNumber != validationNumber.value) {
+            _eventNumberCheck.value = false
+            _toastMessage.value = "인증번호를 다시 입력해, 번호확인을 다시 눌러주세요."
+        } else {
+            _eventNumberCheck.value = checkNumber == validationNumber.value
+            _toastMessage.value = "인증확인 되었습니다."
+        }
         // 예외처리 유저가 인증번호 확인을 안 누르고 바로 회원가입을 누르면 튕기기 때문에 초기화 필요
         // boolean 값에 따라서 팝업 메시지 띄워줌 인증 성공 & 실패 구분
     }
 
 
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String>
-        get() = _errorMessage
+    private val _toastMessage = MutableLiveData<String>()
+    val toastMessage: LiveData<String>
+        get() = _toastMessage
 
     private val _eventFindPw = MutableLiveData<Boolean>()
     val eventFindPw: LiveData<Boolean>
@@ -75,12 +82,12 @@ class FindPwViewModel @Inject constructor(
                                 _eventFindPw.value = true
                             } else {
                                 Log.e("실패", findPw.body()!!.message)
-                                _errorMessage.value = findPw.body()!!.message
+                                _toastMessage.value = findPw.body()!!.message
                             }
                         }
                         else -> {
                             Log.e("실패", "서버 연결 실패")
-                            _errorMessage.value = "값을 다시 입력해주세요"
+                            _toastMessage.value = "값을 다시 입력해주세요"
                         }
                     }
                 }
@@ -89,7 +96,7 @@ class FindPwViewModel @Inject constructor(
                 _eventFindPw.value = false
             }
         } catch (e: Exception) {
-            _errorMessage.value = "입력하지 않은 값이 있습니다."
+            _toastMessage.value = "입력하지 않은 값이 있습니다."
         }
     }
 

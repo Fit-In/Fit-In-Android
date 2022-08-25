@@ -87,7 +87,7 @@
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toBottomOf="@id/iv_recruitment_img"
-            tools:text="동아일보" />
+            tools:text="카카오" />
 
         <TextView
             android:id="@+id/tv_recruitment_position"
@@ -98,11 +98,11 @@
             android:textStyle="bold"
             android:textColor="#767676"
             android:gravity="center_horizontal"
-            android:text="@{detailViewModel.recruitment.position}"
+            android:text="@{detailViewModel.recruitment.career}"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toBottomOf="@id/tv_recruitment_company_name"
-            tools:text="[Up-data!] 2022 kako Data 경력 개발자 영입" />
+            tools:text="[Up-data!] 2022 kakao Data 경력 개발자 영입" />
 
 
         <ScrollView
