@@ -29,13 +29,6 @@ class FindPwFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.findPwViewModel = findPwViewModel
 
-        findPwViewModel.eventNumberCheck.observe(viewLifecycleOwner, Observer { numberCheck ->
-            if (numberCheck) {
-                Toast.makeText(requireContext(), "인증에 성공했습니다.", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "인증에 실패했습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
 
         findPwViewModel.eventFindId.observe(viewLifecycleOwner, Observer { findId ->
             if (findId) {
@@ -58,7 +51,7 @@ class FindPwFragment : Fragment() {
             }
         })
 
-        findPwViewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
+        findPwViewModel.toastMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
         })
 

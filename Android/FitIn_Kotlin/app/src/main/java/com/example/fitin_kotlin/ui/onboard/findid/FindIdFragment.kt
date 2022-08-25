@@ -29,13 +29,6 @@ class FindIdFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.findIdViewModel = findIdViewModel
 
-        findIdViewModel.eventNumberCheck.observe(viewLifecycleOwner, Observer { numberCheck ->
-            if (numberCheck) {
-                Toast.makeText(requireContext(), "인증에 성공했습니다.", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "인증에 실패했습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
 
         findIdViewModel.eventFindId.observe(viewLifecycleOwner, Observer { success ->
             if (success) {
@@ -58,7 +51,7 @@ class FindIdFragment : Fragment() {
             }
         })
 
-        findIdViewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
+        findIdViewModel.toastMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
         })
 

@@ -77,6 +77,30 @@ class SignInViewModel @Inject constructor(
         _eventSignIn.value = false
     }
 
+    private val _eventKakaoSign = MutableLiveData<String?>()
+    val eventKakaoSign: LiveData<String?>
+        get() = _eventKakaoSign
+
+    fun onEventKakao() {
+        _eventKakaoSign.value = "KaKao"
+    }
+
+    fun onEventKakaoComplete() {
+        _eventKakaoSign.value = null
+    }
+
+    private val _eventNaverSign = MutableLiveData<String?>()
+    val eventNaverSign: LiveData<String?>
+        get() = _eventNaverSign
+
+    fun onEventNaver() {
+        _eventNaverSign.value = "Naver"
+    }
+
+    fun onEventNaverComplete() {
+        _eventNaverSign.value = null
+    }
+
     private val _eventBack = MutableLiveData<Boolean>()
     val eventBack: LiveData<Boolean>
         get() = _eventBack

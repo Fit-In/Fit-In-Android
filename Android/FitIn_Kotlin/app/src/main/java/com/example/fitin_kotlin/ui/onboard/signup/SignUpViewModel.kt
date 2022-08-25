@@ -26,11 +26,15 @@ class SignUpViewModel @Inject constructor(
 
     val phoneNumber: MutableLiveData<String> = MutableLiveData<String>()
     val validationNumber: MutableLiveData<String> = MutableLiveData<String>()
-    private lateinit var checkNumber: String
+    private var checkNumber: String? = null
 
     private val _eventEmailNotDuplicate = MutableLiveData<Boolean>()
     val eventEmailNotDuplicate: LiveData<Boolean>
         get() = _eventEmailNotDuplicate
+
+    private val _toastMessage = MutableLiveData<String>()
+    val toastMessage: LiveData<String>
+        get() = _toastMessage
 
     fun onEmailDuplicateCheck(view: View) {
         // 이메일 을 받아와서 중복 체크함, 중복이 있으면 true, 없으면 false
@@ -41,15 +45,17 @@ class SignUpViewModel @Inject constructor(
                 true -> {
                     Log.e("성공", duplicateCheck.body().toString())
                     // false 즉, 이메일이 중복되므로 가입 불가
-                    if (duplicateCheck.body().toString() == "false") {
+                    if (duplicateCheck.body().toString().contains("false")) {
                         _eventEmailNotDuplicate.value = true
+                        _toastMessage.value = "해당 이메일로 가입이 가능합니다."
                     } else {
                         _eventEmailNotDuplicate.value = false
+                        _toastMessage.value = "해당 이메일로 가입할 수 없습니다. 다시 중복 체크를 해주세요."
                     }
-                    // 팝업 메시지를 통해서 이메일 중복 됐다고 알려줌
                 }
                 else -> {
                     _eventEmailNotDuplicate.value = false
+                    _toastMessage.value = "네트워크 통신이 원활하지 않습니다."
                 }
             }
         }
@@ -64,10 +70,11 @@ class SignUpViewModel @Inject constructor(
                 true -> {
                     // 번호 안 써도 인증번호 날아감, 이 부분 response로 받게 수정
                     checkNumber = validation.body().toString()
+                    _toastMessage.value = "인증번호가 전송되었습니다."
                     Log.e("성공", "인증번호" + validation.body().toString())
                 }
                 else -> {
-                    _errorMessage.value = "휴대폰 번호를 다시 입력해주세요"
+                    _toastMessage.value = "휴대폰 번호를 다시 입력해주세요."
                     Log.e("실패", "fail " + validation.message())
                 }
             }
@@ -79,7 +86,13 @@ class SignUpViewModel @Inject constructor(
         get() = _eventNumberCheck
 
     fun onValidationCheck(view: View) {
-        _eventNumberCheck.value = checkNumber == validationNumber.value
+        if (checkNumber == null || checkNumber != validationNumber.value) {
+            _eventNumberCheck.value = false
+            _toastMessage.value = "인증번호를 다시 입력해, 번호확인을 다시 눌러주세요."
+        } else {
+            _eventNumberCheck.value = checkNumber == validationNumber.value
+            _toastMessage.value = "인증확인 되었습니다."
+        }
         // 예외처리 유저가 인증번호 확인을 안 누르고 바로 회원가입을 누르면 튕기기 때문에 초기화 필요
         // boolean 값에 따라서 팝업 메시지 띄워줌 인증 성공 & 실패 구분
     }
@@ -89,7 +102,13 @@ class SignUpViewModel @Inject constructor(
         get() = _eventPasswordCheck
 
     private fun onPasswordCheck() {
-        _eventPasswordCheck.value = password.value.equals(passwordCheck.value)
+        if (password.value!!.equals(passwordCheck.value)) {
+            _eventPasswordCheck.value = true
+
+        } else {
+            _eventPasswordCheck.value = false
+            _toastMessage.value = "비밀번호가 일치하지 않습니다."
+        }
     }
 
     // 회원가입 누르면 단 조건 위의 중복 체크 & 인증 처리 다 확인했을 경우 로그인 화면으로 넘어가게 처리 API 요청
@@ -102,13 +121,6 @@ class SignUpViewModel @Inject constructor(
     val requestSignUp: LiveData<RequestSignUp?>
         get() = _requestSignUp
 
-//    private val _signUpButtonEnabled = MutableLiveData<Boolean>(false)
-//    val signUpButtonEnabled: LiveData<Boolean>
-//        get() = _signUpButtonEnabled
-
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String>
-        get() = _errorMessage
 
     fun onSignUp(view: View) {
         // 회원가입 버튼 기본 디폴트 값을 비활성화 상태 + 비밀번호 유효성 검사 추가
@@ -118,7 +130,6 @@ class SignUpViewModel @Inject constructor(
                 // 회원가입 버튼 활성화
                 val email = id.value + "@" + email.value
                 // 이메일 & 비밀번호 & 이름 & 전화번호에 대해 정규식 제약조건이 걸려있음, 그에 맞게 입력하게끔 hint로 알려줘야함
-//            val requestSignUp = RequestSignUp(email, password.value, name.value, phoneNumber.value?.toLong())
                 _requestSignUp.value =
                     RequestSignUp(email, password.value, name.value, phoneNumber.value)
                 viewModelScope.launch {
@@ -138,7 +149,7 @@ class SignUpViewModel @Inject constructor(
                                     result.indexOf("}")
                                 )
                                 Log.e("안내 문자", failMessage)
-                                _errorMessage.value = failMessage
+                                _toastMessage.value = failMessage
                             }
                         }
                         // response message 팝업으로 띄우면 됨, 로그로 찍어서 확인하기
@@ -151,15 +162,10 @@ class SignUpViewModel @Inject constructor(
                 }
             } else {
             _eventSignUp.value = false
-//                if (!eventEmailNotDuplicate.value!!) {
-//                    _errorMessage.value = "중복 체크를 하지 않았습니다."
-//                }
-//                if (!eventNumberCheck.value!!) {
-//                    _errorMessage.value = "휴대폰 인증을 하지 않았습니다."
-//                }
+                _toastMessage.value = "네트워크 연결을 확인해주세요"
             }
         } catch (e: Exception) {
-            _errorMessage.value = "입력하지 않은 값이 있습니다."
+            _toastMessage.value = "입력하지 않은 값이 있습니다."
         }
     }
 

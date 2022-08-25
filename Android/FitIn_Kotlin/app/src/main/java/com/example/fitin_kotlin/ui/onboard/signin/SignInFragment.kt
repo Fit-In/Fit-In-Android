@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentSignInBinding
 import com.example.fitin_kotlin.ui.home.HomeActivity
+import com.example.fitin_kotlin.ui.onboard.welcome.WelcomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,6 +50,20 @@ class SignInFragment : Fragment() {
                 activity?.overridePendingTransition(0,0)
                 activity?.finish()
                 signInViewModel.onEventSignInComplete()
+            }
+        })
+
+        signInViewModel.eventKakaoSign.observe(viewLifecycleOwner, Observer { kakao ->
+            if (kakao != null) {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSocialSignFragment(kakao))
+                signInViewModel.onEventKakaoComplete()
+            }
+        })
+
+        signInViewModel.eventNaverSign.observe(viewLifecycleOwner, Observer { naver ->
+            if (naver != null) {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSocialSignFragment(naver))
+                signInViewModel.onEventNaverComplete()
             }
         })
 

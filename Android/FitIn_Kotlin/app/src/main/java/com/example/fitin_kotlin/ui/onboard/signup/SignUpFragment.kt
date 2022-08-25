@@ -30,30 +30,9 @@ class SignUpFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.signUpViewModel = signUpViewModel
 
-        signUpViewModel.eventEmailNotDuplicate.observe(viewLifecycleOwner, Observer { duplicateCheck ->
-            if (duplicateCheck) {
-                Toast.makeText(requireContext(), "사용 가능한 이메일입니다", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "중복된 이메일이 존재합니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
 
-        signUpViewModel.eventNumberCheck.observe(viewLifecycleOwner, Observer { numberCheck ->
-            if (numberCheck) {
-                Toast.makeText(requireContext(), "인증에 성공했습니다", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "인증에 실패했습니다", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        signUpViewModel.eventPasswordCheck.observe(viewLifecycleOwner, Observer { passwordCheck ->
-            if (!passwordCheck) {
-                Toast.makeText(requireContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
-            }
-        })
-
-        signUpViewModel.errorMessage.observe(viewLifecycleOwner, Observer { errorMessage ->
-            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+        signUpViewModel.toastMessage.observe(viewLifecycleOwner, Observer { toastMessage ->
+            Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
         })
 
         signUpViewModel.eventSignUp.observe(viewLifecycleOwner, Observer { success ->

@@ -65,6 +65,8 @@
         android:minHeight="48dp"
         android:padding="8dp"
         android:maxLines="1"
+        android:maxLength="40"
+        android:singleLine="true"
         android:text="@={signInViewModel.email}"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start"
@@ -81,6 +83,8 @@
         android:minHeight="48dp"
         android:padding="8dp"
         android:maxLines="1"
+        android:maxLength="40"
+        android:singleLine="true"
         android:text="@={signInViewModel.password}"
         app:layout_constraintEnd_toEndOf="@id/gl_end"
         app:layout_constraintStart_toStartOf="@id/gl_start"
@@ -132,6 +136,7 @@
         android:layout_marginEnd="16dp"
         android:background="@android:color/transparent"
         android:src="@drawable/btn_kakao_login"
+        android:onClick="@{() -> signInViewModel.onEventKakao()}"
         app:layout_constraintEnd_toStartOf="@id/btn_naver_signin"
         app:layout_constraintStart_toStartOf="@id/btn_signin"
         app:layout_constraintTop_toTopOf="@id/btn_naver_signin" />
@@ -143,6 +148,7 @@
         android:layout_marginTop="16dp"
         android:background="@android:color/transparent"
         android:src="@drawable/btn_naver_login"
+        android:onClick="@{() -> signInViewModel.onEventNaver()}"
         app:layout_constraintEnd_toEndOf="@id/btn_signin"
         app:layout_constraintStart_toEndOf="@+id/btn_kakao_signin"
         app:layout_constraintTop_toBottomOf="@+id/btn_signin" />

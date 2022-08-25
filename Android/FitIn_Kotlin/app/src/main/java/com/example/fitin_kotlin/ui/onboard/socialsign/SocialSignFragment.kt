@@ -3,6 +3,7 @@ package com.example.fitin_kotlin.ui.onboard.socialsign
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +66,7 @@ class SocialSignFragment : Fragment() {
                     val urls: String = url
                     prefs.setAccessToken(urls.substring(urls.indexOf("=") + 1,urls.indexOf("&")))
 
+                    Log.e("토큰 확인", prefs.getAccessToken().toString())
                     val intentToHome = Intent(fragment.requireActivity(), HomeActivity::class.java)
                     fragment.startActivity(intentToHome)
                     fragment.requireActivity().overridePendingTransition(0, 0)
