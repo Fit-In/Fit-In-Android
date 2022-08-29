@@ -28,6 +28,14 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.homeViewModel = homeViewModel
 
+        binding.rvNewsList.adapter = HomeNewsAdapter(HomeNewsAdapter.OnClickListener {
+            homeViewModel.onEventNewsDetail(it)
+        })
+
+        binding.rvRecruitmentList.adapter = HomeRecruitmentAdapter(HomeRecruitmentAdapter.OnClickListener {
+            homeViewModel.onEventRecruitmentDetail(it)
+        })
+
         homeViewModel.eventNewsList.observe(viewLifecycleOwner, Observer { list ->
             if (list) {
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToNewsFragment())
@@ -35,9 +43,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.rvNewsList.adapter = HomeNewsAdapter(HomeNewsAdapter.OnClickListener {
-            homeViewModel.onEventNewsDetail(it)
-        })
+
 
 
         homeViewModel.requestNews.observe(viewLifecycleOwner, Observer {
@@ -54,9 +60,7 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.rvRecruitmentList.adapter = HomeRecruitmentAdapter(HomeRecruitmentAdapter.OnClickListener {
-            homeViewModel.onEventRecruitmentDetail(it)
-        })
+
 
         homeViewModel.requestRecruitment.observe(viewLifecycleOwner, Observer {
             if (null != it) {
