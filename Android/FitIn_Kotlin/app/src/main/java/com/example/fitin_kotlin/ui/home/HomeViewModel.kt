@@ -33,8 +33,16 @@ class HomeViewModel @Inject constructor(
     val requestRecruitment: MutableLiveData<ResponseRecruitmentList?> = MutableLiveData<ResponseRecruitmentList?>()
 
     init {
-        getNewsList()
-        getRecruitmentList()
+        getList()
+//        getNewsList()
+//        getRecruitmentList()
+    }
+
+    private fun getList() {
+        viewModelScope.launch {
+            _newsList.value = newsRepository.getNewsList()
+            _recruitmentList.value = recruitmentRepository.getRecruitmentList()
+        }
     }
 
     private fun getNewsList() {
