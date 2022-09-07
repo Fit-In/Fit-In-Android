@@ -44,12 +44,12 @@ class SignInViewModel @Inject constructor(
                         val refreshToken = result.substring(result.indexOf("refreshToken=") + 13, result.indexOf(", refreshTokenExpiresIn"))
                         prefs.setAccessToken(accessToken)
                         prefs.setRefreshToken(refreshToken)
-//                        Log.e("Access Token", prefs.getAccessToken()!!)
-//                        Log.e("Refresh Token", prefs.getRefreshToken()!!)
+                        Log.e("Access Token", prefs.getAccessToken()!!)
+                        Log.e("Refresh Token", prefs.getRefreshToken()!!)
                         _eventSignIn.value = true
                     } else {
                         if (signIn.body()!!.message.isNotEmpty()) {
-//                            Log.e("실패", signIn.body()!!.message)
+                            Log.e("실패", signIn.body()!!.message)
                             val userNotExist = signIn.body()!!.message
                             _errorMessage.value = userNotExist
                         } else {
