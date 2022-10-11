@@ -13,6 +13,9 @@
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/activity_home.xml" value="0.22" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/activity_welcome.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_add_bookmark.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_bookmark.xml" value="0.25" />
+        <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_create_bookmark.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_detail.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_find_id.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_find_id_end.xml" value="0.36614583333333334" />
@@ -31,6 +34,7 @@
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_social_sign.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/fragment_welcome.xml" value="0.22" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/list_item.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/list_item_bookmark.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/list_item_news.xml" value="0.33" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/layout/list_item_recruitment.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/cheew/AndroidStudioProjects/FitIn_Kotlin/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36614583333333334" />

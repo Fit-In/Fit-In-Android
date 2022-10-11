@@ -1,5 +1,6 @@
 package com.example.fitin_kotlin.data.model.network.response
 
+import com.example.fitin_kotlin.data.model.network.request.RequestRecruitmentBookmark
 import com.google.gson.annotations.SerializedName
 
 data class ResponseRecruitment(
@@ -22,3 +23,16 @@ data class ResponseRecruitment(
     @SerializedName("specific_info")
     val specificInfo: String?
 )
+
+fun ResponseRecruitment.asRequestRecruitmentBookmark(): RequestRecruitmentBookmark {
+    return RequestRecruitmentBookmark(
+        companyName,
+        position,
+        tag,
+        career,
+        recruitmentType,
+        recruitmentPeriod,
+        urlLink,
+        specificInfo
+    )
+}

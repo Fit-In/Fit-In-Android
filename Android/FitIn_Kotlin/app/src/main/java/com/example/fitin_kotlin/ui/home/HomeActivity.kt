@@ -28,6 +28,8 @@ class HomeActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.newsDetailFragment -> bnv_menu.visibility = View.GONE
                 R.id.recruitmentDetailFragment -> bnv_menu.visibility = View.GONE
+                R.id.addBookmarkFragment -> bnv_menu.visibility = View.GONE
+                R.id.createBookmarkFragment -> bnv_menu.visibility = View.GONE
                 else -> bnv_menu.visibility = View.VISIBLE
             }
         }

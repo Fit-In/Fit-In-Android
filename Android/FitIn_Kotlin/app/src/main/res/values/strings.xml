@@ -53,4 +53,8 @@
     <string name="home_tv_more_text">더보기</string>
     <string name="home_tv_monthly_recruitment_text">이달의 채용정보</string>
     <string name="tv_company_analyze_text">기업별 분석 모아보기</string>
+    <string name="tv_bookmark">북마크</string>
+    <string name="et_bookmark_name_hint">북마크명을 입력하세요</string>
+    <string name="et_bookmark_description_hint">북마크를 간단하게 소개해주세요</string>
+    <string name="tv_empty_bookmark_text">북마크를 추가헤주세요</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.fitin_kotlin.data.model.network.response
 
+import com.example.fitin_kotlin.data.model.network.request.RequestNewsBookmark
 import com.google.gson.annotations.SerializedName
 
 data class ResponseNews(
@@ -18,3 +19,14 @@ data class ResponseNews(
     @SerializedName("link")
     val link: String?
 )
+
+fun ResponseNews.asRequestNewsBookmark(): RequestNewsBookmark {
+    return RequestNewsBookmark(
+        press,
+        title,
+        content,
+        category,
+        image_url,
+        link
+    )
+}

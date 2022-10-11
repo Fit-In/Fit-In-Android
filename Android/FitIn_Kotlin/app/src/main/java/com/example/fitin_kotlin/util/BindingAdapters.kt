@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.fitin_kotlin.data.model.network.response.ResponseBookmark
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
 import com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList
+import com.example.fitin_kotlin.ui.addbookmark.AddBookmarkAdapter
+import com.example.fitin_kotlin.ui.bookmark.BookmarkAdapter
 import com.example.fitin_kotlin.ui.home.HomeNewsAdapter
 import com.example.fitin_kotlin.ui.home.HomeRecruitmentAdapter
 import com.example.fitin_kotlin.ui.news.NewsAdapter
@@ -36,6 +39,18 @@ fun bindHomeNewsRecyclerViews(recyclerView: RecyclerView, newsList: List<Respons
 fun bindHomeRecruitmentRecyclerView(recyclerView: RecyclerView, recruitmentList: List<ResponseRecruitmentList>?) {
     val adapter = recyclerView.adapter as HomeRecruitmentAdapter
     adapter.submitList(recruitmentList)
+}
+
+@BindingAdapter("bookmarklistData")
+fun bindBookmarkRecyclerView(recyclerView: RecyclerView, bookmarkList: List<ResponseBookmark>?) {
+    val adapter = recyclerView.adapter as BookmarkAdapter
+    adapter.submitList(bookmarkList)
+}
+
+@BindingAdapter("addBookmarklistData")
+fun bindAddBookmarkRecyclerView(recyclerView: RecyclerView, bookmarkList: List<ResponseBookmark>?) {
+    val adapter = recyclerView.adapter as AddBookmarkAdapter
+    adapter.submitList(bookmarkList)
 }
 
 @BindingAdapter("imageUrl")

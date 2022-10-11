@@ -35,6 +35,13 @@ class RecruitmentDetailFragment : Fragment() {
             }
         })
 
+        recruitmentDetailViewModel.saveId.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                findNavController().navigate(RecruitmentDetailFragmentDirections.actionRecruitmentDetailFragmentToAddBookmarkFragment(it))
+                recruitmentDetailViewModel.onAddBookmarkComplete()
+            }
+        })
+
         return binding.root
     }
 

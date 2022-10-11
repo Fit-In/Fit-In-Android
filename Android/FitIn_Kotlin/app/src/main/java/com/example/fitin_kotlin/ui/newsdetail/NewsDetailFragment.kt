@@ -33,6 +33,13 @@ class NewsDetailFragment : Fragment() {
                 newsDetailViewModel.onBackComplete()
             }
         })
+
+        newsDetailViewModel.saveId.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                findNavController().navigate(NewsDetailFragmentDirections.actionNewsDetailFragmentToAddBookmarkFragment(it))
+                newsDetailViewModel.onAddBookmarkComplete()
+            }
+        })
         return binding.root
     }
 
