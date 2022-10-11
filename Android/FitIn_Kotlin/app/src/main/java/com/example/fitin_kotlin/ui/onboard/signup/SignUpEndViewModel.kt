@@ -41,6 +41,7 @@ class SignUpEndViewModel @Inject constructor(
                         val refreshToken = result.substring(result.indexOf("refreshToken=") + 13, result.indexOf(", refreshTokenExpiresIn"))
                         prefs.setAccessToken(accessToken)
                         prefs.setRefreshToken(refreshToken)
+                        prefs.setUserEmail(requestSignIn.email.toString())
                         Log.e("Access Token", prefs.getAccessToken()!!)
                         Log.e("Refresh Token", prefs.getRefreshToken()!!)
                         _eventSignIn.value = true

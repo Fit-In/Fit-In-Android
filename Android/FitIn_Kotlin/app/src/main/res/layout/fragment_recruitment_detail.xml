@@ -63,6 +63,16 @@
                 android:layout_marginTop="7dp"
                 android:src="@drawable/iv_recruitment" />
 
+            <ImageButton
+                android:id="@+id/btn_add_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/iv_main_title"
+                android:src="@drawable/btn_add_bookmark"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{(v) -> detailViewModel.onAddBookmark(v)}"
+                android:layout_marginTop="12dp"/>
+
         </RelativeLayout>
 
         <ImageView
@@ -102,7 +112,7 @@
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintTop_toBottomOf="@id/tv_recruitment_company_name"
-            tools:text="[Up-data!] 2022 kakao Data 경력 개발자 영입" />
+            tools:text="직무"/>
 
 
         <ScrollView
@@ -111,7 +121,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_add_bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toBottomOf="@id/tv_recruitment_position">
@@ -126,22 +136,12 @@
                 android:textStyle="normal"
                 android:textSize="16sp"
                 android:textColor="#767676"
-                tools:text="다양한 데이터로 카카오의 새로운 가치를 만들어보세요! 2022 [Up-data!] Kakao Data 경력 개발자 대규모 영입은,파편화되어있던 카카오 Data 분야의 공고들을현 트렌드 및 팀 별 방향성에 맞추어 Update! 🔝한 후,집중적으로 경력 개발자 분들을 모집하는 영입입니다.카카오 Data팀의 생생한 목소리와 팀 별 소개,그리고 높은 만족도를 자랑하는 카카오 설명회의 QA 세션도 놓치지 마세요!" />
+                tools:text="공고 내용"
+                />
 
         </ScrollView>
 
-        <ImageButton
-            android:id="@+id/btn_add_bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_body"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@android:color/transparent"
-            android:src="@drawable/btn_add_bookmark"
-            android:layout_marginBottom="4dp"
-            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

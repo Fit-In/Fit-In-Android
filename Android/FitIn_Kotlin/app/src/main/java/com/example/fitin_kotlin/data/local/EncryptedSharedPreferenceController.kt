@@ -11,6 +11,7 @@ class EncryptedSharedPreferenceController @Inject constructor(private val prefer
     companion object {
         private val fitinAccessToken = PreferencesKey.provideAccessToken()
         private val fitinRefreshToken = PreferencesKey.provideRefreshToken()
+        private val userEmail = PreferencesKey.provideUserEmail()
     }
 
     fun setAccessToken(accessToken: String) {
@@ -28,5 +29,11 @@ class EncryptedSharedPreferenceController @Inject constructor(private val prefer
     fun deleteToken() {
         prefsEdit.remove(fitinAccessToken).remove(fitinRefreshToken).commit()
     }
+
+    fun setUserEmail(email: String) {
+        prefsEdit.putString(userEmail, email).apply()
+    }
+
+    fun getUserEmail(): String? = preferences.getString(userEmail, "no")
 
 }

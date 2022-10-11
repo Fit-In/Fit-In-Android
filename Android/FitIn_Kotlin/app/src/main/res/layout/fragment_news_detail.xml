@@ -65,6 +65,16 @@
                 android:layout_marginTop="7dp"
                 android:src="@drawable/iv_today_news" />
 
+            <ImageButton
+                android:id="@+id/btn_add_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/iv_main_title"
+                android:src="@drawable/btn_add_bookmark"
+                android:background="?attr/selectableItemBackground"
+                android:layout_marginTop="12dp"
+                android:onClick="@{(v) -> detailViewModel.onAddBookmark(v)}"/>
+
         </RelativeLayout>
 
         <ImageView
@@ -114,7 +124,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_add_bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toBottomOf="@id/tv_recruitment_position">
@@ -133,18 +143,7 @@
 
         </ScrollView>
 
-        <ImageButton
-            android:id="@+id/btn_add_bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_body"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@android:color/transparent"
-            android:src="@drawable/btn_add_bookmark"
-            android:layout_marginBottom="4dp"
-            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -38,12 +38,13 @@ class SignInViewModel @Inject constructor(
             when (signIn.isSuccessful) {
                 true -> {
                     if (signIn.body()!!.state == 200) {
-//                        Log.e("성공", signIn.body()!!.data.toString())
+                        Log.e("성공", signIn.body()!!.data.toString())
                         val result = signIn.body()!!.data.toString()
                         val accessToken = result.substring(result.indexOf("accessToken=") + 12, result.indexOf(", refreshToken"))
                         val refreshToken = result.substring(result.indexOf("refreshToken=") + 13, result.indexOf(", refreshTokenExpiresIn"))
                         prefs.setAccessToken(accessToken)
                         prefs.setRefreshToken(refreshToken)
+                        prefs.setUserEmail(email.value.toString())
                         Log.e("Access Token", prefs.getAccessToken()!!)
                         Log.e("Refresh Token", prefs.getRefreshToken()!!)
                         _eventSignIn.value = true

@@ -37,7 +37,8 @@
             app:popUpTo="@id/newsFragment" />
         <action
             android:id="@+id/action_newsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
@@ -50,6 +51,10 @@
         <action
             android:id="@+id/action_newsDetailFragment_to_newsFragment"
             app:destination="@id/newsFragment" />
+        <action
+            android:id="@+id/action_newsDetailFragment_to_addBookmarkFragment"
+            app:destination="@id/addBookmarkFragment"
+            app:popUpTo="@id/newsDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/recruitmentFragment"
@@ -62,7 +67,8 @@
             app:popUpTo="@id/recruitmentFragment" />
         <action
             android:id="@+id/action_recruitmentFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recruitmentDetailFragment"
@@ -75,6 +81,55 @@
         <action
             android:id="@+id/action_recruitmentDetailFragment_to_recruitmentFragment"
             app:destination="@id/recruitmentFragment" />
+        <action
+            android:id="@+id/action_recruitmentDetailFragment_to_addBookmarkFragment"
+            app:destination="@id/addBookmarkFragment"
+            app:popUpTo="@id/recruitmentDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.example.fitin_kotlin.ui.bookmark.BookmarkFragment"
+        android:label="BookmarkFragment"
+        tools:layout="@layout/fragment_bookmark">
+        <action
+            android:id="@+id/action_bookmarkFragment_to_createBookmarkFragment"
+            app:destination="@id/createBookmarkFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createBookmarkFragment"
+        android:name="com.example.fitin_kotlin.ui.createbookmark.CreateBookmarkFragment"
+        android:label="CreateBookmarkFragment"
+        tools:layout="@layout/fragment_create_bookmark">
+        <argument
+            android:name="separator"
+            app:argType="string"/>
+        <action
+            android:id="@+id/action_createBookmarkFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment"
+            app:popUpTo="@id/bookmarkFragment" />
+        <action
+            android:id="@+id/action_createBookmarkFragment_to_addBookmarkFragment"
+            app:destination="@id/addBookmarkFragment"
+            app:popUpTo="@id/addBookmarkFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBookmarkFragment"
+        android:name="com.example.fitin_kotlin.ui.addbookmark.AddBookmarkFragment"
+        android:label="AddBookmarkFragment"
+        tools:layout="@layout/fragment_add_bookmark">
+        <argument
+            android:name="saveId"
+            app:argType="long"/>
+        <action
+            android:id="@+id/action_addBookmarkFragment_to_createBookmarkFragment"
+            app:destination="@id/createBookmarkFragment"
+            app:popUpTo="@id/addBookmarkFragment" />
     </fragment>
 
 </navigation>

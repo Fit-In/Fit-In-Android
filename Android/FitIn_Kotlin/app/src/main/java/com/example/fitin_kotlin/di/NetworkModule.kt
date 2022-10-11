@@ -1,12 +1,8 @@
 package com.example.fitin_kotlin.di
 
 import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
-import com.example.fitin_kotlin.data.remote.api.NewsService
-import com.example.fitin_kotlin.data.remote.api.RecruitmentService
-import com.example.fitin_kotlin.data.remote.api.UserService
-import com.example.fitin_kotlin.data.repository.NewsRepository
-import com.example.fitin_kotlin.data.repository.RecruitmentRepository
-import com.example.fitin_kotlin.data.repository.UserRepository
+import com.example.fitin_kotlin.data.remote.api.*
+import com.example.fitin_kotlin.data.repository.*
 //import com.example.fitin_kotlin.network.AuthInterceptor
 //import com.example.fitin_kotlin.network.AuthInterceptor
 //import com.example.fitin_kotlin.network.AuthInterceptor
@@ -85,6 +81,22 @@ object NetworkModule {
     @Singleton
     @Provides
     fun provideRecruitmentRepository(recruitmentService: RecruitmentService) = RecruitmentRepository(recruitmentService)
+
+    @Singleton
+    @Provides
+    fun provideBookmarkService(retrofit: Retrofit): BookmarkService = retrofit.create(BookmarkService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideBookmarkRepository(bookmarkService: BookmarkService) = BookmarkRepository(bookmarkService)
+
+    @Singleton
+    @Provides
+    fun provideSaveBookmarkService(retrofit: Retrofit): SaveBookmarkService = retrofit.create(SaveBookmarkService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSaveBookmarkRepository(saveBookmarkService: SaveBookmarkService) = SaveBookmarkRepository(saveBookmarkService)
 
 //    @AuthInterceptorOkHttpClient
 //    @Singleton
