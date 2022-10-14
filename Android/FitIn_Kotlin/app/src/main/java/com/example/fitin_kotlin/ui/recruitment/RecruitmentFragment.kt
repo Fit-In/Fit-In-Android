@@ -69,7 +69,7 @@ class RecruitmentFragment : Fragment() {
 
         recruitmentViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(RecruitmentFragmentDirections.actionRecruitmentFragmentToHomeFragment())
+                findNavController().popBackStack()
                 recruitmentViewModel.onBackComplete()
             }
         })

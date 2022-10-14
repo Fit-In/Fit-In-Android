@@ -35,10 +35,6 @@
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/newsDetailFragment"
             app:popUpTo="@id/newsFragment" />
-        <action
-            android:id="@+id/action_newsFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailFragment"
@@ -48,9 +44,6 @@
         <argument
             android:name="selectedNews"
             app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseNewsList"/>
-        <action
-            android:id="@+id/action_newsDetailFragment_to_newsFragment"
-            app:destination="@id/newsFragment" />
         <action
             android:id="@+id/action_newsDetailFragment_to_addBookmarkFragment"
             app:destination="@id/addBookmarkFragment"
@@ -65,10 +58,6 @@
             android:id="@+id/action_recruitmentFragment_to_recruitmentDetailFragment"
             app:destination="@id/recruitmentDetailFragment"
             app:popUpTo="@id/recruitmentFragment" />
-        <action
-            android:id="@+id/action_recruitmentFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/recruitmentDetailFragment"
@@ -78,9 +67,6 @@
         <argument
             android:name="selectedRecruitment"
             app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList"/>
-        <action
-            android:id="@+id/action_recruitmentDetailFragment_to_recruitmentFragment"
-            app:destination="@id/recruitmentFragment" />
         <action
             android:id="@+id/action_recruitmentDetailFragment_to_addBookmarkFragment"
             app:destination="@id/addBookmarkFragment"
@@ -95,10 +81,6 @@
         <action
             android:id="@+id/action_bookmarkFragment_to_createBookmarkFragment"
             app:destination="@id/createBookmarkFragment" />
-        <action
-            android:id="@+id/action_bookmarkFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/createBookmarkFragment"
@@ -108,10 +90,6 @@
         <argument
             android:name="separator"
             app:argType="string"/>
-        <action
-            android:id="@+id/action_createBookmarkFragment_to_bookmarkFragment"
-            app:destination="@id/bookmarkFragment"
-            app:popUpTo="@id/bookmarkFragment" />
         <action
             android:id="@+id/action_createBookmarkFragment_to_addBookmarkFragment"
             app:destination="@id/addBookmarkFragment"

@@ -34,7 +34,7 @@ class SignInFragment : Fragment() {
 
         signInViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToWelcomeFragment())
+                findNavController().popBackStack()
                 signInViewModel.onBackComplete()
             }
         })

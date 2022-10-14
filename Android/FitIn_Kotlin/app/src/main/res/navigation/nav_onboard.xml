@@ -28,9 +28,6 @@
         android:label="SignInFragment"
         tools:layout="@layout/fragment_sign_in">
         <action
-            android:id="@+id/action_signInFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
-        <action
             android:id="@+id/action_signInFragment_to_findIdFragment"
             app:destination="@id/findIdFragment"
             app:popUpTo="@id/signInFragment" />
@@ -44,9 +41,6 @@
         android:name="com.example.fitin_kotlin.ui.onboard.signup.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
-        <action
-            android:id="@+id/action_signUpFragment_to_welcomeFragment"
-            app:destination="@id/welcomeFragment" />
         <action
             android:id="@+id/action_signUpFragment_to_signUpEndFragment"
             app:destination="@id/signUpEndFragment" />
@@ -83,9 +77,6 @@
         <action
             android:id="@+id/action_findIdFragment_to_findIdEndFragment"
             app:destination="@id/findIdEndFragment" />
-        <action
-            android:id="@+id/action_findIdFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/findIdEndFragment"
@@ -112,9 +103,6 @@
         <action
             android:id="@+id/action_findPwFragment_to_findIdFragment"
             app:destination="@id/findIdFragment" />
-        <action
-            android:id="@+id/action_findPwFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/findPwEndFragment"

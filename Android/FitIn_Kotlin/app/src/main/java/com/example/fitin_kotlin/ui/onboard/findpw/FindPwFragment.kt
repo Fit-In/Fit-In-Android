@@ -46,7 +46,7 @@ class FindPwFragment : Fragment() {
 
         findPwViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(FindPwFragmentDirections.actionFindPwFragmentToSignInFragment())
+                findNavController().popBackStack()
                 findPwViewModel.onEventBackComplete()
             }
         })
