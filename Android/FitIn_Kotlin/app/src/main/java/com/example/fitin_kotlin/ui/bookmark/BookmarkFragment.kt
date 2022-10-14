@@ -55,7 +55,7 @@ class BookmarkFragment : Fragment() {
 
         bookmarkViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(BookmarkFragmentDirections.actionBookmarkFragmentToHomeFragment())
+                findNavController().popBackStack()
                 bookmarkViewModel.onBackComplete()
             }
         })

@@ -49,6 +49,12 @@ class AddBookmarkFragment : Fragment() {
             Toast.makeText(requireContext(), toast, Toast.LENGTH_SHORT).show()
         })
 
+        addBookmarkViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
+            if (back) {
+                findNavController().popBackStack()
+            }
+        })
+
         addBookmarkViewModel.eventAddComplete.observe(viewLifecycleOwner, Observer { add ->
             if (add) {
                 findNavController().popBackStack()

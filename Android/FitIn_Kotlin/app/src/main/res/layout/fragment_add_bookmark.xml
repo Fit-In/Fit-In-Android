@@ -53,6 +53,7 @@
                 android:layout_toStartOf="@id/iv_main_title"
                 android:background="?attr/selectableItemBackground"
                 android:src="@drawable/iv_back"
+                android:onClick="@{() -> addBookmarkViewModel.onBack()}"
                 />
 
             <ImageView

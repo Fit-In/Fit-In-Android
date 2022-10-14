@@ -31,7 +31,7 @@ class CreateBookmarkFragment : Fragment() {
 
         createBookmarkViewModel.eventCompleteCreateFromBookmark.observe(viewLifecycleOwner, Observer { finish ->
             if (finish) {
-                findNavController().navigate(CreateBookmarkFragmentDirections.actionCreateBookmarkFragmentToBookmarkFragment())
+                findNavController().popBackStack()
                 createBookmarkViewModel.onEventCompleteFromBookmark()
             }
         })
@@ -39,13 +39,12 @@ class CreateBookmarkFragment : Fragment() {
         createBookmarkViewModel.eventCompleteCreateFromAddBookmark.observe(viewLifecycleOwner, Observer { finish ->
             if (finish) {
                 findNavController().navigate(CreateBookmarkFragmentDirections.actionCreateBookmarkFragmentToAddBookmarkFragment(createBookmarkViewModel.savedId.value!!))
-//                findNavController().popBackStack()
             }
         })
 
         createBookmarkViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(CreateBookmarkFragmentDirections.actionCreateBookmarkFragmentToBookmarkFragment())
+                findNavController().popBackStack()
                 createBookmarkViewModel.onBackComplete()
             }
         })

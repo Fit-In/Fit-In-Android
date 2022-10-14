@@ -46,7 +46,7 @@ class FindIdFragment : Fragment() {
 
         findIdViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(FindIdFragmentDirections.actionFindIdFragmentToSignInFragment())
+                findNavController().popBackStack()
                 findIdViewModel.onEventBackComplete()
             }
         })

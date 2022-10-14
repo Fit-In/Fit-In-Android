@@ -70,7 +70,7 @@ class NewsFragment : Fragment() {
 
         newsViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->
             if (back) {
-                findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToHomeFragment())
+                findNavController().popBackStack()
                 newsViewModel.onBackComplete()
             }
         })
