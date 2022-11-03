@@ -30,6 +30,8 @@ class HomeActivity : AppCompatActivity() {
                 R.id.recruitmentDetailFragment -> bnv_menu.visibility = View.GONE
                 R.id.addBookmarkFragment -> bnv_menu.visibility = View.GONE
                 R.id.createBookmarkFragment -> bnv_menu.visibility = View.GONE
+                R.id.myNewsFragment -> bnv_menu.visibility = View.GONE
+                R.id.myRecruitmentFragment -> bnv_menu.visibility = View.GONE
                 else -> bnv_menu.visibility = View.VISIBLE
             }
         }

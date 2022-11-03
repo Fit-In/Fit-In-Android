@@ -23,6 +23,8 @@ class BookmarkViewModel @Inject constructor(
     val bookmarkList: LiveData<List<ResponseBookmark>>
         get() = _bookmarkList
 
+    val requestBookmark: MutableLiveData<ResponseBookmark?> = MutableLiveData<ResponseBookmark?>()
+
     init {
         getBookmarkList()
     }
@@ -34,6 +36,14 @@ class BookmarkViewModel @Inject constructor(
             _bookmarkList.value = bookmarkRepository.getBookmarkList(email)
             Log.e("북마크", bookmarkList.value.toString())
         }
+    }
+
+    fun displayBookmark(responseBookmark: ResponseBookmark) {
+        requestBookmark.value = responseBookmark
+    }
+
+    fun displayBookmarkFinish() {
+        requestBookmark.value = null
     }
 
     private val _eventCreateBookmark = MutableLiveData<String?>()

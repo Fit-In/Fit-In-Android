@@ -41,10 +41,17 @@ class BookmarkFragment : Fragment() {
         }
 
         bookmarkAdapter = BookmarkAdapter(BookmarkAdapter.OnClickListener {
-
+            bookmarkViewModel.displayBookmark(it)
         })
 
         binding.rvBookmarkList.adapter = bookmarkAdapter
+
+        bookmarkViewModel.requestBookmark.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                findNavController().navigate(BookmarkFragmentDirections.actionBookmarkFragmentToBookmarkMyNewsFragment(it.id!!))
+                bookmarkViewModel.displayBookmarkFinish()
+            }
+        })
 
         bookmarkViewModel.eventCreateBookmark.observe(viewLifecycleOwner, Observer { bookmark ->
             if (bookmark != null) {

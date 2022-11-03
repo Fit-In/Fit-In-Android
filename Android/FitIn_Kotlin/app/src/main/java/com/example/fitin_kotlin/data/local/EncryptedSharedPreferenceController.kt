@@ -27,7 +27,7 @@ class EncryptedSharedPreferenceController @Inject constructor(private val prefer
     fun getRefreshToken(): String? = preferences.getString(fitinRefreshToken, "no")
 
     fun deleteToken() {
-        prefsEdit.remove(fitinAccessToken).remove(fitinRefreshToken).commit()
+        prefsEdit.remove(fitinAccessToken).remove(fitinRefreshToken).remove(userEmail).commit()
     }
 
     fun setUserEmail(email: String) {

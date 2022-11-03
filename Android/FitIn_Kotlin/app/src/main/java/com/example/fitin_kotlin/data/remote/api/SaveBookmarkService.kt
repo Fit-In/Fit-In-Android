@@ -3,6 +3,8 @@ package com.example.fitin_kotlin.data.remote.api
 import com.example.fitin_kotlin.data.model.network.request.RequestNewsBookmark
 import com.example.fitin_kotlin.data.model.network.request.RequestRecruitmentBookmark
 import com.example.fitin_kotlin.data.model.network.response.ResponseBodys
+import com.example.fitin_kotlin.data.model.network.response.ResponseNews
+import com.example.fitin_kotlin.data.model.network.response.ResponseRecruitment
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -23,12 +25,12 @@ interface SaveBookmarkService {
     ): Response<ResponseBodys>
 
     @GET("/save/news/{id}")
-    suspend fun findSaveNews(
+    suspend fun getSaveNews(
         @Path("id") id: Long
-    ): Response<RequestNewsBookmark>
+    ): ResponseNews
 
     @GET("save/recruit/{id}")
-    suspend fun findSaveRecruitment(
+    suspend fun getSaveRecruitment(
         @Path("id") id: Long
-    ): Response<RequestRecruitmentBookmark>
+    ): ResponseRecruitment
 }

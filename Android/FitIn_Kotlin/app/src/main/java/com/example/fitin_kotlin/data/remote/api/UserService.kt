@@ -33,7 +33,7 @@ interface UserService {
     @POST("/auth/logout")
     suspend fun postSignOut(
         @Body body: RequestSignOut
-    ): Response<Void>
+    ): Response<ResponseBodys>
 
     @POST("/sms/memberPhoneCheck")
     suspend fun postCoolSms(

@@ -14,5 +14,8 @@ class SaveBookmarkRepository @Inject constructor(private val saveBookmarkService
 
     suspend fun saveRecruitmentBookmark(requestRecruitmentBookmark: RequestRecruitmentBookmark) = withContext(ioDispatcher) { saveBookmarkService.saveRecruitmentBookmark(requestRecruitmentBookmark) }
 
+    suspend fun getSaveNews(saveNewsId: Long) = withContext(ioDispatcher) { saveBookmarkService.getSaveNews(saveNewsId) }
+
+    suspend fun getSaveRecruitment(saveRecruitmentId: Long) = withContext(ioDispatcher) { saveBookmarkService.getSaveRecruitment(saveRecruitmentId) }
 
 }
