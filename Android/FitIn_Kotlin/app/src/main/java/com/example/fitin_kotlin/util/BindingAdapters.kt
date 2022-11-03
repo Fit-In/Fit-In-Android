@@ -10,8 +10,11 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.fitin_kotlin.data.model.network.response.ResponseBookmark
 import com.example.fitin_kotlin.data.model.network.response.ResponseNewsList
 import com.example.fitin_kotlin.data.model.network.response.ResponseRecruitmentList
+import com.example.fitin_kotlin.data.model.network.response.ResponseSavedBookmark
 import com.example.fitin_kotlin.ui.addbookmark.AddBookmarkAdapter
 import com.example.fitin_kotlin.ui.bookmark.BookmarkAdapter
+import com.example.fitin_kotlin.ui.bookmarkmynews.BookmarkMyNewsAdapter
+import com.example.fitin_kotlin.ui.bookmarkmyrecruitment.BookmarkMyRecruitmentAdapter
 import com.example.fitin_kotlin.ui.home.HomeNewsAdapter
 import com.example.fitin_kotlin.ui.home.HomeRecruitmentAdapter
 import com.example.fitin_kotlin.ui.news.NewsAdapter
@@ -51,6 +54,18 @@ fun bindBookmarkRecyclerView(recyclerView: RecyclerView, bookmarkList: List<Resp
 fun bindAddBookmarkRecyclerView(recyclerView: RecyclerView, bookmarkList: List<ResponseBookmark>?) {
     val adapter = recyclerView.adapter as AddBookmarkAdapter
     adapter.submitList(bookmarkList)
+}
+
+@BindingAdapter("bookmarkMyNewslistData")
+fun bindBookmarkMyNewsRecyclerView(recyclerView: RecyclerView, bookmarkMyNewsList: List<ResponseSavedBookmark>?) {
+    val adapter = recyclerView.adapter as BookmarkMyNewsAdapter
+    adapter.submitList(bookmarkMyNewsList)
+}
+
+@BindingAdapter("bookmarkMyRecruitmentlistData")
+fun bindBookmarkMyRecruitmentRecyclerView(recyclerView: RecyclerView, bookmarkMyRecruitmentList: List<ResponseSavedBookmark>?) {
+    val adapter = recyclerView.adapter as BookmarkMyRecruitmentAdapter
+    adapter.submitList(bookmarkMyRecruitmentList)
 }
 
 @BindingAdapter("imageUrl")

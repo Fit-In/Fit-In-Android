@@ -78,18 +78,18 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/iv_recruitment_img"
+            android:id="@+id/iv_news_img"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:imageUrl="@{detailViewModel.news.image_link}"
             app:layout_constraintTop_toBottomOf="@id/rl_title"
-            app:layout_constraintBottom_toTopOf="@id/tv_recruitment_company_name"
+            app:layout_constraintBottom_toTopOf="@id/tv_news_press"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             tools:src="@drawable/iv_main" />
 
         <TextView
-            android:id="@+id/tv_recruitment_company_name"
+            android:id="@+id/tv_news_press"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -99,11 +99,11 @@
             android:textColor="#191919"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/iv_recruitment_img"
+            app:layout_constraintTop_toBottomOf="@id/iv_news_img"
             tools:text="동아일보" />
 
         <TextView
-            android:id="@+id/tv_recruitment_position"
+            android:id="@+id/tv_news_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -114,12 +114,12 @@
             android:gravity="center_horizontal"
             app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_company_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_news_press"
             tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’\n 물밑 제안일종의 협박… 공직후보자 연좌제 하겠다는 건가”" />
 
 
         <ScrollView
-            android:id="@+id/tv_recruitment_body"
+            android:id="@+id/tv_news_body"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="4dp"
@@ -127,11 +127,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_recruitment_position">
+            app:layout_constraintTop_toBottomOf="@id/tv_news_title">
 
 
             <TextView
-                android:id="@+id/tv_recruitment_content"
+                android:id="@+id/tv_news_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

@@ -16,6 +16,8 @@ class UserRepository @Inject constructor(private val userService: UserService, p
 
     suspend fun postSignIn(requestSignIn: RequestSignIn) = withContext(ioDispatcher) { userService.postSignIn(requestSignIn) }
 
+    suspend fun postSignOut(requestSignOut: RequestSignOut) = withContext(ioDispatcher) { userService.postSignOut(requestSignOut) }
+
     fun postReIssue(requestTokenReissue: RequestTokenReissue) = userService.postReIssue(requestTokenReissue)
 
     suspend fun postCoolSms(requestPhoneNumber: RequestPhoneNumber) = withContext(ioDispatcher) { userService.postCoolSms(requestPhoneNumber) }

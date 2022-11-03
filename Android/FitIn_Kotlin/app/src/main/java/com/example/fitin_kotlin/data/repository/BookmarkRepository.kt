@@ -15,4 +15,6 @@ class BookmarkRepository @Inject constructor(private val bookmarkService: Bookma
 
     suspend fun addBookmark(requestCreateBookmark: RequestCreateBookmark) = withContext(ioDispatcher) { bookmarkService.addBookmark(requestCreateBookmark) }
 
+    suspend fun findBookmark(id: Long) = withContext(ioDispatcher) { bookmarkService.findBookmark(id) }
+
 }

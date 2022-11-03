@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="myNewsViewModel"
+            type="com.example.fitin_kotlin.ui.mynews.MyNewsViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_begin="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_end="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:elevation="50dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_toStartOf="@id/iv_main_title"
+                android:background="?attr/selectableItemBackground"
+                android:onClick="@{() -> myNewsViewModel.onBack()}"
+                android:src="@drawable/iv_back" />
+
+            <ImageView
+                android:id="@+id/iv_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/iv_my_news" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_news_img"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:src="@{myNewsViewModel.saveNews.image_link}"
+            app:layout_constraintBottom_toTopOf="@id/tv_news_press"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/rl_title"
+            tools:src="@drawable/iv_main" />
+
+        <TextView
+            android:id="@+id/tv_news_press"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#191919"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:text="@{myNewsViewModel.saveNews.press}"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/iv_news_img"
+            tools:text="동아일보" />
+
+        <TextView
+            android:id="@+id/tv_news_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:textColor="#767676"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@{myNewsViewModel.saveNews.title}"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_news_press"
+            tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’\n 물밑 제안일종의 협박… 공직후보자 연좌제 하겠다는 건가”" />
+
+
+        <ScrollView
+            android:id="@+id/tv_news_body"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/gl_end"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_news_title">
+
+
+            <TextView
+                android:id="@+id/tv_news_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#767676"
+                android:textSize="16sp"
+                android:textStyle="normal"
+                android:text="@{myNewsViewModel.saveNews.content}"
+                tools:text="[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n[단독]권성동 “민주 ‘鄭-韓낙마땐 총리 인준’ 물밑 제안  일종의 협박… 공직후보자 연좌제 하겠다는 건가”\n" />
+
+        </ScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
