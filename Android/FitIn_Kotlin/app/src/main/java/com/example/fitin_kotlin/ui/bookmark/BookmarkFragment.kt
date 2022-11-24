@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -12,7 +13,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentBookmarkBinding
+import com.example.fitin_kotlin.ui.news.NewsAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 
 @AndroidEntryPoint
 class BookmarkFragment : Fragment() {
@@ -33,13 +36,6 @@ class BookmarkFragment : Fragment() {
 
         binding.bookmarkViewModel = bookmarkViewModel
 
-        bookmarkViewModel.bookmarkList.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) {
-                binding.tvEmptyBookmark.isVisible = false
-                binding.rvBookmarkList.isVisible = true
-            }
-        }
-
         bookmarkAdapter = BookmarkAdapter(BookmarkAdapter.OnClickListener {
             bookmarkViewModel.displayBookmark(it)
         })
@@ -48,7 +44,7 @@ class BookmarkFragment : Fragment() {
 
         bookmarkViewModel.requestBookmark.observe(viewLifecycleOwner, Observer {
             if (null != it) {
-                findNavController().navigate(BookmarkFragmentDirections.actionBookmarkFragmentToBookmarkMyNewsFragment(it.id!!))
+                findNavController().navigate(BookmarkFragmentDirections.actionBookmarkFragmentToBookmarkMyNewsFragment(it))
                 bookmarkViewModel.displayBookmarkFinish()
             }
         })
@@ -58,6 +54,34 @@ class BookmarkFragment : Fragment() {
                 findNavController().navigate(BookmarkFragmentDirections.actionBookmarkFragmentToCreateBookmarkFragment(bookmark))
                 bookmarkViewModel.onCreateBookmarkComplete()
             }
+        })
+
+        bookmarkViewModel.bookmarkList.observe(viewLifecycleOwner) {
+            it?.let {
+                bookmarkAdapter.responseBookmarkList = it
+            }
+            if (it.isNotEmpty()) {
+                binding.tvEmptyBookmark.isVisible = false
+                binding.rvBookmarkList.isVisible = true
+            }
+        }
+
+        binding.svSearchBookmark.isActivated = true
+        binding.svSearchBookmark.onActionViewExpanded()
+        binding.svSearchBookmark.clearFocus()
+
+        binding.svSearchBookmark.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                (binding.rvBookmarkList.adapter as BookmarkAdapter).filter.filter(newText)
+                (binding.rvBookmarkList.adapter as BookmarkAdapter).notifyDataSetChanged()
+                return false
+            }
+
         })
 
         bookmarkViewModel.eventBack.observe(viewLifecycleOwner, Observer { back ->

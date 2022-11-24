@@ -1,5 +1,6 @@
 package com.example.fitin_kotlin.ui.addbookmark
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.model.network.request.RequestCreateBookmark
@@ -38,6 +39,7 @@ class AddBookmarkViewModel @Inject constructor(
     private fun getBookmarkList() {
         val email = prefs.getUserEmail()
 
+        Log.e("북마크 가져오기", "가져옴")
         viewModelScope.launch {
             _bookmarkList.value = bookmarkRepository.getBookmarkList(email!!)
         }
@@ -50,6 +52,7 @@ class AddBookmarkViewModel @Inject constructor(
             val bookmark = bookmarkRepository.addBookmark(requestAddBookmark)
             when (bookmark.isSuccessful) {
                 true -> {
+                    Log.e("정보 ID", savedId.value.toString())
                     _toastMessage.value = "북마크에 추가되었습니다."
                     _eventAddComplete.value = true
                 }

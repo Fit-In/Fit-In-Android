@@ -9,6 +9,7 @@ import com.example.fitin_kotlin.data.local.EncryptedSharedPreferenceController
 import com.example.fitin_kotlin.data.model.network.request.RequestCreateBookmark
 import com.example.fitin_kotlin.data.model.network.response.ResponseBookmark
 import com.example.fitin_kotlin.data.repository.BookmarkRepository
+import com.example.fitin_kotlin.ui.home.HomeActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,9 +33,7 @@ class BookmarkViewModel @Inject constructor(
     private fun getBookmarkList() {
         val email = prefs.getUserEmail()
         viewModelScope.launch {
-            Log.e("이메일", email!!)
-            _bookmarkList.value = bookmarkRepository.getBookmarkList(email)
-            Log.e("북마크", bookmarkList.value.toString())
+            _bookmarkList.value = bookmarkRepository.getBookmarkList(email!!)
         }
     }
 

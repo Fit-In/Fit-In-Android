@@ -77,7 +77,7 @@
                 android:id="@+id/iv_bookmark_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"
+                android:src="@drawable/ic_baseline_collections_bookmark_24"
                 app:layout_constraintEnd_toStartOf="@id/tv_bookmark_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -87,11 +87,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="북마크 1"
+                android:text="@{bookmarkMyNewsViewModel.requestBookmark.bookmarkName}"
                 android:textColor="#191919"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/iv_bookmark_image"
+                tools:text="북마크 1"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -143,6 +144,7 @@
             android:layout_height="0dp"
             android:padding="12dp"
             android:layout_marginTop="24dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
@@ -150,6 +152,17 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:bookmarkMyNewslistData="@{bookmarkMyNewsViewModel.myNews}"
             tools:listitem="@layout/list_item_my_news"/>
+
+        <TextView
+            android:id="@+id/tv_empty_bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/tv_empty_bookmark_text"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

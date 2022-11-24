@@ -51,12 +51,12 @@ class MyMenuViewModel @Inject constructor(
                     if (signOut.body()!!.state == 200) {
                         prefs.deleteToken()
                         _eventSignOut.value = true
+                        Log.e("토큰 확인", prefs.getAccessToken().toString())
                     } else {
                         Log.e("실패", signOut.body()!!.message)
                     }
                 else -> {
-                    Log.e("실패", signOut.body()!!.message)
-
+                    _eventSignOut.value = true
                 }
             }
         }

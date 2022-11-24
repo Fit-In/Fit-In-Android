@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
+import com.example.fitin_kotlin.data.model.network.response.ResponseBookmark
+import com.example.fitin_kotlin.data.model.network.response.ResponseSavedBookmark
 import com.example.fitin_kotlin.databinding.FragmentBookmarkMyNewsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,11 +40,18 @@ class BookmarkMyNewsFragment : Fragment() {
 
         binding.rvMyNews.adapter = bookmarkMyNewsAdapter
 
-        // TODO 상세화면으로 넘어가게 id를 Navigation으로 넘겨서 saveDB에 저장된 id의 값을 보여지게 처리함
+        bookmarkMyNewsViewModel.myNews.observe(viewLifecycleOwner) {
+            if (it.any { it.title != null}) {
+                binding.tvEmptyBookmark.isVisible = false
+                binding.rvMyNews.isVisible = true
+            }
+        }
 
+        // TODO 상세화면으로 넘어가게 id를 Navigation으로 넘겨서 saveDB에 저장된 id의 값을 보여지게 처리함
         bookmarkMyNewsViewModel.eventBookmarkMyRecruitment.observe(viewLifecycleOwner, Observer { recruit ->
             if (recruit) {
-                findNavController().navigate(BookmarkMyNewsFragmentDirections.actionBookmarkMyNewsFragmentToBookmarkMyRecruitmentFragment(bookmarkMyNewsViewModel.bookmarkId.value!!))
+                findNavController().navigate(BookmarkMyNewsFragmentDirections.actionBookmarkMyNewsFragmentToBookmarkMyRecruitmentFragment(
+                    bookmarkMyNewsViewModel.bookmark.value!!))
                 bookmarkMyNewsViewModel.onEventBookmakMyRecruitComplete()
             }
         })
