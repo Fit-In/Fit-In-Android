@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.fitin_kotlin.R
 import com.example.fitin_kotlin.databinding.FragmentAddBookmarkBinding
+import com.example.fitin_kotlin.ui.bookmark.BookmarkAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,18 +34,39 @@ class AddBookmarkFragment : Fragment() {
 
         binding.addBookmarkViewModel = addBookmarkViewModel
 
-        addBookmarkViewModel.bookmarkList.observe(viewLifecycleOwner) {
-            if (it.isNotEmpty()) {
-                binding.tvEmptyBookmark.isVisible = false
-                binding.rvBookmarkList.isVisible = true
-            }
-        }
-
         addBookmarkAdapter = AddBookmarkAdapter(AddBookmarkAdapter.OnClickListener {
             addBookmarkViewModel.addBookmark(it)
         })
 
         binding.rvBookmarkList.adapter = addBookmarkAdapter
+
+        addBookmarkViewModel.bookmarkList.observe(viewLifecycleOwner) {
+            it?.let {
+                addBookmarkAdapter.responseAddBookmarkList = it
+                if (it.isNotEmpty()) {
+                    binding.tvEmptyBookmark.isVisible = false
+                    binding.rvBookmarkList.isVisible = true
+                }
+            }
+        }
+
+        binding.svSearchBookmark.isActivated = true
+        binding.svSearchBookmark.onActionViewExpanded()
+        binding.svSearchBookmark.clearFocus()
+
+        binding.svSearchBookmark.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                (binding.rvBookmarkList.adapter as AddBookmarkAdapter).filter.filter(newText)
+                (binding.rvBookmarkList.adapter as AddBookmarkAdapter).notifyDataSetChanged()
+                return false
+            }
+
+        })
 
         addBookmarkViewModel.toastMessage.observe(viewLifecycleOwner, Observer { toast ->
             Toast.makeText(requireContext(), toast, Toast.LENGTH_SHORT).show()

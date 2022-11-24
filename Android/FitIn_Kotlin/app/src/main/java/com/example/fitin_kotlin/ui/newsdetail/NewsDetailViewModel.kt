@@ -1,5 +1,6 @@
 package com.example.fitin_kotlin.ui.newsdetail
 
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import com.example.fitin_kotlin.data.model.network.response.ResponseNews

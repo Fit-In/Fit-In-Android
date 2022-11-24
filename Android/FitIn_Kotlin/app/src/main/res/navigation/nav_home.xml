@@ -80,7 +80,8 @@
         tools:layout="@layout/fragment_bookmark">
         <action
             android:id="@+id/action_bookmarkFragment_to_createBookmarkFragment"
-            app:destination="@id/createBookmarkFragment" />
+            app:destination="@id/createBookmarkFragment"
+            app:popUpTo="@id/bookmarkFragment" />
         <action
             android:id="@+id/action_bookmarkFragment_to_bookmarkMyNewsFragment"
             app:destination="@id/bookmarkMyNewsFragment"
@@ -98,6 +99,12 @@
             android:id="@+id/action_createBookmarkFragment_to_addBookmarkFragment"
             app:destination="@id/addBookmarkFragment"
             app:popUpTo="@id/addBookmarkFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_createBookmarkFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/bookmarkFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -119,8 +126,8 @@
         android:label="BookmarkMyNewsFragment"
         tools:layout="@layout/fragment_bookmark_my_news">
         <argument
-            android:name="bookmarkId"
-            app:argType="long"/>
+            android:name="bookmark"
+            app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseBookmark"/>
         <action
             android:id="@+id/action_bookmarkMyNewsFragment_to_bookmarkMyRecruitmentFragment"
             app:destination="@id/bookmarkMyRecruitmentFragment" />
@@ -134,8 +141,8 @@
         android:label="BookmarkMyRecruitmentFragment"
         tools:layout="@layout/fragment_bookmark_my_recruitment">
         <argument
-            android:name="bookmarkId"
-            app:argType="long"/>
+            android:name="bookmark"
+            app:argType="com.example.fitin_kotlin.data.model.network.response.ResponseBookmark"/>
         <action
             android:id="@+id/action_bookmarkMyRecruitmentFragment_to_bookmarkMyNewsFragment"
             app:destination="@id/bookmarkMyNewsFragment" />

@@ -31,7 +31,7 @@ class CreateBookmarkFragment : Fragment() {
 
         createBookmarkViewModel.eventCompleteCreateFromBookmark.observe(viewLifecycleOwner, Observer { finish ->
             if (finish) {
-                findNavController().popBackStack()
+                findNavController().navigate(CreateBookmarkFragmentDirections.actionCreateBookmarkFragmentToBookmarkFragment())
                 createBookmarkViewModel.onEventCompleteFromBookmark()
             }
         })

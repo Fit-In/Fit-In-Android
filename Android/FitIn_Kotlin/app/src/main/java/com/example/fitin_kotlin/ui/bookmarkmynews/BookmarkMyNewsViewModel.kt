@@ -2,6 +2,7 @@ package com.example.fitin_kotlin.ui.bookmarkmynews
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.fitin_kotlin.data.model.network.response.ResponseBookmark
 import com.example.fitin_kotlin.data.model.network.response.ResponseSavedBookmark
 import com.example.fitin_kotlin.data.repository.BookmarkRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,23 +15,23 @@ class BookmarkMyNewsViewModel @Inject constructor(
     state: SavedStateHandle
 ) : ViewModel(){
     // TODO state로 넘겨 받은 id를 기준으로 bookmark/{bookmarkId} API 호출함
-    private val requestBookmark = MutableLiveData<Long>()
-    val bookmarkId = MutableLiveData<Long>()
+    val requestBookmark = MutableLiveData<ResponseBookmark>()
+    val bookmark = MutableLiveData<ResponseBookmark>()
 
-    val requestSavedNews: MutableLiveData<ResponseSavedBookmark?> = MutableLiveData<ResponseSavedBookmark?>()
+    val requestSavedNews: MutableLiveData<ResponseSavedBookmark> = MutableLiveData<ResponseSavedBookmark>()
 
     private val _myNews = MutableLiveData<List<ResponseSavedBookmark>>()
     val myNews: LiveData<List<ResponseSavedBookmark>>
         get() = _myNews
 
     init {
-        requestBookmark.value = state.getLiveData<Long>("bookmarkId").value
-        Log.e("state 확인", requestBookmark.value.toString())
+        requestBookmark.value = state.getLiveData<ResponseBookmark>("bookmark").value
+//        Log.e("state 확인", requestBookmark.value.toString())
         getBookmark()
     }
 
     private fun getBookmark() {
-        val bookmarkId: Long = requestBookmark.value!!
+        val bookmarkId: Long = requestBookmark.value?.id!!
         viewModelScope.launch {
             _myNews.value = bookmarkRepository.findBookmark(bookmarkId)
         }
@@ -50,7 +51,7 @@ class BookmarkMyNewsViewModel @Inject constructor(
         get() = _eventBookmarkMyRecruitment
 
     fun onEventBookmarkMyRecruit() {
-        bookmarkId.value = requestBookmark.value
+        bookmark.value = requestBookmark.value
         _eventBookmarkMyRecruitment.value = true
     }
 

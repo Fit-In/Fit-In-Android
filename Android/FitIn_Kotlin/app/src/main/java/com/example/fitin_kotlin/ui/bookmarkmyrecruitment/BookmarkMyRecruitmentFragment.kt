@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -35,9 +36,16 @@ class BookmarkMyRecruitmentFragment : Fragment() {
 
         binding.rvMyRecruitment.adapter = bookmarkMyRecruitmentAdapter
 
+        bookmarkMyRecruitmentViewModel.myRecruitment.observe(viewLifecycleOwner) {
+            if (it.any { it.position != null}) {
+                binding.tvEmptyBookmark.isVisible = false
+                binding.rvMyRecruitment.isVisible = true
+            }
+        }
+
         bookmarkMyRecruitmentViewModel.eventBookmarkMyNews.observe(viewLifecycleOwner, Observer { news ->
             if (news) {
-                findNavController().navigate(BookmarkMyRecruitmentFragmentDirections.actionBookmarkMyRecruitmentFragmentToBookmarkMyNewsFragment(bookmarkMyRecruitmentViewModel.bookmarkId.value!!))
+                findNavController().navigate(BookmarkMyRecruitmentFragmentDirections.actionBookmarkMyRecruitmentFragmentToBookmarkMyNewsFragment(bookmarkMyRecruitmentViewModel.bookmark.value!!))
                 bookmarkMyRecruitmentViewModel.onEventBookmarkMyNewsComplete()
             }
         })

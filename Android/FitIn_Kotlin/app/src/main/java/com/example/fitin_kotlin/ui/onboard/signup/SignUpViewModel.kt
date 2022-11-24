@@ -32,6 +32,10 @@ class SignUpViewModel @Inject constructor(
     val eventEmailNotDuplicate: LiveData<Boolean>
         get() = _eventEmailNotDuplicate
 
+    private val _checkBox = MutableLiveData<Boolean>(false)
+    val checkBox: LiveData<Boolean>
+        get() = _checkBox
+
     private val _toastMessage = MutableLiveData<String>()
     val toastMessage: LiveData<String>
         get() = _toastMessage
@@ -81,6 +85,10 @@ class SignUpViewModel @Inject constructor(
         }
     }
 
+    fun onCheckBox(view: View) {
+        _checkBox.value = true
+    }
+
     private val _eventNumberCheck = MutableLiveData<Boolean>()
     val eventNumberCheck: LiveData<Boolean>
         get() = _eventNumberCheck
@@ -124,9 +132,9 @@ class SignUpViewModel @Inject constructor(
 
     fun onSignUp(view: View) {
         // 회원가입 버튼 기본 디폴트 값을 비활성화 상태 + 비밀번호 유효성 검사 추가
-        onPasswordCheck()
         try {
-            if (eventEmailNotDuplicate.value!! && eventNumberCheck.value!! && eventPasswordCheck.value!!) {
+            onPasswordCheck()
+            if (eventEmailNotDuplicate.value!! && eventNumberCheck.value!! && eventPasswordCheck.value!! && checkBox.value!!) {
                 // 회원가입 버튼 활성화
                 val email = id.value + "@" + email.value
                 // 이메일 & 비밀번호 & 이름 & 전화번호에 대해 정규식 제약조건이 걸려있음, 그에 맞게 입력하게끔 hint로 알려줘야함

@@ -59,13 +59,15 @@ fun bindAddBookmarkRecyclerView(recyclerView: RecyclerView, bookmarkList: List<R
 @BindingAdapter("bookmarkMyNewslistData")
 fun bindBookmarkMyNewsRecyclerView(recyclerView: RecyclerView, bookmarkMyNewsList: List<ResponseSavedBookmark>?) {
     val adapter = recyclerView.adapter as BookmarkMyNewsAdapter
-    adapter.submitList(bookmarkMyNewsList)
+    val myNews = bookmarkMyNewsList?.filter { it.title != null }
+    adapter.submitList(myNews)
 }
 
 @BindingAdapter("bookmarkMyRecruitmentlistData")
 fun bindBookmarkMyRecruitmentRecyclerView(recyclerView: RecyclerView, bookmarkMyRecruitmentList: List<ResponseSavedBookmark>?) {
     val adapter = recyclerView.adapter as BookmarkMyRecruitmentAdapter
-    adapter.submitList(bookmarkMyRecruitmentList)
+    val myRecruit = bookmarkMyRecruitmentList?.filter { it.position != null }
+    adapter.submitList(myRecruit)
 }
 
 @BindingAdapter("imageUrl")
