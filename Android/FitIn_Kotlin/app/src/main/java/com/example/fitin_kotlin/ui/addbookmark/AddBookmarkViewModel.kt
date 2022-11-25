@@ -47,7 +47,7 @@ class AddBookmarkViewModel @Inject constructor(
 
     fun addBookmark(responseBookmark: ResponseBookmark) {
         val bookmarkId = responseBookmark.id
-        val requestAddBookmark = RequestCreateBookmark("email","name",bookmarkId!!,savedId.value!!)
+        val requestAddBookmark = RequestCreateBookmark("email","name","description",bookmarkId!!,savedId.value!!)
         viewModelScope.launch {
             val bookmark = bookmarkRepository.addBookmark(requestAddBookmark)
             when (bookmark.isSuccessful) {

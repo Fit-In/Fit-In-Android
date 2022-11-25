@@ -7,6 +7,8 @@ data class RequestCreateBookmark (
     val email: String?,
     @SerializedName("bookmarkName")
     val bookmarkName: String?,
+    @SerializedName("bookmarkProfile")
+    val bookmarkDescription: String?,
     @SerializedName("bookmarkId")
     val bookmarkId: Long,
     @SerializedName("saveId")

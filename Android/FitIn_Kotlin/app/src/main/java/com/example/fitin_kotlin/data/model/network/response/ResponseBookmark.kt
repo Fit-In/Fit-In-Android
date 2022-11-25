@@ -10,4 +10,6 @@ data class ResponseBookmark (
     val id: Long?,
     @SerializedName("bookmarkName")
     val bookmarkName: String,
+    @SerializedName("bookmarkProfile")
+    val bookmarkDescription: String
 ) : Parcelable

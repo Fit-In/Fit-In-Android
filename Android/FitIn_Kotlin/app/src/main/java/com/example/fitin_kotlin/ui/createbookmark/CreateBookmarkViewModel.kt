@@ -20,6 +20,7 @@ class CreateBookmarkViewModel @Inject constructor(
     private val bookmarkDirection = MutableLiveData<String>()
 
     val bookmarkName: MutableLiveData<String> = MutableLiveData<String>()
+    val bookmarkDescription: MutableLiveData<String> = MutableLiveData<String>()
 
     private val _eventCompleteCreateFromBookmark = MutableLiveData<Boolean>()
     val eventCompleteCreateFromBookmark: LiveData<Boolean>
@@ -38,7 +39,7 @@ class CreateBookmarkViewModel @Inject constructor(
 
     fun onCreateBookmark(view: View) {
         val email = prefs.getUserEmail()
-        val requestCreateBookmark = RequestCreateBookmark(email, bookmarkName.value, 0, 0)
+        val requestCreateBookmark = RequestCreateBookmark(email, bookmarkName.value, bookmarkDescription.value, 0,0)
 
         viewModelScope.launch {
             val createBookmark = bookmarkRepository.createBookmark(requestCreateBookmark)
